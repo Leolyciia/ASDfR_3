@@ -26,7 +26,7 @@ class SequenceController : public rclcpp::Node {
 
         subscription_xeno2ros_ = this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
             "/Xeno2Ros", 10, 
-            std::bind(&SequenceController::handle_xeno_feedback, this, _1));
+            std::bind(&SequenceController::handle_xeno_feedback, this, _1));
 
 
         publisher_left_ = this->create_publisher<std_msgs::msg::Float64>(
@@ -45,6 +45,8 @@ class SequenceController : public rclcpp::Node {
     }
 
   private:
+    double encoder_left_ = 0.0;
+    double encoder_right_ = 0.0;
     void sequence_controller() {
         auto gain = this->get_parameter("gain").as_double();
         auto width = this->get_parameter("width").as_int();
@@ -63,8 +65,6 @@ class SequenceController : public rclcpp::Node {
         publisher_left_->publish(vel_left);
         publisher_right_->publish(vel_right);
 
-        double encoder_left_ = 0.0;
-        double encoder_right_ = 0.0;
         rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_;
 
     }
@@ -83,7 +83,7 @@ class SequenceController : public rclcpp::Node {
     
         encoder_left_ = msg->encoder_left;
         encoder_right_ = msg->encoder_right;
-    }
+    }
 
     size_t count_;
     double sample_time_s_;
@@ -94,6 +94,8 @@ class SequenceController : public rclcpp::Node {
         subscription_light_pos_;
     rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr
         subscription_dim_;
+    rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr
+        subscription_xeno2ros_;
 
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr publisher_left_;
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr publisher_right_;
