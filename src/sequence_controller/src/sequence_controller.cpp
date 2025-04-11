@@ -31,7 +31,7 @@ class SequenceController : public rclcpp::Node {
 
 
         publisher_xenotest_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
-            "xenotest", 10);
+            "Ros2Xeno", 10);
 
         publisher_left_ = this->create_publisher<std_msgs::msg::Float64>(
             "left_motor_setpoint_vel", 10);
@@ -49,7 +49,7 @@ class SequenceController : public rclcpp::Node {
     }
 
   private:
-    double encoder_left_ = 5.0;
+    double encoder_left_ = 0.0;
     double encoder_right_ = 0.0;
     void sequence_controller() {
         auto gain = this->get_parameter("gain").as_double();
@@ -88,7 +88,6 @@ class SequenceController : public rclcpp::Node {
     void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
         //RCLCPP_INFO(this->get_logger(), "Encoder Left: %.2f, Encoder Right: %.2f", msg->encoder_left, msg->encoder_right);
         encoder_left_ = msg->encoder_left;
-        encoder_left_ = 1;
         encoder_right_ = msg->encoder_right;
     }
 

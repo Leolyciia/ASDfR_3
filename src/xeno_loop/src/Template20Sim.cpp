@@ -44,7 +44,7 @@ int Template20Sim::initialised()
 
     evl_printf("Hello from initialised\n");       // Do something
 
-    return 0;
+    return 1;
 }
 
 int Template20Sim::run()
@@ -72,10 +72,10 @@ int Template20Sim::run()
     xeno_msg.encoder_left = sample_data.channel2;  //
     xeno_msg.encoder_right = sample_data.channel1;  //
 
-    float a = ros_msg.example_a;
-    float b = ros_msg.example_b;
+    double a = ros_msg.example_a;
+    double b = ros_msg.example_b;
 
-    evl_printf("ROS a: %d, Ros b: %d\n", a, b);
+    evl_printf("ROS a: %f, Ros b: %f\n", a, b);
     // Printing, not sure if this is possible though
     evl_printf("Left encoder: %d, Right encoder: %d\n", sample_data.channel2, sample_data.channel1);
     
