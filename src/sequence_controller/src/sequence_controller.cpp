@@ -8,7 +8,7 @@
 
 #include <std_msgs/msg/float64.hpp>
 #include "xrf2_msgs/msg/xeno2_ros.hpp"  // Xeno2Ros message from XRF2_msgs
-
+#include "xrf2_msgs/msg/ros2_xeno.hpp"
 
 using std::placeholders::_1;
 
@@ -24,10 +24,14 @@ class SequenceController : public rclcpp::Node {
                 "light_position", 10,
                 std::bind(&SequenceController::update_light_pos, this, _1));
 
-        subscription_xeno2ros_ = this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
-            "/Xeno2Ros", 10, 
-            std::bind(&SequenceController::handle_xeno_feedback, this, _1));
+        subscription_xeno2ros_ = 
+            this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
+                "/Xeno2Ros", 10, 
+                std::bind(&SequenceController::handle_xeno_feedback, this, _1));
 
+
+        publisher_xenotest_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
+            "xenotest", 10);
 
         publisher_left_ = this->create_publisher<std_msgs::msg::Float64>(
             "left_motor_setpoint_vel", 10);
@@ -45,7 +49,7 @@ class SequenceController : public rclcpp::Node {
     }
 
   private:
-    double encoder_left_ = 0.0;
+    double encoder_left_ = 5.0;
     double encoder_right_ = 0.0;
     void sequence_controller() {
         auto gain = this->get_parameter("gain").as_double();
@@ -55,6 +59,8 @@ class SequenceController : public rclcpp::Node {
 
         RCLCPP_INFO(this->get_logger(), "light_pos.x: %f, e: %f", light_pos_.x,
                     e);
+        
+        RCLCPP_INFO(this->get_logger(), "Encoder Left: %.2f, Encoder Right: %.2f", encoder_left_, encoder_right_);
 
         auto vel_left = std_msgs::msg::Float64();
         auto vel_right = std_msgs::msg::Float64();
@@ -62,11 +68,13 @@ class SequenceController : public rclcpp::Node {
         vel_left.data = e;
         vel_right.data = -e;
 
+        auto test = xrf2_msgs::msg::Ros2Xeno();
+        test.example_a = 1;
+        test.example_b = 2;
+
         publisher_left_->publish(vel_left);
         publisher_right_->publish(vel_right);
-
-        rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_;
-
+        publisher_xenotest_->publish(test);
     }
 
     void update_light_pos(const geometry_msgs::msg::Point &msg) {
@@ -78,10 +86,9 @@ class SequenceController : public rclcpp::Node {
     }
 
     void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
-        RCLCPP_INFO(this->get_logger(), "Encoder Left: %.2f, Encoder Right: %.2f", 
-                    msg->encoder_left, msg->encoder_right);
-    
+        //RCLCPP_INFO(this->get_logger(), "Encoder Left: %.2f, Encoder Right: %.2f", msg->encoder_left, msg->encoder_right);
         encoder_left_ = msg->encoder_left;
+        encoder_left_ = 1;
         encoder_right_ = msg->encoder_right;
     }
 
@@ -99,6 +106,7 @@ class SequenceController : public rclcpp::Node {
 
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr publisher_left_;
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr publisher_right_;
+    rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_xenotest_;
 
     rclcpp::TimerBase::SharedPtr timer_;
 };

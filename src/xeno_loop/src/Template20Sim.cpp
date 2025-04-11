@@ -1,6 +1,4 @@
 #include "Template20Sim.hpp"
-#include "xrf2_msgs/msg/xeno2_ros.hpp"
-//#include "Xeno2Ros.pb.h"
 
 Template20Sim::Template20Sim(uint write_decimator_freq, uint monitor_freq) :
     XenoFrt20Sim(write_decimator_freq, monitor_freq, file, &data_to_be_logged),
@@ -69,13 +67,17 @@ int Template20Sim::run()
     data_to_be_logged.this_is_a_float = data_to_be_logged.this_is_a_float/2;
     data_to_be_logged.this_is_a_double = data_to_be_logged.this_is_a_double/4; 
 
-    xrf2_msgs::msg::Xeno2Ros xeno_to_ros_msg;
+    ico_io.update_io(actuate_data, &sample_data); 
     controller.Calculate(u, y);
-    xeno_to_ros_msg.encoder_left = y[0];  // y[0] = left encoder
-    xeno_to_ros_msg.encoder_right = y[1]; // y[1] = right encoder
+    xeno_msg.encoder_left = sample_data.channel2;  //
+    xeno_msg.encoder_right = sample_data.channel1;  //
 
+    float a = ros_msg.example_a;
+    float b = ros_msg.example_b;
+
+    evl_printf("ROS a: %d, Ros b: %d\n", a, b);
     // Printing, not sure if this is possible though
-    evl_printf("Left encoder: %f, Right encoder: %f\n", y[0], y[1]);
+    evl_printf("Left encoder: %d, Right encoder: %d\n", sample_data.channel2, sample_data.channel1);
     
     if(controller.IsFinished())
         return 1;

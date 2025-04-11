@@ -1,0 +1,39 @@
+[0.074s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/home/asdfr-30/ASDF/30-ASDfR/ASDfR_3/install/xrf2_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/home/asdfr-30/ASDF/30-ASDfR/ASDfR_3/install/xrf2_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.269s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[10.159s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[10.160s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher_xenotest_[m[K’ was not declared in this scope; did you mean ‘[01m[Kpublisher_left_[m[K’?
+[10.161s]    33 |         [01;31m[Kpublisher_xenotest_[m[K = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
+[10.163s]       |         [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[10.164s]       |         [32m[Kpublisher_left_[m[K
+[10.166s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:70:[m[K [01;31m[Kerror: [m[K‘[01m[KRos2Xeno[m[K’ is not a member of ‘[01m[Kxrf2_msgs::msg[m[K’
+[10.167s]    33 |         publisher_xenotest_ = this->create_publisher<xrf2_msgs::msg::[01;31m[KRos2Xeno[m[K>(
+[10.169s]       |                                                                      [01;31m[K^~~~~~~~[m[K
+[10.170s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:79:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KSequenceController::create_publisher<<expression error> >(const char [9], int)[m[K’
+[10.172s]    33 |         publisher_xenotest_ = [01;31m[Kthis->create_publisher<xrf2_msgs::msg::Ros2Xeno>([m[K
+[10.173s]       |                               [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[10.174s]    34 | [01;31m[K            "xenotest", 10)[m[K;
+[10.176s]       |             [01;31m[K~~~~~~~~~~~~~~~[m[K                                                    
+[10.177s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[10.178s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[10.179s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[10.181s]                  from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:7[m[K:
+[10.182s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:195:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class MessageT, class AllocatorT, class PublisherT> std::shared_ptr<PublisherT> rclcpp::Node::create_publisher(const string&, const rclcpp::QoS&, const rclcpp::PublisherOptionsWithAllocator<AllocatorT>&)[m[K’
+[10.183s]   195 |   [01;36m[Kcreate_publisher[m[K(
+[10.185s]       |   [01;36m[K^~~~~~~~~~~~~~~~[m[K
+[10.186s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:195:3:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[10.188s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:79:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[10.189s]    33 |         publisher_xenotest_ = [01;31m[Kthis->create_publisher<xrf2_msgs::msg::Ros2Xeno>([m[K
+[10.190s]       |                               [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+[10.191s]    34 | [01;31m[K            "xenotest", 10)[m[K;
+[10.193s]       |             [01;31m[K~~~~~~~~~~~~~~~[m[K                                                    
+[10.199s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::sequence_controller()[m[K’:
+[10.201s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:71:37:[m[K [01;31m[Kerror: [m[K‘[01m[KRos2Xeno[m[K’ is not a member of ‘[01m[Kxrf2_msgs::msg[m[K’
+[10.202s]    71 |         auto test = xrf2_msgs::msg::[01;31m[KRos2Xeno[m[K();
+[10.204s]       |                                     [01;31m[K^~~~~~~~[m[K
+[10.232s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:77:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher_xenotest_[m[K’ was not declared in this scope; did you mean ‘[01m[Kpublisher_left_[m[K’?
+[10.233s]    77 |         [01;31m[Kpublisher_xenotest_[m[K->publish(test);
+[10.235s]       |         [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[10.236s]       |         [32m[Kpublisher_left_[m[K
+[22.068s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[22.070s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[22.072s] gmake: *** [Makefile:146: all] Error 2

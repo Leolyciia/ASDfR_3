@@ -1,0 +1,38 @@
+[ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher_xenotest_[m[K’ was not declared in this scope; did you mean ‘[01m[Kpublisher_left_[m[K’?
+   33 |         [01;31m[Kpublisher_xenotest_[m[K = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+      |         [32m[Kpublisher_left_[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:70:[m[K [01;31m[Kerror: [m[K‘[01m[KRos2Xeno[m[K’ is not a member of ‘[01m[Kxrf2_msgs::msg[m[K’
+   33 |         publisher_xenotest_ = this->create_publisher<xrf2_msgs::msg::[01;31m[KRos2Xeno[m[K>(
+      |                                                                      [01;31m[K^~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:79:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KSequenceController::create_publisher<<expression error> >(const char [9], int)[m[K’
+   33 |         publisher_xenotest_ = [01;31m[Kthis->create_publisher<xrf2_msgs::msg::Ros2Xeno>([m[K
+      |                               [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+   34 | [01;31m[K            "xenotest", 10)[m[K;
+      |             [01;31m[K~~~~~~~~~~~~~~~[m[K                                                    
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:195:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class MessageT, class AllocatorT, class PublisherT> std::shared_ptr<PublisherT> rclcpp::Node::create_publisher(const string&, const rclcpp::QoS&, const rclcpp::PublisherOptionsWithAllocator<AllocatorT>&)[m[K’
+  195 |   [01;36m[Kcreate_publisher[m[K(
+      |   [01;36m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:195:3:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:33:79:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+   33 |         publisher_xenotest_ = [01;31m[Kthis->create_publisher<xrf2_msgs::msg::Ros2Xeno>([m[K
+      |                               [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^[m[K
+   34 | [01;31m[K            "xenotest", 10)[m[K;
+      |             [01;31m[K~~~~~~~~~~~~~~~[m[K                                                    
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::sequence_controller()[m[K’:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:71:37:[m[K [01;31m[Kerror: [m[K‘[01m[KRos2Xeno[m[K’ is not a member of ‘[01m[Kxrf2_msgs::msg[m[K’
+   71 |         auto test = xrf2_msgs::msg::[01;31m[KRos2Xeno[m[K();
+      |                                     [01;31m[K^~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:77:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kpublisher_xenotest_[m[K’ was not declared in this scope; did you mean ‘[01m[Kpublisher_left_[m[K’?
+   77 |         [01;31m[Kpublisher_xenotest_[m[K->publish(test);
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+      |         [32m[Kpublisher_left_[m[K
+gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2
