@@ -108,14 +108,14 @@ def generate_launch_description():
     )
 
     # 7. Run command
-    publish_run_cmd = ExecuteProcess(
-        cmd=[[
-            FindExecutable(name='ros2'),
-            ' topic pub --once /XenoCmd std_msgs/msg/Int32 "{data: 2}"' 
-        ]],
-        shell=True,
-        output='screen'
-    )
+    # publish_run_cmd = ExecuteProcess(
+    #     cmd=[[
+    #         FindExecutable(name='ros2'),
+    #         ' topic pub --once /XenoCmd std_msgs/msg/Int32 "{data: 2}"' 
+    #     ]],
+    #     shell=True,
+    #     output='screen'
+    # )
 
     ld = LaunchDescription()
 
@@ -153,9 +153,9 @@ def generate_launch_description():
         publish_init_cmd
     ]))
 
-    ld.add_action(TimerAction(period=4.0, actions=[
-        LogInfo(msg="Publishing Run command to /XenoCmd..."),
-        publish_run_cmd
-    ]))
+    # ld.add_action(TimerAction(period=4.0, actions=[
+    #     LogInfo(msg="Publishing Run command to /XenoCmd..."),
+    #     publish_run_cmd
+    # ]))
 
     return ld
