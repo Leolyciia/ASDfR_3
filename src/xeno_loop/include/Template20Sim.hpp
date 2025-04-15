@@ -26,8 +26,33 @@ private:
     struct ThisIsAStruct data_to_be_logged;
     LoopController controller;
 
-    double u[2];
+    // --- Physical and encoder constants ---
+    static constexpr double PI = 3.141592653589793;
+    static constexpr double WHEEL_DIAMETER = 0.101;      
+    static constexpr double GEAR_RATIO = 15.58;
+    static constexpr double ENCODER_COUNTS_PER_MOTOR_REV = 4096.0; 
+    static constexpr double COUNTS_PER_WHEEL_REV = ENCODER_COUNTS_PER_MOTOR_REV * GEAR_RATIO;
+    static constexpr double WHEEL_CIRCUMFERENCE = PI * WHEEL_DIAMETER;
+    static constexpr double DIST_PER_COUNT = WHEEL_CIRCUMFERENCE / COUNTS_PER_WHEEL_REV;
+
+    static constexpr uint16_t ENCODER_MAX_COUNT = 16383; // 14-bit max value 
+    static constexpr uint16_t ENCODER_RANGE = 16384;    // 2^14
+    static constexpr int16_t ENCODER_WRAP_THRESHOLD = ENCODER_RANGE / 2;
+
+    double u[4];
     double y[2];
+
+    // --- Feedback calculation state ---
+    double total_pos_left;  // Accumulated distance for left wheel
+    double total_pos_right; // Accumulated distance for right wheel
+    uint16_t prev_encoder_left_raw;
+    uint16_t prev_encoder_right_raw;
+    bool feedback_initialized;
+
+    // --- Helper functions ---
+    int16_t calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw);
+    void updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw);
+
 protected:
     //Functions
     int initialising() override;

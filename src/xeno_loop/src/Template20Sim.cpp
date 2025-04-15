@@ -22,17 +22,81 @@ Template20Sim::~Template20Sim()
     
 }
 
+// Helper function: calculate delta counts
+int16_t Template20Sim::calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw) {
+    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
+
+    if (diff > ENCODER_WRAP_THRESHOLD) {
+        return diff - ENCODER_RANGE; // Wrapped backward
+    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+        return diff + ENCODER_RANGE; // Wrapped forward
+    } else {
+        return diff; // No wrap-around
+    }
+}
+
+// Helper function: for updating the wheel positions
+void Template20Sim::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
+    if (!feedback_initialized) {
+        prev_encoder_left_raw = current_encoder_left_raw;
+        prev_encoder_right_raw = current_encoder_right_raw;
+        feedback_initialized = true;
+        // Don't calculate displacement on the very first run
+        return;
+    }
+
+    // Calculate delta counts
+    int16_t delta_counts_left = calculate_delta_counts(current_encoder_left_raw, prev_encoder_left_raw);
+    int16_t delta_counts_right = calculate_delta_counts(current_encoder_right_raw, prev_encoder_right_raw);
+
+    // Calculate step displacement 
+    // Left wheel count increases backward 
+    double displacement_step_left = static_cast<double>(delta_counts_left) * DIST_PER_COUNT;
+    // Right wheel count decreases backward 
+    double displacement_step_right = -static_cast<double>(delta_counts_right) * DIST_PER_COUNT;
+
+    // Accumulate total position
+    total_pos_left += displacement_step_left;
+    total_pos_right += displacement_step_right;
+
+    // Store current raw counts for the next iteration
+    prev_encoder_left_raw = current_encoder_left_raw;
+    prev_encoder_right_raw = current_encoder_right_raw;
+}
+
 int Template20Sim::initialising()
 {
     // Set physical and cyber system up for use in a 
     // Return 1 to go to initialised state
 
-    evl_printf("Hello from initialising\n");      // Do something
+    evl_printf("Initialising...\n");      // Do something
 
+    // Reset position feedback states
+    total_pos_left = 0.0;
+    total_pos_right = 0.0;
+    prev_encoder_left_raw = 0; 
+    prev_encoder_right_raw = 0;
+    feedback_initialized = false;
+    controller.Reset(0.0);
     // The logger has to be initialised at only once
     logger.initialise();
     // The FPGA has to be initialised at least once
     ico_io.init();
+
+    // Reset actuation data
+    memset(&actuate_data, 0, sizeof(actuate_data));
+    actuate_data.pwm1 = 0; // Left
+    actuate_data.pwm2 = 0; // Right
+    actuate_data.val1 = false;
+    actuate_data.val2 = false;
+
+
+    // Dummy read for initialising prev_encoder values
+    ico_io.update_io(actuate_data, &sample_data);
+    prev_encoder_left_raw = sample_data.channel1;
+    prev_encoder_right_raw = sample_data.channel2;
+    feedback_initialized = true; // Mark as initialized after first read
+    evl_printf("Initialising complete.\n");
 
     return 1;
 }
@@ -67,17 +131,40 @@ int Template20Sim::run()
     data_to_be_logged.this_is_a_float = data_to_be_logged.this_is_a_float/2;
     data_to_be_logged.this_is_a_double = data_to_be_logged.this_is_a_double/4; 
 
-    ico_io.update_io(actuate_data, &sample_data); 
-    controller.Calculate(u, y);
-    xeno_msg.encoder_right = sample_data.channel2;  //
-    xeno_msg.encoder_left = sample_daata.channel1;  //
+    ico_io.update_io(actuate_data, &sample_data);
 
-    double a = ros_msg.example_a;
-    double b = ros_msg.example_b;
+    // Get raw encoder counts
+    uint16_t raw_left_encoder = sample_data.channel1;  // Left wheel 
+    uint16_t raw_right_encoder = sample_data.channel2; // Right wheel 
 
-    evl_printf("ROS a: %f, Ros b: %f\n", a, b);
-    // Printing, not sure if this is possible though
-    evl_printf("Left encoder: %d, Right encoder: %d\n", sample_data.channel1, sample_data.channel2);
+    // Update accumulated wheel positions
+    updateWheelPositions(raw_left_encoder, raw_right_encoder);
+
+    u[0] = total_pos_left;  // PosLeft feedback
+    u[1] = total_pos_right; // PosRight feedback
+    // Get velocity setpoints from ROS message
+    u[2] = ros_msg.example_a; // Placeholder
+    u[3] = ros_msg.example_b; // Placeholder
+
+    controller.Calculate(u, y); // y[0]=SteerLeft, y[1]=SteerRight
+
+    const int16_t max_abs_pwm = 2047;
+    int16_t pwm_left_cmd = static_cast<int16_t>(std::clamp(y[0], (double)-max_abs_pwm, (double)max_abs_pwm));
+    int16_t pwm_right_cmd = static_cast<int16_t>(std::clamp(y[1], (double)-max_abs_pwm, (double)max_abs_pwm));
+
+    // Map controller outputs to correct PWM channels
+    // ASKK TA ABOUT THISSSS WHAT DOES THE ROBOT SEE AS LEFT/RIGHT??? 
+    actuate_data.pwm1 = pwm_right_cmd; // PMOD P1 -> Right Motor
+    actuate_data.pwm2 = pwm_left_cmd;  // PMOD P2 -> Left Motor
+    actuate_data.val1 = (pwm_right_cmd >= 0);
+    actuate_data.val2 = (pwm_left_cmd >= 0);
+
+    xeno_msg.encoder_left = total_pos_left;
+    xeno_msg.encoder_right = total_pos_right;
+
+    // Out
+    monitor.printf("Run - PosL:%.4f PosR:%.4f | SetVelL:%.2f SetVelR:%.2f | SteerL:%.1f SteerR:%.1f\n",
+                   total_pos_left, total_pos_right, u[2], u[3], y[0], y[1]);
     
     if(controller.IsFinished())
         return 1;
