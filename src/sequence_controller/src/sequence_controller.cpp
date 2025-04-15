@@ -25,7 +25,7 @@ class SequenceController : public rclcpp::Node {
         // --- Parameters but we need to tune them ---
         this->declare_parameter<double>("turn_gain", 0.006);   // P-gain for turning based on horizontal pixel error
         this->declare_parameter<double>("forward_gain", 0.008); // P-gain for forward/backward speed based on size error of the ballie
-        this->declare_parameter<double>("target_x_pixel", 160.0); // Middle of the camera screen (width = 360)
+        this->declare_parameter<double>("target_x_pixel", 320.0); // Middle of the camera screen (width = 640)
         this->declare_parameter<double>("target_size_px", 80.0);  // Target ball diameter in pixels 
         this->declare_parameter<double>("max_turn_speed", 0.6);   // Max turning component rad/s 
         this->declare_parameter<double>("max_forward_speed", 0.3);// Max forward speed component (m/s)
@@ -58,6 +58,8 @@ class SequenceController : public rclcpp::Node {
         light_pos_.x = -1.0;
         light_pos_.y = -1.0;
         light_pos_.z = -1.0; //diameter ball
+
+        last_ball_detection_time_ = this->get_clock()->now();
     }
 
 
@@ -82,7 +84,7 @@ private:
     // --- Function  ---
     void update_light_pos(const geometry_msgs::msg::Point &msg) {
         light_pos_ = msg;
-        last_ball_detection_time_ = this->now();
+        last_ball_detection_time_ = this->get_clock()->now();
     }
 
     void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
@@ -108,7 +110,8 @@ private:
         double forward_velocity_cmd = 0.0;
         double turn_velocity_cmd = 0.0;
 
-        bool ball_detected_recently = (this->get_clock() - last_ball_detection_time_) < rclcpp::Duration(1, 0);
+        rclcpp::Time current_time = this->get_clock()->now();
+        bool ball_detected_recently = (current_time - last_ball_detection_time_) < rclcpp::Duration(1, 0);
 
         if (light_pos_.x >= 0 && light_pos_.z > 0 && ball_detected_recently) { // Check for valid position and size
             // --- Calculate turning velocity ---

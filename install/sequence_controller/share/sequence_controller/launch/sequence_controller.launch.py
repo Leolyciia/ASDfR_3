@@ -57,7 +57,8 @@ def generate_launch_description():
         package="cam2image_vm2ros",
         executable="cam2image",
         name="cam2image_node",
-        parameters=[cam2image_config_path],
+        arguments=["--ros-args", "--params-file", "src/cam2image_vm2ros/config/cam2image_relbot.yaml"],
+        # parameters=[cam2image_config_path],
         output='screen'
     )
 

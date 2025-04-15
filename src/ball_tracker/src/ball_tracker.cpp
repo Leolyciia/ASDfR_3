@@ -42,6 +42,12 @@ private:
     // Convert to HSV
     cv::cvtColor(bgr_image, hsv_image, cv::COLOR_BGR2HSV);
 
+    // Get the size of the image
+    int image_width = hsv_image.cols;
+    // cv::Point2f target_x = image_width / 2;
+    // int image_height = hsv_image.rows;
+    // RCLCPP_INFO(this->get_logger(), "Image size: width=%d, height=%d", image_width, image_height);
+
     // Thresholding
     cv::inRange(hsv_image, cv::Scalar(h_min_, s_min_, v_min_),
                            cv::Scalar(h_max_, s_max_, v_max_), mask);
