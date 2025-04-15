@@ -61,16 +61,16 @@ def generate_launch_description():
         output='screen'
     )
 
-    # 3. Starting the ball tracker node
-    start_ball_tracker_node = Node(
-        package="ball_tracker",     
-        executable="ball_tracker",   
-        name="ball_tracker",    
-        output='screen',
-        # remappings=[
-        #     ("/output/moving_camera", "/image")
-        # ]
-    )
+    # # 3. Starting the ball tracker node
+    # start_ball_tracker_node = Node(
+    #     package="ball_tracker",     
+    #     executable="ball_tracker",   
+    #     name="ball_tracker",    
+    #     output='screen',
+    #     # remappings=[
+    #     #     ("/output/moving_camera", "/image")
+    #     # ]
+    # )
 
 
     # 4. Start sequence controller node
@@ -130,6 +130,11 @@ def generate_launch_description():
     # ld.add_action(TimerAction(period=1.0, actions=[
     #     LogInfo(msg="Starting Object Center Node..."),
     #     start_object_center_node
+    #     ]))
+
+    # ld.add_action(TimerAction(period=1.0, actions=[
+    #     LogInfo(msg="Starting Ball Tracker Node..."),
+    #     start_ball_tracker_node
     #     ]))
 
     ld.add_action(TimerAction(period=1.5, actions=[
