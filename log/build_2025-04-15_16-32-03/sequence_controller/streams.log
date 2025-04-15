@@ -1,0 +1,26 @@
+[0.063s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.244s] [35m[1mConsolidate compiler generated dependencies of target sequence_controller[0m
+[0.676s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[9.256s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[9.257s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kdurations[m[K’ was not declared in this scope; did you mean ‘[01m[Kduration_time[m[K’?
+[9.258s]    50 |         [01;31m[Kdurations[m[K = rclcpp::create_timer(
+[9.259s]       |         [01;31m[K^~~~~~~~~[m[K
+[9.261s]       |         [32m[Kduration_time[m[K
+[9.262s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:52:58:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K)[m[K’ token
+[9.263s]    52 |             std::chrono::duration<double>(duration_time),[01;31m[K)[m[K;
+[9.264s]       |                                                          [01;31m[K^[m[K
+[9.291s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::control_loop_callback()[m[K’:
+[9.292s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:97:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kdurations[m[K’ was not declared in this scope; did you mean ‘[01m[Kduration_time[m[K’?
+[9.294s]    97 |         rclcpp::Time current_time = [01;31m[Kdurations[m[K.now();
+[9.295s]       |                                     [01;31m[K^~~~~~~~~[m[K
+[9.296s]       |                                     [32m[Kduration_time[m[K
+[17.097s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:105:37:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
+[17.099s]   105 |                 state_start_time_ = [01;35m[Kcurrent_time[m[K;
+[17.100s]       |                                     [01;35m[K^~~~~~~~~~~~[m[K
+[17.101s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:106:13:[m[K [01;36m[Knote: [m[Khere
+[17.102s]   106 |             [01;36m[Kcase[m[K MotionState::DRIVING_STRAIGHT:
+[17.104s]       |             [01;36m[K^~~~[m[K
+[17.824s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[17.826s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[17.827s] gmake: *** [Makefile:146: all] Error 2
+[17.830s] Invoked command in '/home/asdfr-30/ASDfR_3/build/sequence_controller' returned '2': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3

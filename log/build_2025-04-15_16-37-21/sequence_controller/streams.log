@@ -1,0 +1,69 @@
+[0.087s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.247s] [35m[1mConsolidate compiler generated dependencies of target sequence_controller[0m
+[0.758s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[9.295s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:76:20:[m[K [01;31m[Kerror: [m[Ktype ‘[01m[Krclcpp::Clock[m[K’ is not a base type for type ‘[01m[KSequenceController[m[K’
+[9.297s]    76 |     rclcpp::Clock::[01;31m[Kdurations[m[K;
+[9.298s]       |                    [01;31m[K^~~~~~~~~[m[K
+[9.367s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[9.368s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kdurations[m[K’ was not declared in this scope; did you mean ‘[01m[Kduration_time[m[K’?
+[9.369s]    50 |         [01;31m[Kdurations[m[K = rclcpp::create_timer(
+[9.371s]       |         [01;31m[K^~~~~~~~~[m[K
+[9.372s]       |         [32m[Kduration_time[m[K
+[9.373s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kcreate_timer(SequenceController*, rclcpp::Clock::SharedPtr, std::chrono::duration<double>)[m[K’
+[9.378s]    50 |         durations = [01;31m[Krclcpp::create_timer([m[K
+[9.379s]       |                     [01;31m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.380s]    51 | [01;31m[K            this, this->get_clock(),[m[K
+[9.382s]       |             [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.384s]    52 | [01;31m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.385s]       |             [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.386s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:33[m[K,
+[9.388s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:43[m[K,
+[9.389s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321[m[K,
+[9.391s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[9.392s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[9.393s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[9.394s]                  from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:6[m[K:
+[9.396s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:36:1:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT> rclcpp::TimerBase::SharedPtr rclcpp::create_timer(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTimersInterface>, rclcpp::Clock::SharedPtr, rclcpp::Duration, CallbackT&&, rclcpp::CallbackGroup::SharedPtr)[m[K’
+[9.397s]    36 | [01;36m[Kcreate_timer[m[K(
+[9.399s]       | [01;36m[K^~~~~~~~~~~~[m[K
+[9.400s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:36:1:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[9.401s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;36m[Knote: [m[K  candidate expects 6 arguments, 3 provided
+[9.403s]    50 |         durations = [01;36m[Krclcpp::create_timer([m[K
+[9.404s]       |                     [01;36m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.406s]    51 | [01;36m[K            this, this->get_clock(),[m[K
+[9.407s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.408s]    52 | [01;36m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.410s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.411s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:33[m[K,
+[9.412s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:43[m[K,
+[9.414s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321[m[K,
+[9.415s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[9.416s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[9.418s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[9.419s]                  from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:6[m[K:
+[9.420s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:57:1:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class NodeT, class CallbackT> rclcpp::TimerBase::SharedPtr rclcpp::create_timer(NodeT, rclcpp::Clock::SharedPtr, rclcpp::Duration, CallbackT&&, rclcpp::CallbackGroup::SharedPtr)[m[K’
+[9.421s]    57 | [01;36m[Kcreate_timer[m[K(
+[9.423s]       | [01;36m[K^~~~~~~~~~~~[m[K
+[9.424s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:57:1:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[9.425s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;36m[Knote: [m[K  candidate expects 5 arguments, 3 provided
+[9.426s]    50 |         durations = [01;36m[Krclcpp::create_timer([m[K
+[9.428s]       |                     [01;36m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.429s]    51 | [01;36m[K            this, this->get_clock(),[m[K
+[9.430s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.432s]    52 | [01;36m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.433s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.435s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::control_loop_callback()[m[K’:
+[9.436s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:98:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kdurations[m[K’ was not declared in this scope; did you mean ‘[01m[Kduration_time[m[K’?
+[9.437s]    98 |         rclcpp::Time current_time = [01;31m[Kdurations[m[K.now();
+[9.438s]       |                                     [01;31m[K^~~~~~~~~[m[K
+[9.440s]       |                                     [32m[Kduration_time[m[K
+[17.261s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:106:37:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
+[17.263s]   106 |                 state_start_time_ = [01;35m[Kcurrent_time[m[K;
+[17.264s]       |                                     [01;35m[K^~~~~~~~~~~~[m[K
+[17.265s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:13:[m[K [01;36m[Knote: [m[Khere
+[17.266s]   107 |             [01;36m[Kcase[m[K MotionState::DRIVING_STRAIGHT:
+[17.268s]       |             [01;36m[K^~~~[m[K
+[17.982s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[17.984s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[17.986s] gmake: *** [Makefile:146: all] Error 2
+[17.989s] Invoked command in '/home/asdfr-30/ASDfR_3/build/sequence_controller' returned '2': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3

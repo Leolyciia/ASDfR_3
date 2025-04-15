@@ -1,0 +1,64 @@
+[0.093s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.241s] [35m[1mConsolidate compiler generated dependencies of target sequence_controller[0m
+[0.711s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[9.366s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[9.366s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kcreate_timer(SequenceController*, rclcpp::Clock::SharedPtr, std::chrono::duration<double>)[m[K’
+[9.368s]    50 |         durations = [01;31m[Krclcpp::create_timer([m[K
+[9.370s]       |                     [01;31m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.371s]    51 | [01;31m[K            this, this->get_clock(),[m[K
+[9.372s]       |             [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.373s]    52 | [01;31m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.375s]       |             [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.376s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:33[m[K,
+[9.377s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:43[m[K,
+[9.379s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321[m[K,
+[9.380s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[9.381s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[9.383s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[9.384s]                  from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:6[m[K:
+[9.386s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:36:1:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class CallbackT> rclcpp::TimerBase::SharedPtr rclcpp::create_timer(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>, std::shared_ptr<rclcpp::node_interfaces::NodeTimersInterface>, rclcpp::Clock::SharedPtr, rclcpp::Duration, CallbackT&&, rclcpp::CallbackGroup::SharedPtr)[m[K’
+[9.387s]    36 | [01;36m[Kcreate_timer[m[K(
+[9.388s]       | [01;36m[K^~~~~~~~~~~~[m[K
+[9.389s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:36:1:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[9.391s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;36m[Knote: [m[K  candidate expects 6 arguments, 3 provided
+[9.392s]    50 |         durations = [01;36m[Krclcpp::create_timer([m[K
+[9.393s]       |                     [01;36m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.394s]    51 | [01;36m[K            this, this->get_clock(),[m[K
+[9.396s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.397s]    52 | [01;36m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.399s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.400s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:33[m[K,
+[9.401s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:43[m[K,
+[9.402s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321[m[K,
+[9.404s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[9.405s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[9.407s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[9.408s]                  from [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:6[m[K:
+[9.409s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:57:1:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class NodeT, class CallbackT> rclcpp::TimerBase::SharedPtr rclcpp::create_timer(NodeT, rclcpp::Clock::SharedPtr, rclcpp::Duration, CallbackT&&, rclcpp::CallbackGroup::SharedPtr)[m[K’
+[9.410s]    57 | [01;36m[Kcreate_timer[m[K(
+[9.412s]       | [01;36m[K^~~~~~~~~~~~[m[K
+[9.414s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:57:1:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[9.416s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:50:41:[m[K [01;36m[Knote: [m[K  candidate expects 5 arguments, 3 provided
+[9.418s]    50 |         durations = [01;36m[Krclcpp::create_timer([m[K
+[9.419s]       |                     [01;36m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[9.420s]    51 | [01;36m[K            this, this->get_clock(),[m[K
+[9.421s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~[m[K     
+[9.423s]    52 | [01;36m[K            std::chrono::duration<double>(duration_time))[m[K;
+[9.424s]       |             [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.425s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:56:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing SharedPtr = class std::shared_ptr<rclcpp::TimerBase>[m[K’ {aka ‘[01m[Kclass std::shared_ptr<rclcpp::TimerBase>[m[K’} has no member named ‘[01m[Know[m[K’
+[9.427s]    56 |         state_start_time_ = durations.[01;31m[Know[m[K(); // Initialize timer
+[9.429s]       |                                       [01;31m[K^~~[m[K
+[9.431s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::control_loop_callback()[m[K’:
+[9.432s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:98:47:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing SharedPtr = class std::shared_ptr<rclcpp::TimerBase>[m[K’ {aka ‘[01m[Kclass std::shared_ptr<rclcpp::TimerBase>[m[K’} has no member named ‘[01m[Know[m[K’
+[9.433s]    98 |         rclcpp::Time current_time = durations.[01;31m[Know[m[K();
+[9.435s]       |                                               [01;31m[K^~~[m[K
+[17.207s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:106:37:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
+[17.208s]   106 |                 state_start_time_ = [01;35m[Kcurrent_time[m[K;
+[17.210s]       |                                     [01;35m[K^~~~~~~~~~~~[m[K
+[17.211s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:13:[m[K [01;36m[Knote: [m[Khere
+[17.212s]   107 |             [01;36m[Kcase[m[K MotionState::DRIVING_STRAIGHT:
+[17.214s]       |             [01;36m[K^~~~[m[K
+[17.929s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[17.930s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[17.932s] gmake: *** [Makefile:146: all] Error 2
+[17.936s] Invoked command in '/home/asdfr-30/ASDfR_3/build/sequence_controller' returned '2': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3

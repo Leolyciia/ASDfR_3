@@ -25,7 +25,7 @@ public:
 
         // --- Parameters for the test sequence ---
         this->declare_parameter<double>("straight_speed", 0.2);   // Speed for driving straight (m/s)
-        this->declare_parameter<double>("straight_duration", 3.0); // How long to drive straight (seconds)
+        this->declare_parameter<double>("straight_duration", 20.0); // How long to drive straight (seconds)
         this->declare_parameter<double>("turn_speed_diff", 0.4); // Speed difference for turning (m/s)
         this->declare_parameter<double>("turn_duration", 2.5);    // How long to turn (seconds) - TUNE THIS FOR 90 DEG!
         this->declare_parameter<double>("max_wheel_speed", 0.6);  // Max individual wheel speed (m/s) - Robot limit
