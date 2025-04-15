@@ -47,7 +47,7 @@ void Template20Sim::updateWheelPositions(uint16_t current_encoder_left_raw, uint
 
     // Calculate delta counts
     int16_t delta_counts_left = calculate_delta_counts(current_encoder_left_raw, prev_encoder_left_raw);
-    int16_t delta_counts_right = calculate_delta_counts(current_encoder_right_raw, prev_encoder_right_raw);
+    int16_t delta_counts_right = calculate_delta_counts(-current_encoder_right_raw, -prev_encoder_right_raw);
 
     // Calculate step displacement 
     // Left wheel count increases backward 
@@ -134,8 +134,8 @@ int Template20Sim::run()
     ico_io.update_io(actuate_data, &sample_data);
 
     // Get raw encoder counts
-    uint16_t raw_left_encoder = sample_data.channel1;  // Left wheel 
-    uint16_t raw_right_encoder = sample_data.channel2; // Right wheel 
+    uint16_t raw_left_encoder = sample_data.channel2;  // Right wheel 
+    uint16_t raw_right_encoder = sample_data.channel1; // Left wheel 
 
     // Update accumulated wheel positions
     updateWheelPositions(raw_left_encoder, raw_right_encoder);
@@ -152,12 +152,15 @@ int Template20Sim::run()
     int16_t pwm_left_cmd = static_cast<int16_t>(std::clamp(y[0], (double)-max_abs_pwm, (double)max_abs_pwm));
     int16_t pwm_right_cmd = static_cast<int16_t>(std::clamp(y[1], (double)-max_abs_pwm, (double)max_abs_pwm));
 
+    // pwm_left_cmd = -100;
+    // pwm_right_cmd = 100;
+
     // Map controller outputs to correct PWM channels
     // ASKK TA ABOUT THISSSS WHAT DOES THE ROBOT SEE AS LEFT/RIGHT??? 
     actuate_data.pwm1 = pwm_right_cmd; // PMOD P1 -> Right Motor
     actuate_data.pwm2 = pwm_left_cmd;  // PMOD P2 -> Left Motor
-    actuate_data.val1 = (pwm_right_cmd >= 0);
-    actuate_data.val2 = (pwm_left_cmd >= 0);
+    // actuate_data.val1 = (pwm_right_cmd >= 0);
+    // actuate_data.val2 = (pwm_left_cmd >= 0);
 
     xeno_msg.encoder_left = total_pos_left;
     xeno_msg.encoder_right = total_pos_right;
