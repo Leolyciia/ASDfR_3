@@ -126,11 +126,10 @@ def generate_launch_description():
     ld.add_action(LogInfo(msg="Starting Camera Node..."))
     ld.add_action(start_camera_node)
 
-    # # Delay
-    # ld.add_action(TimerAction(period=1.0, actions=[
-    #     LogInfo(msg="Starting Object Center Node..."),
-    #     start_object_center_node
-    #     ]))
+    ld.add_action(TimerAction(period=1.0, actions=[
+        LogInfo(msg="Starting Ball Tracker Node..."),
+        start_ball_tracker_node
+        ]))
 
     ld.add_action(TimerAction(period=1.5, actions=[
         LogInfo(msg="Starting Sequence Controller..."),
