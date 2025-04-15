@@ -13,7 +13,7 @@ public:
     h_min_ = 40; h_max_ = 101;
     s_min_ = 61; s_max_ = 255;
     v_min_ = 128; v_max_ = 255;
-    size_min_px_ = 30; size_max_px_ = 200;
+    size_min_px_ = 100; size_max_px_ = 1600;
 
     image_sub_ = this->create_subscription<sensor_msgs::msg::Image>("/image", 10, std::bind(&BallTracker::image_callback, this, _1));
 
@@ -75,16 +75,15 @@ private:
         best_size = size;
         best_center = center;
       }
-      else {
-        best_size = 0;
-      }
-      RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
-                "Best Size:%.1f", best_size);
+      // else {
+      //   best_size = 0;
+      // }
+      RCLCPP_INFO(this->get_logger(), "Best Size:%.1f", best_size);
       // best_center = center;
       // best_size = size;
     }
 
-    if (best_size > 0) {
+    // if (best_size > 0) {
       geometry_msgs::msg::Point p;
       p.x = best_center.x;
       p.y = best_center.y;
@@ -92,7 +91,7 @@ private:
 
       RCLCPP_INFO(this->get_logger(), "Ball at x=%.1f y=%.1f size=%.1f", p.x, p.y, p.z);
       ball_pub_->publish(p);
-    }
+    // }
   }
 };
 

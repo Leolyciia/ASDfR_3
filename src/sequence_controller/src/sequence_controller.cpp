@@ -134,7 +134,7 @@ private:
                 forward_velocity_cmd = 0.0;
             }
 
-            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+            RCLCPP_INFO(this->get_logger(),
                 "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
                 light_pos_.x, error_x, light_pos_.z, (target_size - light_pos_.z), turn_velocity_cmd, forward_velocity_cmd);
 
@@ -146,12 +146,14 @@ private:
             // No ball detected or detection is old, command robot to stop
             target_vel_left = 0.0;
             target_vel_right = 0.0;
-            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000, "No valid/recent ball detection, stopping.");
+            RCLCPP_INFO(this->get_logger(), "No valid/recent ball detection, stopping.");
         }
 
         // Clamp final wheel velocities
         target_vel_left = std::clamp(target_vel_left, -max_wheel_speed, max_wheel_speed);
         target_vel_right = std::clamp(target_vel_right, -max_wheel_speed, max_wheel_speed);
+
+        RCLCPP_INFO(this->get_logger(), "Final Velocities - Left:%.2f, Right:%.2f", target_vel_left, target_vel_right);
 
         // --- Prepare and publish command message ---
         auto ros_cmd_msg = xrf2_msgs::msg::Ros2Xeno();
