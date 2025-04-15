@@ -23,7 +23,7 @@ Template20Sim::~Template20Sim()
 }
 
 // Helper function: calculate delta counts
-int16_t Template20Sim::calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw) {
+int16_t Template20Sim::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
     if (diff > ENCODER_WRAP_THRESHOLD) {
@@ -33,6 +33,36 @@ int16_t Template20Sim::calculate_delta_counts(uint16_t current_raw, uint16_t pre
     } else {
         return diff; // No wrap-around
     }
+}
+
+// Helper function: calculate delta counts 
+int16_t Template20Sim::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
+    // Print inputs received by the function
+    evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
+
+    // Calculate the raw difference
+    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
+    evl_printf("  DeltaCalc: Raw diff = %d\n", diff);
+
+    // Check wrap-around conditions
+    int16_t result; // Variable to store the final result
+
+    if (diff > ENCODER_WRAP_THRESHOLD) {
+        evl_printf("  DeltaCalc: Wrap backward detected (diff %d > threshold %d)\n", diff, ENCODER_WRAP_THRESHOLD);
+        result = diff - ENCODER_RANGE; // Wrapped backward
+        evl_printf("  DeltaCalc: Calculation -> %d - %d = %d\n", diff, ENCODER_RANGE, result);
+    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+        evl_printf("  DeltaCalc: Wrap forward detected (diff %d < threshold %d)\n", diff, -ENCODER_WRAP_THRESHOLD);
+        result = diff + ENCODER_RANGE; // Wrapped forward
+        evl_printf("  DeltaCalc: Calculation -> %d + %d = %d\n", diff, ENCODER_RANGE, result);
+    } else {
+        evl_printf("  DeltaCalc: No wrap-around detected.\n");
+        result = diff; // No wrap-around
+    }
+
+    // Print the final value being returned
+    evl_printf("  DeltaCalc: Returning delta = %d\n", result);
+    return result;
 }
 
 // Helper function: for updating the wheel positions
@@ -46,14 +76,14 @@ void Template20Sim::updateWheelPositions(uint16_t current_encoder_left_raw, uint
     }
 
     // Calculate delta counts
-    int16_t delta_counts_left = calculate_delta_counts(current_encoder_left_raw, prev_encoder_left_raw);
-    int16_t delta_counts_right = calculate_delta_counts(-current_encoder_right_raw, -prev_encoder_right_raw);
+    int16_t delta_counts_left = calculate_delta_counts_left(current_encoder_left_raw, prev_encoder_left_raw);
+    int16_t delta_counts_right = calculate_delta_counts_right(-current_encoder_right_raw, -prev_encoder_right_raw);
 
     // Calculate step displacement 
     // Left wheel count increases backward 
-    double displacement_step_left = static_cast<double>(delta_counts_left) * DIST_PER_COUNT;
+    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
     // Right wheel count decreases backward 
-    double displacement_step_right = -static_cast<double>(delta_counts_right) * DIST_PER_COUNT;
+    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
 
     // Accumulate total position
     total_pos_left += displacement_step_left;
@@ -87,8 +117,8 @@ int Template20Sim::initialising()
     memset(&actuate_data, 0, sizeof(actuate_data));
     actuate_data.pwm1 = 0; // Left
     actuate_data.pwm2 = 0; // Right
-    actuate_data.val1 = false;
-    actuate_data.val2 = false;
+    // actuate_data.val1 = false;
+    // actuate_data.val2 = false;
 
 
     // Dummy read for initialising prev_encoder values
@@ -157,7 +187,7 @@ int Template20Sim::run()
 
     // Map controller outputs to correct PWM channels
     // ASKK TA ABOUT THISSSS WHAT DOES THE ROBOT SEE AS LEFT/RIGHT??? 
-    actuate_data.pwm1 = pwm_right_cmd; // PMOD P1 -> Right Motor
+    actuate_data.pwm1 = -pwm_right_cmd; // PMOD P1 -> Right Motor
     actuate_data.pwm2 = pwm_left_cmd;  // PMOD P2 -> Left Motor
     // actuate_data.val1 = (pwm_right_cmd >= 0);
     // actuate_data.val2 = (pwm_left_cmd >= 0);
