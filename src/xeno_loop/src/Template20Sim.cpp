@@ -69,15 +69,15 @@ int Template20Sim::run()
 
     ico_io.update_io(actuate_data, &sample_data); 
     controller.Calculate(u, y);
-    xeno_msg.encoder_left = sample_data.channel2;  //
-    xeno_msg.encoder_right = sample_data.channel1;  //
+    xeno_msg.encoder_right = sample_data.channel2;  //
+    xeno_msg.encoder_left = sample_daata.channel1;  //
 
     double a = ros_msg.example_a;
     double b = ros_msg.example_b;
 
     evl_printf("ROS a: %f, Ros b: %f\n", a, b);
     // Printing, not sure if this is possible though
-    evl_printf("Left encoder: %d, Right encoder: %d\n", sample_data.channel2, sample_data.channel1);
+    evl_printf("Left encoder: %d, Right encoder: %d\n", sample_data.channel1, sample_data.channel2);
     
     if(controller.IsFinished())
         return 1;
