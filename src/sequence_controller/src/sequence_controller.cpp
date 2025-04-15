@@ -19,7 +19,7 @@ using namespace std::chrono_literals;
 
 class SequenceController : public rclcpp::Node {
   public:
-    SequenceController() : Node("sequence_controller"), count_(0) {
+    SequenceController() : Node("sequence_controller"){
         sample_time_s_ = 0.03;
 
         // --- Parameters but we need to tune them ---
@@ -108,7 +108,7 @@ private:
         double forward_velocity_cmd = 0.0;
         double turn_velocity_cmd = 0.0;
 
-        bool ball_detected_recently = (this->now() - last_ball_detection_time_) < rclcpp::Duration(1, 0);
+        bool ball_detected_recently = (this->get_clock() - last_ball_detection_time_) < rclcpp::Duration(1, 0);
 
         if (light_pos_.x >= 0 && light_pos_.z > 0 && ball_detected_recently) { // Check for valid position and size
             // --- Calculate turning velocity ---

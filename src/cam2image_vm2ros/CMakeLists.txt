@@ -45,6 +45,7 @@ install(
   RUNTIME DESTINATION bin)
 
 install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME})
+install(DIRECTORY config/ DESTINATION share/${PROJECT_NAME}/config)
 
 # TODO(sloretz) stop exporting old-style CMake variables in the future
 ament_export_libraries(${PROJECT_NAME})
