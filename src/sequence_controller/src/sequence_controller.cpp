@@ -1,16 +1,16 @@
 #include <chrono>
 #include <string>
 #include <cmath>      
-#include <algorithm>  
+#include <algorithm> 
 
 #include <rclcpp/rclcpp.hpp>
-#include "xrf2_msgs/msg/xeno2_ros.hpp" 
-#include "xrf2_msgs/msg/ros2_xeno.hpp" 
+#include "xrf2_msgs/msg/xeno2_ros.hpp"
+#include "xrf2_msgs/msg/ros2_xeno.hpp"
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-// Define states for our simple sequence
+// States
 enum class MotionState {
     INIT,
     DRIVING_STRAIGHT,
@@ -20,23 +20,23 @@ enum class MotionState {
 
 class SequenceController : public rclcpp::Node {
 public:
-    SequenceController() : Node("sequence_controller_simple_test") { 
-        sample_time_s_ = 0.03; // Loop rate for this ROS node
+    SequenceController() : Node("sequence_controller_simple_test") {
+        sample_time_s_ = 0.03; 
 
-        // --- Parameters for the test sequence ---
+        // --- Parameters ---
         this->declare_parameter<double>("straight_speed", 0.2);   // Speed for driving straight (m/s)
-        this->declare_parameter<double>("straight_duration", 20.0); // How long to drive straight (seconds)
+        this->declare_parameter<double>("straight_duration", 3.0); // How long to drive straight (seconds)
         this->declare_parameter<double>("turn_speed_diff", 0.4); // Speed difference for turning (m/s)
         this->declare_parameter<double>("turn_duration", 2.5);    // How long to turn (seconds) - TUNE THIS FOR 90 DEG!
         this->declare_parameter<double>("max_wheel_speed", 0.6);  // Max individual wheel speed (m/s) - Robot limit
 
-        // --- Subscription 
+        // --- Subscription
         subscription_xeno2ros_ =
             this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
                 "/Xeno2Ros", 10, // Topic published by the bridge (feedback from Xenomai)
                 std::bind(&SequenceController::handle_xeno_feedback, this, _1));
 
-        // --- Publisher (Commands to Xenomai) ---
+        // --- Publisher 
         publisher_ros2xeno_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
             "/Ros2Xeno", 10); // Topic subscribed by the bridge
 
@@ -46,19 +46,17 @@ public:
             std::chrono::duration<double>(sample_time_s_),
             std::bind(&SequenceController::control_loop_callback, this));
 
-        // --- Initialize State ---
+        // --- Initialize state ---
         current_motion_state_ = MotionState::INIT;
-        state_start_time_ = this->now(); // Initialize timer
 
-        RCLCPP_INFO(this->get_logger(), "Simple Test Sequence Controller Initialized.");
+        RCLCPP_INFO(this->get_logger(), "Sequence controller initialized.");
     }
 
 private:
-
     double current_pos_left_m_ = 0.0;
     double current_pos_right_m_ = 0.0;
 
-    // State Machine variables
+    // State machine variables
     MotionState current_motion_state_;
     rclcpp::Time state_start_time_;
     double sample_time_s_;
@@ -68,16 +66,13 @@ private:
     rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_ros2xeno_;
     rclcpp::TimerBase::SharedPtr timer_;
 
-    // --- Callbacks ---
-
+    // --- Functions ---
     void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
-
         current_pos_left_m_ = msg->encoder_left;
         current_pos_right_m_ = msg->encoder_right;
-
     }
 
-    // --- Main Control Logic ---
+    // --- Main control ---
     void control_loop_callback() {
         // Get parameters
         double straight_speed = this->get_parameter("straight_speed").as_double();
@@ -89,61 +84,71 @@ private:
         double target_vel_left = 0.0;
         double target_vel_right = 0.0;
         rclcpp::Time current_time = this->now();
-        rclcpp::Duration time_in_state = current_time - state_start_time_;
 
         switch (current_motion_state_) {
             case MotionState::INIT:
-                // Immediately transition to driving straight
                 RCLCPP_INFO(this->get_logger(), "Starting sequence: Driving Straight");
                 current_motion_state_ = MotionState::DRIVING_STRAIGHT;
                 state_start_time_ = current_time;
+                target_vel_left = straight_speed;
+                target_vel_right = straight_speed;
+                break; 
+
             case MotionState::DRIVING_STRAIGHT:
+            { 
+                rclcpp::Duration time_in_state = current_time - state_start_time_;
                 target_vel_left = straight_speed;
                 target_vel_right = straight_speed;
                 if (time_in_state.seconds() >= straight_duration) {
                     RCLCPP_INFO(this->get_logger(), "Driving straight complete. Starting Turn.");
                     current_motion_state_ = MotionState::TURNING;
-                    state_start_time_ = current_time;
+                    state_start_time_ = current_time; 
+                    target_vel_left = -turn_speed_diff / 2.0;
+                    target_vel_right = turn_speed_diff / 2.0;
                 }
-                break;
+                break; 
+            } 
 
             case MotionState::TURNING:
-                // Turn left
+            { 
+                rclcpp::Duration time_in_state = current_time - state_start_time_;
+                // Turn left 
                 target_vel_left = -turn_speed_diff / 2.0;
                 target_vel_right = turn_speed_diff / 2.0;
 
                 if (time_in_state.seconds() >= turn_duration) {
                     RCLCPP_INFO(this->get_logger(), "Turn complete. Stopping.");
                     current_motion_state_ = MotionState::STOPPED;
-                    state_start_time_ = current_time; 
+                    // Set final command to stop
+                    target_vel_left = 0.0;
+                    target_vel_right = 0.0;
                 }
-                break;
+                break; 
+            } // End 
 
             case MotionState::STOPPED:
                 target_vel_left = 0.0;
                 target_vel_right = 0.0;
-                 RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 5000, "Sequence complete. Robot stopped. Final Pos L: %.3f, R: %.3f", current_pos_left_m_, current_pos_right_m_);
+                RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 5000, "Sequence complete. Robot stopped. Final Pos L: %.3f, R: %.3f", current_pos_left_m_, current_pos_right_m_);
                 break;
         }
 
-        // Clamp final wheel velocities 
+        // Clamp final wheel velocities
         target_vel_left = std::clamp(target_vel_left, -max_wheel_speed, max_wheel_speed);
         target_vel_right = std::clamp(target_vel_right, -max_wheel_speed, max_wheel_speed);
 
-        // --- Prepare and publish command message ---
-        auto ros_cmd_msg = xrf2_msgs::msg::Ros2Xeno();
+        if (current_motion_state_ != MotionState::STOPPED || timer_->is_canceled() == false) {
+             auto ros_cmd_msg = xrf2_msgs::msg::Ros2Xeno();
+             ros_cmd_msg.example_a = target_vel_left;  // Target SetVelLeft for LoopController
+             ros_cmd_msg.example_b = target_vel_right; // Target SetVelRight for LoopController
+             publisher_ros2xeno_->publish(ros_cmd_msg);
+        }
 
-
-        ros_cmd_msg.example_a = target_vel_left;  // Target SetVelLeft for LoopController
-        ros_cmd_msg.example_b = target_vel_right; // Target SetVelRight for LoopController
-
-        publisher_ros2xeno_->publish(ros_cmd_msg);
     }
-}; // End of class SequenceController
+}; 
 
 int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
-    // Use default executor
     rclcpp::spin(std::make_shared<SequenceController>());
     rclcpp::shutdown();
     return 0;
