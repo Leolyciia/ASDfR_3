@@ -84,7 +84,9 @@ private:
     // --- Function  ---
     void update_light_pos(const geometry_msgs::msg::Point &msg) {
         light_pos_ = msg;
-        last_ball_detection_time_ = this->get_clock()->now();
+        if (light_pos_.z > 0){
+            last_ball_detection_time_ = this->get_clock()->now();
+        }
     }
 
     void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {

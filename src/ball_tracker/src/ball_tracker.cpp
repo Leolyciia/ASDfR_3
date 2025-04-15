@@ -10,10 +10,10 @@ public:
     using std::placeholders::_1;
 
     // Parameters (can be tuned here) I made script moehaha
-    h_min_ = 36; h_max_ = 96;
-    s_min_ = 56; s_max_ = 255;
-    v_min_ = 21; v_max_ = 255;
-    size_min_px_ = 10; size_max_px_ = 200;
+    h_min_ = 40; h_max_ = 101;
+    s_min_ = 61; s_max_ = 255;
+    v_min_ = 128; v_max_ = 255;
+    size_min_px_ = 30; size_max_px_ = 200;
 
     image_sub_ = this->create_subscription<sensor_msgs::msg::Image>("/image", 10, std::bind(&BallTracker::image_callback, this, _1));
 
@@ -55,6 +55,8 @@ private:
     // Morphology
     cv::dilate(mask, mask, cv::Mat(), cv::Point(-1, -1), 2);
     cv::erode(mask, mask, cv::Mat(), cv::Point(-1, -1), 2);
+    cv::imshow("HSV Mask", mask); // Creates/updates a window named "HSV Mask" showing the mask
+    cv::waitKey(1);
 
     // Blob detection
     std::vector<std::vector<cv::Point>> contours;
@@ -69,10 +71,17 @@ private:
       cv::minEnclosingCircle(cnt, center, radius);
       float size = radius * 2;
 
-      if (size > size_min_px_ && size < size_max_px_ && size > best_size) {
+      if (size > size_min_px_ && size < size_max_px_ && best_size < size) {
         best_size = size;
         best_center = center;
       }
+      else {
+        best_size = 0;
+      }
+      RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+                "Best Size:%.1f", best_size);
+      // best_center = center;
+      // best_size = size;
     }
 
     if (best_size > 0) {
