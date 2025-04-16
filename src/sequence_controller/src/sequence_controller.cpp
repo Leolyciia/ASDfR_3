@@ -27,11 +27,13 @@ class SequenceController : public rclcpp::Node {
         this->declare_parameter<double>("forward_gain", 0.008); // P-gain for forward/backward speed based on size error of the ballie
         this->declare_parameter<double>("target_x_pixel", 320.0); // Middle of the camera screen (width = 640)
         this->declare_parameter<double>("target_size_px", 150.0);  // Target ball diameter in pixels 
-        this->declare_parameter<double>("max_turn_speed", 0.3);   // Max turning component rad/s 
-        this->declare_parameter<double>("max_forward_speed", 0.3);// Max forward speed component (m/s)
-        this->declare_parameter<double>("max_backward_speed", 0.3);// Max backward speed component (m/s)
+        this->declare_parameter<double>("max_turn_speed", 0.15);   // Max turning component rad/s 
+        this->declare_parameter<double>("max_forward_speed", 0.2);// Max forward speed component (m/s)
+        this->declare_parameter<double>("max_backward_speed", 0.2);// Max backward speed component (m/s)
         this->declare_parameter<double>("max_wheel_speed", 0.4);   // Max individual wheel speed (m/s) - Robot limit
-        this->declare_parameter<double>("centering_threshold_px", 30.0); // Pixel threshold to allow forward/backward motion
+        this->declare_parameter<double>("centering_threshold_px", 120.0); // Pixel threshold to allow forward/backward motion
+
+        
 
         // --- Subscriptions ---
         subscription_light_pos_ =
