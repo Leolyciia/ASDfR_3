@@ -81,9 +81,9 @@ void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uin
 
     // Calculate step displacement 
     // Left wheel count increases backward 
-    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
+    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI);
     // Right wheel count decreases backward 
-    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
+    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI);
 
     // Accumulate total position
     total_pos_left += displacement_step_left;

@@ -217,8 +217,8 @@ void BallTracker::image_callback(const sensor_msgs::msg::Image::SharedPtr msg) {
   }
 
   // Display the camera output with contour and size
-  cv::imshow("Detection Output", display_image);
-  cv::waitKey(1);
+  // cv::imshow("Detection Output", display_image);
+  // cv::waitKey(1);
 }
 
 } // namespace ball_tracker

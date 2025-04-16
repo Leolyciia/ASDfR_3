@@ -16,14 +16,14 @@ using namespace std::chrono_literals;
 
 // Control parameters)
 struct ControlParameters {
-    double turn_gain = 0.00045;
-    double forward_gain = 0.0008;
+    double turn_gain = 0.75;
+    double forward_gain = 1.5;
     double target_x_pixel = 320.0;
     double target_size_px = 300.0;
-    double max_turn_speed = 0.3;
-    double max_forward_speed = 0.3;
-    double max_backward_speed = 0.3;
-    double max_wheel_speed = 0.2;
+    double max_turn_speed = 0.8;
+    double max_forward_speed = 0.8;
+    double max_backward_speed = 0.8;
+    double max_wheel_speed = 0.9;
     double centering_threshold_px = 15.0;
     double turning_deadzone_px = 50.0;
     double sample_time_s = 0.03;

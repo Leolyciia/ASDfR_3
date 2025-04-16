@@ -97,11 +97,26 @@ SequenceController::VelocityCommands SequenceController::calculate_velocity_comm
             cmd.turn = std::clamp(cmd.turn, -params_.max_turn_speed, params_.max_turn_speed);
         }
 
-        if (std::fabs(error_x) < params_.centering_threshold_px) {
-            double error_size = params_.target_size_px - latest_light_pos_.z;
+        
+    if (std::fabs(error_x) < params_.centering_threshold_px) {
+        double current_ball_size = latest_light_pos_.z; // diameter from ball_tracker
+        double error_size = params_.target_size_px - current_ball_size; // target - current
+        double size_deadzone = 30.0; // tolerance for the ballie
+
+        // Only calculate forward command if outside the deadzone
+        if (std::fabs(error_size) > size_deadzone) {
             cmd.forward = params_.forward_gain * error_size;
+            // Clamp forward/backward speed separately
             cmd.forward = std::clamp(cmd.forward, -params_.max_backward_speed, params_.max_forward_speed);
+        } else {
+            // Inside the deadzone, set forward command to zero
+            cmd.forward = 0.0;
         }
+    } else {
+        // Not centered enough, set forward command to zero 
+        cmd.forward = 0.0;
+    }
+
 
         RCLCPP_DEBUG(this->get_logger(),
             "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
