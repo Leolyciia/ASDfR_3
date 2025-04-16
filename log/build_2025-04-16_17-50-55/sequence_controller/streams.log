@@ -1,0 +1,21 @@
+[0.062s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.238s] [35m[1mConsolidate compiler generated dependencies of target sequence_controller[0m
+[0.708s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[9.480s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::xeno_feedback_callback(xrf2_msgs::msg::Xeno2Ros_<std::allocator<void> >::SharedPtr)[m[K’:
+[9.481s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:55:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrent_pos_left_m_[m[K’ was not declared in this scope
+[9.482s]    55 |     [01;31m[Kcurrent_pos_left_m_[m[K = msg->encoder_left;
+[9.484s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[9.518s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:56:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrent_pos_right_m_[m[K’ was not declared in this scope
+[9.520s]    56 |     [01;31m[Kcurrent_pos_right_m_[m[K = msg->encoder_right;
+[9.521s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[17.951s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::control_loop_callback()[m[K’:
+[17.952s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:95:33:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
+[17.954s]    95 |             state_start_time_ = [01;35m[Know[m[K;
+[17.955s]       |                                 [01;35m[K^~~[m[K
+[17.956s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:97:9:[m[K [01;36m[Knote: [m[Khere
+[17.958s]    97 |         [01;36m[Kcase[m[K RobotState::MOVING_FORWARD:
+[17.960s]       |         [01;36m[K^~~~[m[K
+[18.069s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[18.073s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[18.077s] gmake: *** [Makefile:146: all] Error 2
+[18.081s] Invoked command in '/home/asdfr-30/ASDfR_3/build/sequence_controller' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3

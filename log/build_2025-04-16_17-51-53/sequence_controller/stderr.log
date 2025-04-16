@@ -1,0 +1,14 @@
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In constructor ‘[01m[KSequenceController::SequenceController()[m[K’:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:15:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kxeno_feedback_callback[m[K’ is not a member of ‘[01m[KSequenceController[m[K’
+   15 |         std::bind(&SequenceController::[01;31m[Kxeno_feedback_callback[m[K, this, std::placeholders::_1));
+      |                                        [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[Kvoid SequenceController::control_loop_callback()[m[K’:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:93:33:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
+   93 |             state_start_time_ = [01;35m[Know[m[K;
+      |                                 [01;35m[K^~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:95:9:[m[K [01;36m[Knote: [m[Khere
+   95 |         [01;36m[Kcase[m[K RobotState::MOVING_FORWARD:
+      |         [01;36m[K^~~~[m[K
+gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

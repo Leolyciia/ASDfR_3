@@ -49,8 +49,8 @@ private:
     bool feedback_initialized;
 
     // --- Helper functions ---
-    int16_t calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw);
-    int16_t calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw);
+    int16_t calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw);
+    // int16_t calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw);
     void updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw);
 
 protected:

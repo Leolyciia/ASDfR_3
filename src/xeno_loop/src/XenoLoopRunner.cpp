@@ -24,7 +24,7 @@ XenoLoopRunner::~XenoLoopRunner()
 }
 
 // Helper function: calculate delta counts
-int16_t XenoLoopRunner::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
+int16_t XenoLoopRunner::calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw) {
     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
     if (diff > ENCODER_WRAP_THRESHOLD) {
@@ -36,35 +36,35 @@ int16_t XenoLoopRunner::calculate_delta_counts_left(uint16_t current_raw, uint16
     }
 }
 
-// Helper function: calculate delta counts 
-int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
-    // Print inputs received by the function
-    evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
+// // Helper function: calculate delta counts 
+// int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
+//     // Print inputs received by the function
+//     evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
 
-    // Calculate the raw difference
-    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
-    evl_printf("  DeltaCalc: Raw diff = %d\n", diff);
+//     // Calculate the raw difference
+//     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
+//     evl_printf("  DeltaCalc: Raw diff = %d\n", diff);
 
-    // Check wrap-around conditions
-    int16_t result; // Variable to store the final result
+//     // Check wrap-around conditions
+//     int16_t result; // Variable to store the final result
 
-    if (diff > ENCODER_WRAP_THRESHOLD) {
-        evl_printf("  DeltaCalc: Wrap backward detected (diff %d > threshold %d)\n", diff, ENCODER_WRAP_THRESHOLD);
-        result = diff - ENCODER_RANGE; // Wrapped backward
-        evl_printf("  DeltaCalc: Calculation -> %d - %d = %d\n", diff, ENCODER_RANGE, result);
-    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
-        evl_printf("  DeltaCalc: Wrap forward detected (diff %d < threshold %d)\n", diff, -ENCODER_WRAP_THRESHOLD);
-        result = diff + ENCODER_RANGE; // Wrapped forward
-        evl_printf("  DeltaCalc: Calculation -> %d + %d = %d\n", diff, ENCODER_RANGE, result);
-    } else {
-        evl_printf("  DeltaCalc: No wrap-around detected.\n");
-        result = diff; // No wrap-around
-    }
+//     if (diff > ENCODER_WRAP_THRESHOLD) {
+//         evl_printf("  DeltaCalc: Wrap backward detected (diff %d > threshold %d)\n", diff, ENCODER_WRAP_THRESHOLD);
+//         result = diff - ENCODER_RANGE; // Wrapped backward
+//         evl_printf("  DeltaCalc: Calculation -> %d - %d = %d\n", diff, ENCODER_RANGE, result);
+//     } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+//         evl_printf("  DeltaCalc: Wrap forward detected (diff %d < threshold %d)\n", diff, -ENCODER_WRAP_THRESHOLD);
+//         result = diff + ENCODER_RANGE; // Wrapped forward
+//         evl_printf("  DeltaCalc: Calculation -> %d + %d = %d\n", diff, ENCODER_RANGE, result);
+//     } else {
+//         evl_printf("  DeltaCalc: No wrap-around detected.\n");
+//         result = diff; // No wrap-around
+//     }
 
-    // Print the final value being returned
-    evl_printf("  DeltaCalc: Returning delta = %d\n", result);
-    return result;
-}
+//     // Print the final value being returned
+//     evl_printf("  DeltaCalc: Returning delta = %d\n", result);
+//     return result;
+// }
 
 // Helper function: for updating the wheel positions
 void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
@@ -77,8 +77,8 @@ void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uin
     }
 
     // Calculate delta counts
-    int16_t delta_counts_left = calculate_delta_counts_left(current_encoder_left_raw, prev_encoder_left_raw);
-    int16_t delta_counts_right = calculate_delta_counts_right(-current_encoder_right_raw, -prev_encoder_right_raw);
+    int16_t delta_counts_left = calculate_delta_counts(current_encoder_left_raw, prev_encoder_left_raw);
+    int16_t delta_counts_right = calculate_delta_counts(-current_encoder_right_raw, -prev_encoder_right_raw);
 
     // Calculate step displacement 
     // Left wheel count increases backward 
