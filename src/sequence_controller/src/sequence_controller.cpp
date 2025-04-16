@@ -1,175 +1,148 @@
-#include <chrono>
-#include <string>
-#include <cmath> // For fabs
-#include <algorithm> // For std::clamp
+#include "sequence_controller.hpp" 
 
+// Constructor
+SequenceController::SequenceController()
+    : Node("sequence_controller"),
+      latest_light_pos_(),
+      last_ball_detection_time_(this->get_clock()->now())
+{
+    RCLCPP_INFO(this->get_logger(), "Initialising SequenceController node...");
 
-#include <geometry_msgs/msg/point.hpp>
-#include <geometry_msgs/msg/point_stamped.hpp>
+    // declaring and loading the parameters
+    declare_and_load_parameters();
 
-#include <rclcpp/rclcpp.hpp>
+    // Initialise state
+    latest_light_pos_.x = -1.0;
+    latest_light_pos_.y = -1.0;
+    latest_light_pos_.z = -1.0;
 
-#include <std_msgs/msg/float64.hpp>
-#include "xrf2_msgs/msg/xeno2_ros.hpp"  // Xeno2Ros message from XRF2_msgs
-#include "xrf2_msgs/msg/ros2_xeno.hpp"// Ros2Xeno message from XRF2_msgs
+    // --- subscriptions ---
+    subscription_light_pos_ = this->create_subscription<geometry_msgs::msg::Point>(
+        "light_position", 10,
+        std::bind(&SequenceController::light_pos_callback, this, std::placeholders::_1));
 
-using std::placeholders::_1;
+    subscription_xeno2ros_ = this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
+        "/Xeno2Ros", 10,
+        std::bind(&SequenceController::xeno_feedback_callback, this, std::placeholders::_1));
 
-using namespace std::chrono_literals;
+    // --- Publisher ---
+    publisher_ros2xeno_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
+        "/Ros2Xeno", 10);
 
-class SequenceController : public rclcpp::Node {
-  public:
-    SequenceController() : Node("sequence_controller"){
-        sample_time_s_ = 0.03;
+    // --- timer ---
+    timer_ = rclcpp::create_timer(
+        this, this->get_clock(),
+        std::chrono::duration<double>(params_.sample_time_s),
+        std::bind(&SequenceController::control_loop_callback, this));
 
-        // --- Parameters but we need to tune them ---
-        this->declare_parameter<double>("turn_gain", 0.006);   // P-gain for turning based on horizontal pixel error
-        this->declare_parameter<double>("forward_gain", 0.008); // P-gain for forward/backward speed based on size error of the ballie
-        this->declare_parameter<double>("target_x_pixel", 320.0); // Middle of the camera screen (width = 640)
-        this->declare_parameter<double>("target_size_px", 150.0);  // Target ball diameter in pixels 
-        this->declare_parameter<double>("max_turn_speed", 0.3);   // Max turning component rad/s 
-        this->declare_parameter<double>("max_forward_speed", 0.3);// Max forward speed component (m/s)
-        this->declare_parameter<double>("max_backward_speed", 0.3);// Max backward speed component (m/s)
-        this->declare_parameter<double>("max_wheel_speed", 0.4);   // Max individual wheel speed (m/s) - Robot limit
-        this->declare_parameter<double>("centering_threshold_px", 30.0); // Pixel threshold to allow forward/backward motion
+    RCLCPP_INFO(this->get_logger(), "SequenceController Node initialised successfully.");
+}
 
-        // --- Subscriptions ---
-        subscription_light_pos_ =
-            this->create_subscription<geometry_msgs::msg::Point>(
-                "light_position", 10, // Topic published by ball_tracker
-                std::bind(&SequenceController::update_light_pos, this, _1));
+// --- Parameter handling ---
+void SequenceController::declare_and_load_parameters() {
+    this->declare_parameter<double>("turn_gain", params_.turn_gain);
+    this->declare_parameter<double>("forward_gain", params_.forward_gain);
+    this->declare_parameter<double>("target_x_pixel", params_.target_x_pixel);
+    this->declare_parameter<double>("target_size_px", params_.target_size_px);
+    this->declare_parameter<double>("max_turn_speed", params_.max_turn_speed);
+    this->declare_parameter<double>("max_forward_speed", params_.max_forward_speed);
+    this->declare_parameter<double>("max_backward_speed", params_.max_backward_speed);
+    this->declare_parameter<double>("max_wheel_speed", params_.max_wheel_speed);
+    this->declare_parameter<double>("centering_threshold_px", params_.centering_threshold_px);
+    this->declare_parameter<double>("turning_deadzone_px", params_.turning_deadzone_px);
+    this->declare_parameter<double>("sample_time_s", params_.sample_time_s);
 
-        subscription_xeno2ros_ =
-            this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
-                "/Xeno2Ros", 10, // Topic published by the bridge (feedback from Xenomai)
-                std::bind(&SequenceController::handle_xeno_feedback, this, _1));
+    // Load actual values into the struct
+    this->get_parameter("turn_gain", params_.turn_gain);
+    this->get_parameter("forward_gain", params_.forward_gain);
+    this->get_parameter("target_x_pixel", params_.target_x_pixel);
+    this->get_parameter("target_size_px", params_.target_size_px);
+    this->get_parameter("max_turn_speed", params_.max_turn_speed);
+    this->get_parameter("max_forward_speed", params_.max_forward_speed);
+    this->get_parameter("max_backward_speed", params_.max_backward_speed);
+    this->get_parameter("max_wheel_speed", params_.max_wheel_speed);
+    this->get_parameter("centering_threshold_px", params_.centering_threshold_px);
+    this->get_parameter("turning_deadzone_px", params_.turning_deadzone_px);
+    this->get_parameter("sample_time_s", params_.sample_time_s);
 
-        // --- Publisher ---
-        publisher_ros2xeno_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
-            "/Ros2Xeno", 10); // Topic subscribed by the bridge (commands to Xenomai)
+    RCLCPP_INFO(this->get_logger(), "Declared and loaded parameters.");
+}
 
-        // --- Timer ---
-        timer_ = rclcpp::create_timer(
-            this, this->get_clock(),
-            std::chrono::duration<double>(sample_time_s_),
-            std::bind(&SequenceController::control_loop_callback, this));
-
-        // For no detection initiallly
-        light_pos_.x = -1.0;
-        light_pos_.y = -1.0;
-        light_pos_.z = -1.0; //diameter ball
-
+// --- Callback functions ---
+void SequenceController::light_pos_callback(const geometry_msgs::msg::Point::SharedPtr msg) {
+    latest_light_pos_ = *msg;
+    if (latest_light_pos_.z > 0) {
         last_ball_detection_time_ = this->get_clock()->now();
     }
+}
+
+void SequenceController::xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
+    current_pos_left_m_ = msg->encoder_left;
+    current_pos_right_m_ = msg->encoder_right;
+}
 
 
-private:
-    // Feedback from Xenomai 
-    double current_pos_left_m_ = 0.0;
-    double current_pos_right_m_ = 0.0;
+// --- Control logic helpers ---
+void SequenceController::update_detection_status() {
+    rclcpp::Time current_time = this->get_clock()->now();
+    is_ball_detected_recently_ = (current_time - last_ball_detection_time_) < detection_timeout_;
+}
 
-    // Latest ball detection data
-    geometry_msgs::msg::Point light_pos_;
-    rclcpp::Time last_ball_detection_time_;
-
-    // Control loop variables
-    double sample_time_s_;
-
-    // ROS Comms
-    rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr subscription_light_pos_;
-    rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_;
-    rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_ros2xeno_;
-    rclcpp::TimerBase::SharedPtr timer_;
-
-    // --- Function  ---
-    void update_light_pos(const geometry_msgs::msg::Point &msg) {
-        light_pos_ = msg;
-        if (light_pos_.z > 0){
-            last_ball_detection_time_ = this->get_clock()->now();
-        }
-    }
-
-    void handle_xeno_feedback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
-        current_pos_left_m_ = msg->encoder_left;
-        current_pos_right_m_ = msg->encoder_right;
-    }
-
-    // --- Main Control Logic ---
-    void control_loop_callback() {
-        // Get parameters
-        double turn_gain = this->get_parameter("turn_gain").as_double();
-        double forward_gain = this->get_parameter("forward_gain").as_double();
-        double target_x = this->get_parameter("target_x_pixel").as_double();
-        double target_size = this->get_parameter("target_size_px").as_double();
-        double max_turn_speed = this->get_parameter("max_turn_speed").as_double();
-        double max_forward_speed = this->get_parameter("max_forward_speed").as_double();
-        double max_backward_speed = this->get_parameter("max_backward_speed").as_double();
-        double max_wheel_speed = this->get_parameter("max_wheel_speed").as_double();
-        double centering_threshold = this->get_parameter("centering_threshold_px").as_double();
-
-        double target_vel_left = 0.0;
-        double target_vel_right = 0.0;
-        double forward_velocity_cmd = 0.0;
-        double turn_velocity_cmd = 0.0;
-
-        rclcpp::Time current_time = this->get_clock()->now();
-        bool ball_detected_recently = (current_time - last_ball_detection_time_) < rclcpp::Duration(1, 0);
-
-        if (light_pos_.x >= 0 && light_pos_.z > 0 && ball_detected_recently) { // Check for valid position and size
-            // --- Calculate turning velocity ---
-            double error_x = target_x - light_pos_.x;
-            turn_velocity_cmd = turn_gain * error_x;
-            turn_velocity_cmd = std::clamp(turn_velocity_cmd, -max_turn_speed, max_turn_speed);
-
-            // --- Calculate forward/backward velocity (only if centered) ---
-            if (std::fabs(error_x) < centering_threshold) {
-                double current_ball_size = light_pos_.z; // Diameter from ball_tracker
-                double error_size = target_size - current_ball_size; // Target - Current
-                forward_velocity_cmd = forward_gain * error_size;
-
-                // Clamp forward/backward speed separately
-                forward_velocity_cmd = std::clamp(forward_velocity_cmd, -max_backward_speed, max_forward_speed);
-            } else {
-                // Not centered enough, don't do forward/backward motion
-                forward_velocity_cmd = 0.0;
-            }
-
-            RCLCPP_INFO(this->get_logger(),
-                "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
-                light_pos_.x, error_x, light_pos_.z, (target_size - light_pos_.z), turn_velocity_cmd, forward_velocity_cmd);
-
-            // --- Convert forward/turn to wheel velocities ---
-            target_vel_left = forward_velocity_cmd - turn_velocity_cmd;
-            target_vel_right = forward_velocity_cmd + turn_velocity_cmd;
-
-        } else {
-            // No ball detected or detection is old, command robot to stop
-            target_vel_left = 0.0;
-            target_vel_right = 0.0;
-            RCLCPP_INFO(this->get_logger(), "No valid/recent ball detection, stopping.");
+SequenceController::VelocityCommands SequenceController::calculate_velocity_commands() {
+    VelocityCommands cmd;
+    if (latest_light_pos_.x >= 0 && latest_light_pos_.z > 0 && is_ball_detected_recently_) {
+        double error_x = params_.target_x_pixel - latest_light_pos_.x;
+        if (std::fabs(error_x) > params_.turning_deadzone_px) {
+            cmd.turn = params_.turn_gain * error_x;
+            cmd.turn = std::clamp(cmd.turn, -params_.max_turn_speed, params_.max_turn_speed);
         }
 
-        // Clamp final wheel velocities
-        target_vel_left = std::clamp(target_vel_left, -max_wheel_speed, max_wheel_speed);
-        target_vel_right = std::clamp(target_vel_right, -max_wheel_speed, max_wheel_speed);
+        if (std::fabs(error_x) < params_.centering_threshold_px) {
+            double error_size = params_.target_size_px - latest_light_pos_.z;
+            cmd.forward = params_.forward_gain * error_size;
+            cmd.forward = std::clamp(cmd.forward, -params_.max_backward_speed, params_.max_forward_speed);
+        }
 
-        RCLCPP_INFO(this->get_logger(), "Final Velocities - Left:%.2f, Right:%.2f", target_vel_left, target_vel_right);
-
-        // --- Prepare and publish command message ---
-        auto ros_cmd_msg = xrf2_msgs::msg::Ros2Xeno();
-
-        // Assign to message fields (VERIFY FIELD NAMES 'example_a'/'example_b')
-        ros_cmd_msg.example_a = target_vel_left;  // Target SetVelLeft for LoopController
-        ros_cmd_msg.example_b = target_vel_right; // Target SetVelRight for LoopController
-
-        publisher_ros2xeno_->publish(ros_cmd_msg);
+        RCLCPP_DEBUG(this->get_logger(),
+            "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
+            latest_light_pos_.x, error_x, latest_light_pos_.z, (params_.target_size_px - latest_light_pos_.z), cmd.turn, cmd.forward);
+    } else {
+        RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+                             "No valid/recent ball detection, stopping.");
     }
-};
+    return cmd;
+}
 
+SequenceController::WheelVelocities SequenceController::convert_to_wheel_velocities(const VelocityCommands& cmd) {
+    WheelVelocities wheel_vel;
+    wheel_vel.left = cmd.forward - cmd.turn;
+    wheel_vel.right = cmd.forward + cmd.turn;
+    wheel_vel.left = std::clamp(wheel_vel.left, -params_.max_wheel_speed, params_.max_wheel_speed);
+    wheel_vel.right = std::clamp(wheel_vel.right, -params_.max_wheel_speed, params_.max_wheel_speed);
+    RCLCPP_DEBUG(this->get_logger(), "Wheel Velocities - Left:%.2f, Right:%.2f", wheel_vel.left, wheel_vel.right);
+    return wheel_vel;
+}
+
+void SequenceController::publish_wheel_velocities(const WheelVelocities& wheel_vel) {
+    auto ros_cmd_msg = std::make_unique<xrf2_msgs::msg::Ros2Xeno>();
+    ros_cmd_msg->example_a = wheel_vel.left;
+    ros_cmd_msg->example_b = wheel_vel.right;
+    publisher_ros2xeno_->publish(std::move(ros_cmd_msg));
+}
+
+// --- Main control loop ---
+void SequenceController::control_loop_callback() {
+    update_detection_status();
+    VelocityCommands velocity_cmd = calculate_velocity_commands();
+    WheelVelocities wheel_vel = convert_to_wheel_velocities(velocity_cmd);
+    publish_wheel_velocities(wheel_vel);
+}
+
+// --- Main function ---
 int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<SequenceController>());
+    auto sequence_controller_node = std::make_shared<SequenceController>();
+    rclcpp::spin(sequence_controller_node);
     rclcpp::shutdown();
-
     return 0;
 }

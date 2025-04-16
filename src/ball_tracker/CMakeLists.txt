@@ -8,7 +8,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(OpenCV REQUIRED)
 
-# Change the executable name from ball_tracker_node to ball_tracker
+include_directories(include)
 add_executable(ball_tracker src/ball_tracker.cpp)
 
 ament_target_dependencies(ball_tracker
@@ -22,8 +22,11 @@ ament_target_dependencies(ball_tracker
 install(TARGETS ball_tracker
   DESTINATION lib/${PROJECT_NAME})
 
-ament_package()
+install(DIRECTORY include/
+  DESTINATION include)
 
 install(FILES package.xml
   DESTINATION share/${PROJECT_NAME}
 )
+
+ament_package()
