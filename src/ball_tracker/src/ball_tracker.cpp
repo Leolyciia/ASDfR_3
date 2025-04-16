@@ -102,7 +102,7 @@
 //   return 0;
 // }
 
-#include "ball_tracker/ball_tracker.hpp" 
+#include "ball_tracker.hpp" 
 
 #include <rclcpp/rclcpp.hpp>             
 #include <geometry_msgs/msg/point.hpp>  
@@ -122,9 +122,9 @@ BallTracker::BallTracker() : Node("ball_tracker") {
   using std::placeholders::_1;
 
   // Parameters
-  h_min_ = 40; h_max_ = 101;
-  s_min_ = 61; s_max_ = 255;
-  v_min_ = 128; v_max_ = 255;
+  h_min_ = 37; h_max_ = 94;
+  s_min_ = 26; s_max_ = 255;
+  v_min_ = 113; v_max_ = 255;
   size_min_px_ = 30; size_max_px_ = 1600; 
 
   // Initialise subscription

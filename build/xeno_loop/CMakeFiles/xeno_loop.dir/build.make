@@ -251,19 +251,19 @@ CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrt20Sim.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrt20Sim.cpp -o CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrt20Sim.cpp.s
 
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: CMakeFiles/xeno_loop.dir/flags.make
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: CMakeFiles/xeno_loop.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/asdfr-30/ASDfR_3/build/xeno_loop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o -MF CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o.d -o CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o -c /home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o: CMakeFiles/xeno_loop.dir/flags.make
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o: CMakeFiles/xeno_loop.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/asdfr-30/ASDfR_3/build/xeno_loop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o -MF CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o.d -o CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o -c /home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp
 
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp > CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.i
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp > CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.i
 
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp -o CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.s
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp -o CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.s
 
 CMakeFiles/xeno_loop.dir/controller/LoopController.cpp.o: CMakeFiles/xeno_loop.dir/flags.make
 CMakeFiles/xeno_loop.dir/controller/LoopController.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/LoopController.cpp
@@ -378,7 +378,7 @@ xeno_loop_OBJECTS = \
 "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoRosDataBridge.cpp.o" \
 "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp.o" \
 "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrt20Sim.cpp.o" \
-"CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o" \
+"CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o" \
 "CMakeFiles/xeno_loop.dir/controller/LoopController.cpp.o" \
 "CMakeFiles/xeno_loop.dir/controller/common/EulerAngles.cpp.o" \
 "CMakeFiles/xeno_loop.dir/controller/common/MotionProfiles.cpp.o" \
@@ -403,7 +403,7 @@ xeno_loop: CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramew
 xeno_loop: CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoRosDataBridge.cpp.o
 xeno_loop: CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp.o
 xeno_loop: CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrt20Sim.cpp.o
-xeno_loop: CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o
+xeno_loop: CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o
 xeno_loop: CMakeFiles/xeno_loop.dir/controller/LoopController.cpp.o
 xeno_loop: CMakeFiles/xeno_loop.dir/controller/common/EulerAngles.cpp.o
 xeno_loop: CMakeFiles/xeno_loop.dir/controller/common/MotionProfiles.cpp.o

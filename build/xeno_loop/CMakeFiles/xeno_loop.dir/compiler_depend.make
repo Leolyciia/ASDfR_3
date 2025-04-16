@@ -3932,7 +3932,7 @@ CMakeFiles/xeno_loop.dir/main.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/main.c
   /usr/include/aarch64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/aarch64-linux-gnu/c++/11/bits/c++io.h \
   /usr/include/c++/11/bits/fstream.tcc \
-  /home/asdfr-30/ASDfR_3/src/xeno_loop/include/Template20Sim.hpp \
+  /home/asdfr-30/ASDfR_3/src/xeno_loop/include/XenoLoopRunner.hpp \
   /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/XenoFrt20Sim.hpp \
   /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/XenoFrtRosIco.hpp \
   /usr/include/c++/11/functional \
@@ -4178,9 +4178,9 @@ CMakeFiles/xeno_loop.dir/main.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/main.c
   /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/common/xxmodel.h \
   /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/common/xxinteg.h
 
-CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp \
+CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o: /home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp \
   /usr/include/stdc-predef.h \
-  /home/asdfr-30/ASDfR_3/src/xeno_loop/include/Template20Sim.hpp \
+  /home/asdfr-30/ASDfR_3/src/xeno_loop/include/XenoLoopRunner.hpp \
   /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/XenoFrt20Sim.hpp \
   /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/XenoFrtRosIco.hpp \
   /usr/include/c++/11/functional \
@@ -4604,8 +4604,6 @@ CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xen
   /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/common/xxmodel.h \
   /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/common/xxinteg.h
 
-
-/home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp:
 
 /usr/include/aarch64-linux-gnu/c++/11/bits/basic_file.h:
 
@@ -5047,6 +5045,8 @@ CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xen
 
 /usr/include/c++/11/math.h:
 
+/home/asdfr-30/ASDfR_3/src/xeno_loop/include/XenoLoopRunner.hpp:
+
 /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoFrtMonitor.cpp:
 
 /usr/include/aarch64-linux-gnu/bits/uintn-identity.h:
@@ -5224,8 +5224,6 @@ CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xen
 /usr/include/c++/11/bits/ptr_traits.h:
 
 /usr/include/endian.h:
-
-/home/asdfr-30/ASDfR_3/src/xeno_loop/include/Template20Sim.hpp:
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
@@ -5518,6 +5516,8 @@ CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o: /home/asdfr-30/ASDfR_3/src/xen
 /home/asdfr-30/ASDfR_3/src/xeno_loop/controller/common/xxfuncs.h:
 
 /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/ICommunicationFullDuplex.h:
+
+/home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp:
 
 /home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/include/XenoFileHandler.hpp:
 

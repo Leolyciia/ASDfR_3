@@ -39,8 +39,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp.o.d"
   "CMakeFiles/xeno_loop.dir/main.cpp.o"
   "CMakeFiles/xeno_loop.dir/main.cpp.o.d"
-  "CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o"
-  "CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o.d"
+  "CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o"
+  "CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o.d"
   "xeno_loop"
   "xeno_loop.pdb"
 )

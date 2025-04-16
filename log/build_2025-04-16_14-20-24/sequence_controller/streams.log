@@ -1,0 +1,35 @@
+[0.075s] Invoking command in '/home/asdfr-30/ASDfR_3/build/sequence_controller': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3
+[0.227s] [35m[1mConsolidate compiler generated dependencies of target sequence_controller[0m
+[0.706s] [ 50%] [32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o[0m
+[9.615s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[KSequenceController::VelocityCommands SequenceController::calculate_velocity_commands()[m[K’:
+[9.628s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:100:34:[m[K [01;31m[Kerror: [m[K‘[01m[Kcentering_threshold[m[K’ was not declared in this scope
+[9.630s]   100 |         if (std::fabs(error_x) < [01;31m[Kcentering_threshold[m[K) {
+[9.631s]       |                                  [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[9.640s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:101:40:[m[K [01;31m[Kerror: [m[K‘[01m[Klight_pos_[m[K’ was not declared in this scope
+[9.642s]   101 |             double current_ball_size = [01;31m[Klight_pos_[m[K.z; // diameter from ball_tracker
+[9.643s]       |                                        [01;31m[K^~~~~~~~~~[m[K
+[9.666s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:102:33:[m[K [01;31m[Kerror: [m[K‘[01m[Ktarget_size[m[K’ was not declared in this scope
+[9.667s]   102 |             double error_size = [01;31m[Ktarget_size[m[K - current_ball_size; // Target - Current
+[9.669s]       |                                 [01;31m[K^~~~~~~~~~~[m[K
+[9.725s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:17:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+[9.727s]   107 |                 [01;31m[Kforward_velocity_cmd[m[K = forward_gain * error_size;
+[9.728s]       |                 [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[9.731s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_gain[m[K’ was not declared in this scope
+[9.732s]   107 |                 forward_velocity_cmd = [01;31m[Kforward_gain[m[K * error_size;
+[9.733s]       |                                        [01;31m[K^~~~~~~~~~~~[m[K
+[9.767s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:110:74:[m[K [01;31m[Kerror: [m[K‘[01m[Kmax_backward_speed[m[K’ was not declared in this scope
+[9.768s]   110 |                 forward_velocity_cmd = std::clamp(forward_velocity_cmd, -[01;31m[Kmax_backward_speed[m[K, max_forward_speed);
+[9.769s]       |                                                                          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[9.800s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:110:94:[m[K [01;31m[Kerror: [m[K‘[01m[Kmax_forward_speed[m[K’ was not declared in this scope
+[9.802s]   110 |                 forward_velocity_cmd = std::clamp(forward_velocity_cmd, -max_backward_speed, [01;31m[Kmax_forward_speed[m[K);
+[9.803s]       |                                                                                              [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[9.838s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:113:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+[9.839s]   113 |                  [01;31m[Kforward_velocity_cmd[m[K = 0.0;
+[9.841s]       |                  [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[9.875s] [01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:118:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+[9.877s]   118 |             [01;31m[Kforward_velocity_cmd[m[K = 0.0;
+[9.878s]       |             [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[21.338s] gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+[21.339s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+[21.341s] gmake: *** [Makefile:146: all] Error 2
+[21.344s] Invoked command in '/home/asdfr-30/ASDfR_3/build/sequence_controller' returned '2': CMAKE_PREFIX_PATH=/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/object_center:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/brightness:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/asdfr-30/ASDfR_3/build/sequence_controller -- -j3 -l3

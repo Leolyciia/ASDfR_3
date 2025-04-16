@@ -1,0 +1,31 @@
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:[m[K In member function ‘[01m[KSequenceController::VelocityCommands SequenceController::calculate_velocity_commands()[m[K’:
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:100:34:[m[K [01;31m[Kerror: [m[K‘[01m[Kcentering_threshold_px[m[K’ was not declared in this scope
+  100 |         if (std::fabs(error_x) < [01;31m[Kcentering_threshold_px[m[K) {
+      |                                  [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:101:40:[m[K [01;31m[Kerror: [m[K‘[01m[Klight_pos_[m[K’ was not declared in this scope
+  101 |             double current_ball_size = [01;31m[Klight_pos_[m[K.z; // diameter from ball_tracker
+      |                                        [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:102:33:[m[K [01;31m[Kerror: [m[K‘[01m[Ktarget_size[m[K’ was not declared in this scope
+  102 |             double error_size = [01;31m[Ktarget_size[m[K - current_ball_size; // Target - Current
+      |                                 [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:17:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+  107 |                 [01;31m[Kforward_velocity_cmd[m[K = forward_gain * error_size;
+      |                 [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:107:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_gain[m[K’ was not declared in this scope
+  107 |                 forward_velocity_cmd = [01;31m[Kforward_gain[m[K * error_size;
+      |                                        [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:110:74:[m[K [01;31m[Kerror: [m[K‘[01m[Kmax_backward_speed[m[K’ was not declared in this scope
+  110 |                 forward_velocity_cmd = std::clamp(forward_velocity_cmd, -[01;31m[Kmax_backward_speed[m[K, max_forward_speed);
+      |                                                                          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:110:94:[m[K [01;31m[Kerror: [m[K‘[01m[Kmax_forward_speed[m[K’ was not declared in this scope
+  110 |                 forward_velocity_cmd = std::clamp(forward_velocity_cmd, -max_backward_speed, [01;31m[Kmax_forward_speed[m[K);
+      |                                                                                              [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:113:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+  113 |                  [01;31m[Kforward_velocity_cmd[m[K = 0.0;
+      |                  [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp:118:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kforward_velocity_cmd[m[K’ was not declared in this scope
+  118 |             [01;31m[Kforward_velocity_cmd[m[K = 0.0;
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:76: CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

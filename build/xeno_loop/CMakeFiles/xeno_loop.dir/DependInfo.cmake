@@ -28,7 +28,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoRosDataBridge.cpp" "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoRosDataBridge.cpp.o" "gcc" "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoRosDataBridge.cpp.o.d"
   "/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp" "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp.o" "gcc" "CMakeFiles/xeno_loop.dir/home/asdfr-30/ASDfR_3/src/XRF2/XenoRosFramework/Xenomai/src/XenoSpiControllerHandler.cpp.o.d"
   "/home/asdfr-30/ASDfR_3/src/xeno_loop/main.cpp" "CMakeFiles/xeno_loop.dir/main.cpp.o" "gcc" "CMakeFiles/xeno_loop.dir/main.cpp.o.d"
-  "/home/asdfr-30/ASDfR_3/src/xeno_loop/src/Template20Sim.cpp" "CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o" "gcc" "CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o.d"
+  "/home/asdfr-30/ASDfR_3/src/xeno_loop/src/XenoLoopRunner.cpp" "CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o" "gcc" "CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o.d"
   )
 
 # Targets to which this target links.

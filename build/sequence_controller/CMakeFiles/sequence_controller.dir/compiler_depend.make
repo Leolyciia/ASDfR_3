@@ -3,6 +3,7 @@
 
 CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30/ASDfR_3/src/sequence_controller/src/sequence_controller.cpp \
   /usr/include/stdc-predef.h \
+  /home/asdfr-30/ASDfR_3/src/sequence_controller/include/sequence_controller.hpp \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
   /usr/include/c++/11/type_traits \
@@ -157,6 +158,11 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
   /usr/include/aarch64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/cmath \
   /usr/include/math.h \
   /usr/include/aarch64-linux-gnu/bits/math-vector.h \
@@ -206,11 +212,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
   /usr/include/c++/11/bits/node_handle.h \
   /usr/include/c++/11/bits/unordered_map.h \
   /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/pstl/execution_defs.h \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/point.hpp \
   /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp \
@@ -280,15 +281,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
   /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp \
   /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_type_support_struct.h \
   /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/point_stamped.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
-  /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__builder.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
-  /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__traits.hpp \
-  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__type_support.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp \
   /usr/include/c++/11/csignal \
   /usr/include/signal.h \
@@ -538,7 +530,9 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
   /opt/ros/humble/include/rclcpp/rclcpp/clock.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/time.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
+  /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp \
+  /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__traits.hpp \
   /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__type_support.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/rate.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_base_interface.hpp \
@@ -716,12 +710,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
   /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/thread_safe_synchronization.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/detail/write_preferring_read_write_lock.hpp \
   /opt/ros/humble/include/rclcpp/rclcpp/wait_set_template.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/float64.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__struct.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__builder.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__traits.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__type_support.hpp \
-  /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/xeno2_ros.hpp \
   /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__struct.hpp \
   /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__builder.hpp \
@@ -747,12 +735,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/xeno2_ros.hpp:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__traits.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__struct.hpp:
-
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/thread_safe_synchronization.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/static_storage.hpp:
@@ -764,8 +746,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/dynamic_storage.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/parameter_service.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/float64.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/parameter_event_handler.hpp:
 
@@ -830,6 +810,8 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/create_publisher.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_options.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_waitables_interface.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_time_source_interface.hpp:
 
@@ -899,6 +881,8 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/rmw_implementation_specific_publisher_payload.hpp:
 
+/opt/ros/humble/include/rclcpp/rclcpp/publisher_options.hpp:
+
 /opt/ros/humble/include/rclcpp/rclcpp/loaned_message.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/is_ros_compatible_type.hpp:
@@ -954,12 +938,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/qos_overriding_options.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/rmw_implementation_specific_payload.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_intra_process_buffer_type.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/parameter.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_use_intra_process.hpp:
 
 /usr/include/aarch64-linux-gnu/c++/11/bits/ctype_inline.h:
 
@@ -1027,12 +1005,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/c++/11/pstl/execution_defs.h:
 
-/usr/include/c++/11/bits/stl_bvector.h:
-
-/usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/c++/11/vector:
-
 /usr/include/c++/11/bits/unordered_map.h:
 
 /usr/include/c++/11/bits/node_handle.h:
@@ -1063,21 +1035,15 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/c++/11/bits/stl_heap.h:
 
+/usr/include/aarch64-linux-gnu/bits/long-double.h:
+
 /opt/ros/humble/include/rcpputils/rcpputils/pointer_traits.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__traits.hpp:
 
 /usr/include/c++/11/bits/std_abs.h:
 
-/usr/include/aarch64-linux-gnu/bits/long-double.h:
-
 /usr/include/c++/11/bits/stl_algo.h:
-
-/opt/ros/humble/include/rclcpp/rclcpp/parameter_value.hpp:
-
-/usr/include/c++/11/bits/align.h:
-
-/usr/include/aarch64-linux-gnu/sys/time.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/subscription_callback_type_helper.hpp:
 
@@ -1103,19 +1069,31 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h:
 
-/usr/include/c++/11/backward/auto_ptr.h:
-
-/usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
+/usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/locale.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/qos_parameters.hpp:
 
 /usr/include/c++/11/cmath:
 
 /usr/include/c++/11/bits/allocator.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/c++/11/backward/auto_ptr.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+/opt/ros/humble/include/rclcpp/rclcpp/parameter_value.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/time.h:
+
+/usr/include/c++/11/bits/align.h:
+
+/usr/include/c++/11/vector:
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
@@ -1152,6 +1130,10 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rmw/rmw/events_statuses/liveliness_lost.h:
 
 /usr/include/aarch64-linux-gnu/c++/11/bits/cxxabi_tweaks.h:
+
+/opt/ros/humble/include/rcpputils/rcpputils/thread_safety_annotations.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
@@ -1201,7 +1183,7 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/c++/11/shared_mutex:
 
-/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
+/usr/include/stdlib.h:
 
 /usr/include/aarch64-linux-gnu/bits/fp-fast.h:
 
@@ -1243,8 +1225,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/aarch64-linux-gnu/bits/types/time_t.h:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__builder.hpp:
-
 /usr/include/c++/11/cerrno:
 
 /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/point.hpp:
@@ -1260,6 +1240,12 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/function_traits.hpp:
 
 /usr/include/c++/11/debug/debug.h:
+
+/usr/include/c++/11/ctime:
+
+/home/asdfr-30/ASDfR_3/src/sequence_controller/include/sequence_controller.hpp:
+
+/usr/include/c++/11/typeinfo:
 
 /usr/include/aarch64-linux-gnu/bits/endian.h:
 
@@ -1290,10 +1276,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/init_options.hpp:
 
 /usr/include/aarch64-linux-gnu/sys/cdefs.h:
-
-/usr/include/c++/11/typeinfo:
-
-/usr/include/c++/11/ctime:
 
 /usr/include/c++/11/bits/move.h:
 
@@ -1375,12 +1357,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/c++/11/ratio:
 
-/opt/ros/humble/include/rclcpp/rclcpp/generic_publisher.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/message_memory_strategy.hpp:
-
-/usr/include/c++/11/thread:
-
 /usr/include/c++/11/pstl/glue_memory_defs.h:
 
 /usr/include/c++/11/csignal:
@@ -1433,6 +1409,8 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/c++/11/limits:
 
+/opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_intra_process_buffer_type.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
 /usr/include/c++/11/bits/string_view.tcc:
@@ -1467,11 +1445,11 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
 
-/opt/ros/humble/include/rclcpp/rclcpp/intra_process_setting.hpp:
-
-/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp:
-
 /usr/include/c++/11/bits/stl_algobase.h:
+
+/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__struct.hpp:
+
+/usr/include/unistd.h:
 
 /usr/include/c++/11/cwchar:
 
@@ -1501,6 +1479,8 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /usr/include/aarch64-linux-gnu/asm/types.h:
 
+/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
+
 /usr/include/c++/11/ext/new_allocator.h:
 
 /opt/ros/humble/include/rmw/rmw/types.h:
@@ -1508,10 +1488,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /usr/include/ctype.h:
 
 /usr/include/c++/11/locale:
-
-/opt/ros/humble/include/rclcpp/rclcpp/publisher_options.hpp:
-
-/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__struct.hpp:
 
 /opt/ros/humble/include/tracetools/tracetools/config.h:
 
@@ -1584,8 +1560,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp:
 
 /usr/include/c++/11/bits/istream.tcc:
-
-/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__traits.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:
 
@@ -1671,8 +1645,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /opt/ros/humble/include/rcutils/rcutils/types/string_map.h:
 
-/usr/include/stdlib.h:
-
 /usr/include/c++/11/ostream:
 
 /usr/include/c++/11/bits/locale_facets_nonio.h:
@@ -1704,30 +1676,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp:
-
-/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__struct.hpp:
-
-/usr/include/unistd.h:
-
-/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/point_stamped.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:
-
-/opt/ros/humble/include/rcl/rcl/logging_rosout.h:
-
-/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
-
-/opt/ros/humble/include/rcpputils/rcpputils/thread_safety_annotations.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
-
-/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__builder.hpp:
-
-/opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_waitables_interface.hpp:
-
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__traits.hpp:
-
-/opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point_stamped__type_support.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/sched.h:
 
@@ -2055,8 +2003,6 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 
 /opt/ros/humble/include/tracetools/tracetools/tracetools.h:
 
-/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64__type_support.hpp:
-
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_descriptor__builder.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/math-vector.h:
@@ -2122,6 +2068,8 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/subscription_content_filter_options.hpp:
 
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
+
+/opt/ros/humble/include/rcl/rcl/logging_rosout.h:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs.h:
 
@@ -2194,3 +2142,19 @@ CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o: /home/asdfr-30
 /opt/ros/humble/include/rclcpp/rclcpp/experimental/subscription_intra_process_buffer.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/clock.hpp:
+
+/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/parameter.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_use_intra_process.hpp:
+
+/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/intra_process_setting.hpp:
+
+/opt/ros/humble/include/rclcpp/rclcpp/generic_publisher.hpp:
+
+/usr/include/c++/11/thread:
+
+/opt/ros/humble/include/rclcpp/rclcpp/message_memory_strategy.hpp:
