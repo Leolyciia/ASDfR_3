@@ -5,30 +5,34 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include <algorithm> 
+#include <algorithm> // Needed for std::clamp
 
 #include <rclcpp/rclcpp.hpp>
-#include "xrf2_msgs/msg/xeno2_ros.hpp" 
+#include "xrf2_msgs/msg/xeno2_ros.hpp"
 #include "xrf2_msgs/msg/ros2_xeno.hpp"
 
 using namespace std::chrono_literals;
 
-// --- State machine ---
-enum class RobotState {
-    IDLE,
-    MOVING_FORWARD,
-    TURNING,
-    FINISHED
+// --- Constants ---
+const double WHEEL_BASE_WIDTH = 0.21; // meters - Updated as per your request
+const double PI = 3.141592653589793;
+const double TARGET_DISTANCE_M = 0.30; // meters - Example: Drive 1 meter straight
+const double TARGET_TURN_ANGLE_RAD = PI / 2.0; // 90 degrees in radians
+const double FORWARD_SPEED = 0.5; // m/s - Example forward speed
+const double TURN_SPEED = 0.4; // rad/s equivalent for wheels - Example turning speed
+
+// --- Control Parameters ---
+// Simplified parameters for this task
+struct ControlParameters {
+    double max_wheel_speed = 0.9; // Maximum allowable individual wheel speed
+    double sample_time_s = 0.03; // Control loop sample time
 };
 
-// --- Control parameters ---
-struct ControlParameters {
-    double forward_speed = 0.2;       // Speed for moving forward (m/s)
-    double turn_speed = 0.3;          // Rotational speed for turning (rad/s) 
-    double forward_duration_s = 5.0;  // Duration to move forward (seconds)
-    double turn_duration_90_deg_s = 2.0; // Duration to turn ~90 degrees (seconds) 
-    double sample_time_s = 0.03;      // Control loop frequency
-    double max_wheel_speed = 0.3;     // Safety limit for individual wheel speed (m/s)
+// --- Robot States ---
+enum class RobotState {
+    DRIVING_STRAIGHT,
+    TURNING,
+    STOPPED
 };
 
 class SequenceController : public rclcpp::Node {
@@ -42,27 +46,32 @@ private:
     void declare_and_load_parameters();
 
     // --- State variables ---
-    RobotState current_state_ = RobotState::IDLE;
-    rclcpp::Time state_start_time_;
+    RobotState current_state_ = RobotState::DRIVING_STRAIGHT;
+    double current_pos_left_m_ = 0.0;
+    double current_pos_right_m_ = 0.0;
+    double start_pos_left_m_ = 0.0;  // Encoder reading when starting DRIVING_STRAIGHT
+    double start_pos_right_m_ = 0.0; // Encoder reading when starting DRIVING_STRAIGHT
+    double start_turn_pos_left_m_ = 0.0; // Encoder reading when starting TURNING
+    double start_turn_pos_right_m_ = 0.0;// Encoder reading when starting TURNING
+    bool initial_encoder_reading_received_ = false; // Flag to wait for first encoder reading
 
-    rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_; 
+
+    // --- ROS communications ---
+    rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_;
     rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_ros2xeno_;
     rclcpp::TimerBase::SharedPtr timer_;
-    void control_loop_callback();
-    void xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg);
 
-    struct MotionCommand {
-        double forward = 0.0; // Linear velocity
-        double turn = 0.0;    // Angular velocity
-    };
+    // --- Callback functions ---
+    void xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg);
+    void control_loop_callback();
+
+    // --- Control logic helpers ---
     struct WheelVelocities {
         double left = 0.0;
         double right = 0.0;
     };
 
-    WheelVelocities convert_to_wheel_velocities(const MotionCommand& cmd);
     void publish_wheel_velocities(const WheelVelocities& wheel_vel);
-    void stop_robot(); 
 
 };
 
