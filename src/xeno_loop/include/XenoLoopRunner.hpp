@@ -1,5 +1,5 @@
-#ifndef TEMPLATE20SIM_HPP
-#define TEMPLATE20SIM_HPP
+#ifndef XENOLOOPRUNNER_HPP
+#define XENOLOOPRUNNER_HPP
 
 #include "XenoFrt20Sim.hpp"
 #include "LoopController.h"
@@ -16,11 +16,11 @@ struct ThisIsAStruct
 
 #pragma pack(0)
 
-class Template20Sim : public XenoFrt20Sim
+class XenoLoopRunner : public XenoFrt20Sim
 {
 public:
-    Template20Sim(uint write_decimator_freq, uint monitor_freq);
-    ~Template20Sim();
+    XenoLoopRunner(uint write_decimator_freq, uint monitor_freq);
+    ~XenoLoopRunner();
 private:
     XenoFileHandler file;
     struct ThisIsAStruct data_to_be_logged;
@@ -68,4 +68,4 @@ protected:
     int current_error = 0;
 };
 
-#endif // TEMPLATE20SIM_HPP
+#endif // XENOLOOPRUNNER_HPP

@@ -1,6 +1,6 @@
-#include "Template20Sim.hpp"
+#include "XenoLoopRunner.hpp"
 
-Template20Sim::Template20Sim(uint write_decimator_freq, uint monitor_freq) :
+XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
     XenoFrt20Sim(write_decimator_freq, monitor_freq, file, &data_to_be_logged),
     file(1,"./xrf2_logging/TEMPLATE","bin"), // change template to your project name
     controller()
@@ -17,13 +17,13 @@ Template20Sim::Template20Sim(uint write_decimator_freq, uint monitor_freq) :
     controller.SetFinishTime(0.0);
 }
 
-Template20Sim::~Template20Sim()
+XenoLoopRunner::~XenoLoopRunner()
 {
     
 }
 
 // Helper function: calculate delta counts
-int16_t Template20Sim::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
+int16_t XenoLoopRunner::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
     if (diff > ENCODER_WRAP_THRESHOLD) {
@@ -36,7 +36,7 @@ int16_t Template20Sim::calculate_delta_counts_left(uint16_t current_raw, uint16_
 }
 
 // Helper function: calculate delta counts 
-int16_t Template20Sim::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
+int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
     // Print inputs received by the function
     evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
 
@@ -66,7 +66,7 @@ int16_t Template20Sim::calculate_delta_counts_right(uint16_t current_raw, uint16
 }
 
 // Helper function: for updating the wheel positions
-void Template20Sim::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
+void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
     if (!feedback_initialized) {
         prev_encoder_left_raw = current_encoder_left_raw;
         prev_encoder_right_raw = current_encoder_right_raw;
@@ -94,7 +94,7 @@ void Template20Sim::updateWheelPositions(uint16_t current_encoder_left_raw, uint
     prev_encoder_right_raw = current_encoder_right_raw;
 }
 
-int Template20Sim::initialising()
+int XenoLoopRunner::initialising()
 {
     // Set physical and cyber system up for use in a 
     // Return 1 to go to initialised state
@@ -131,7 +131,7 @@ int Template20Sim::initialising()
     return 1;
 }
 
-int Template20Sim::initialised()
+int XenoLoopRunner::initialised()
 {
     // Keep the physical syste in a state to be used in the run state
     // Call start() or return 1 to go to run state
@@ -141,7 +141,7 @@ int Template20Sim::initialised()
     return 1;
 }
 
-int Template20Sim::run()
+int XenoLoopRunner::run()
 {
     // Do what you need to do
     // Return 1 to go to stopping state
@@ -206,7 +206,7 @@ int Template20Sim::run()
     return 0;
 }
 
-int Template20Sim::stopping()
+int XenoLoopRunner::stopping()
 {
     // Bring the physical system to a stop and set it in a state that the system can be deactivated
     // Return 1 to go to stopped state
@@ -216,7 +216,7 @@ int Template20Sim::stopping()
     return 1;
 }
 
-int Template20Sim::stopped()
+int XenoLoopRunner::stopped()
 {
     // A steady state in which the system can be deactivated whitout harming the physical system
 
@@ -225,7 +225,7 @@ int Template20Sim::stopped()
     return 0;
 }
 
-int Template20Sim::pausing()
+int XenoLoopRunner::pausing()
 {
     // Bring the physical system to a stop as fast as possible without causing harm to the physical system
 
@@ -233,7 +233,7 @@ int Template20Sim::pausing()
     return 1 ;
 }
 
-int Template20Sim::paused()
+int XenoLoopRunner::paused()
 {
     // Keep the physical system in the current physical state
 
@@ -241,7 +241,7 @@ int Template20Sim::paused()
     return 0;
 }
 
-int Template20Sim::error()
+int XenoLoopRunner::error()
 {
     // Error detected in the system 
     // Can go to error if the previous state returns 1 from every other state function but initialising 
