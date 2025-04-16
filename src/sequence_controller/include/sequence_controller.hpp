@@ -49,7 +49,7 @@ private:
     rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_ros2xeno_;
     rclcpp::TimerBase::SharedPtr timer_;
     void control_loop_callback();
-
+    void xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg);
 
     struct MotionCommand {
         double forward = 0.0; // Linear velocity

@@ -1,137 +1,254 @@
-#include "sequence_controller.hpp"
 
-// Constructor
-SequenceController::SequenceController()
-    : Node("sequence_controller")
+#include "XenoLoopRunner.hpp"
+
+XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
+    XenoFrt20Sim(write_decimator_freq, monitor_freq, file, &data_to_be_logged),
+    file(1,"./xrf2_logging/TEMPLATE","bin"), // change template to your project name
+    controller()
 {
-    RCLCPP_INFO(this->get_logger(), "Inialise");
-
-    // declaring and loading the parameters
-    declare_and_load_parameters();
-
-    // --- subscriptions ---
-    subscription_xeno2ros_ = this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
-        "/Xeno2Ros", 10,
-        std::bind(&SequenceController::xeno_feedback_callback, this, std::placeholders::_1));
-
-    // --- Publisher ---
-    publisher_ros2xeno_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
-        "/Ros2Xeno", 10);
-
-    // --- timer ---
-    timer_ = rclcpp::create_timer(
-        this, this->get_clock(),
-        std::chrono::duration<double>(params_.sample_time_s),
-        std::bind(&SequenceController::control_loop_callback, this));
-
-    RCLCPP_INFO(this->get_logger(), "SequenceController Node initialised successfully for timed sequence.");
-
+     printf("%s: Constructing rampio\n", __FUNCTION__);
+    // Add variables to logger to be logged, has to be done before you can log data
+    logger.addVariable("this_is_a_int", integer);
+    logger.addVariable("this_is_a_double", double_);
+    logger.addVariable("this_is_a_float", float_);
+    logger.addVariable("this_is_a_char", character);
+    logger.addVariable("this_is_a_bool", boolean);
+    
+    // To infinite run the controller, uncomment line below
+    controller.SetFinishTime(0.0);
 }
 
-// --- Parameter handling ---
-void SequenceController::declare_and_load_parameters() {
-    // Declare new parameters
-    this->declare_parameter<double>("forward_speed", params_.forward_speed);
-    this->declare_parameter<double>("turn_speed", params_.turn_speed);
-    this->declare_parameter<double>("forward_duration_s", params_.forward_duration_s);
-    this->declare_parameter<double>("turn_duration_90_deg_s", params_.turn_duration_90_deg_s);
-    this->declare_parameter<double>("sample_time_s", params_.sample_time_s);
-    this->declare_parameter<double>("max_wheel_speed", params_.max_wheel_speed);
-
-    // Load actual values into the struct
-    this->get_parameter("forward_speed", params_.forward_speed);
-    this->get_parameter("turn_speed", params_.turn_speed);
-    this->get_parameter("forward_duration_s", params_.forward_duration_s);
-    this->get_parameter("turn_duration_90_deg_s", params_.turn_duration_90_deg_s);
-    this->get_parameter("sample_time_s", params_.sample_time_s);
-    this->get_parameter("max_wheel_speed", params_.max_wheel_speed);
-
-    RCLCPP_INFO(this->get_logger(), "Declared and loaded sequence parameters.");
-    RCLCPP_INFO(this->get_logger(), "Forward: %.2f m/s for %.2f s", params_.forward_speed, params_.forward_duration_s);
-    RCLCPP_INFO(this->get_logger(), "Turn: %.2f rad/s for %.2f s", params_.turn_speed, params_.turn_duration_90_deg_s);
+XenoLoopRunner::~XenoLoopRunner()
+{
+    
 }
 
+// Helper function: calculate delta counts
+int16_t XenoLoopRunner::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
+    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
-SequenceController::WheelVelocities SequenceController::convert_to_wheel_velocities(const MotionCommand& cmd) {
-    WheelVelocities wheel_vel;
-    wheel_vel.left = cmd.forward - cmd.turn / 2.0; 
-    wheel_vel.right = cmd.forward + cmd.turn / 2.0;
-
-    wheel_vel.left = std::clamp(wheel_vel.left, -params_.max_wheel_speed, params_.max_wheel_speed);
-    wheel_vel.right = std::clamp(wheel_vel.right, -params_.max_wheel_speed, params_.max_wheel_speed);
-    RCLCPP_DEBUG(this->get_logger(), "Command Fwd: %.2f Turn: %.2f | Wheel Vel L:%.2f, R:%.2f",
-                 cmd.forward, cmd.turn, wheel_vel.left, wheel_vel.right);
-    return wheel_vel;
-}
-
-void SequenceController::publish_wheel_velocities(const WheelVelocities& wheel_vel) {
-    auto ros_cmd_msg = std::make_unique<xrf2_msgs::msg::Ros2Xeno>();
-    ros_cmd_msg->example_a = wheel_vel.left;  
-    ros_cmd_msg->example_b = wheel_vel.right; 
-    publisher_ros2xeno_->publish(std::move(ros_cmd_msg));
-}
-
-void SequenceController::stop_robot() {
-    publish_wheel_velocities({0.0, 0.0});
-    RCLCPP_INFO(this->get_logger(), "Commanding robot to stop.");
-}
-
-
-// --- Main control loop ---
-void SequenceController::control_loop_callback() {
-    MotionCommand current_cmd = {0.0, 0.0};
-    rclcpp::Time now = this->get_clock()->now();
-    rclcpp::Duration time_in_state = now - state_start_time_;
-
-    switch (current_state_) {
-        case RobotState::IDLE:
-            RCLCPP_INFO(this->get_logger(), "Starting sequence: Moving Forward.");
-            current_state_ = RobotState::MOVING_FORWARD;
-            state_start_time_ = now; 
-        
-        case RobotState::MOVING_FORWARD:
-            if (time_in_state.seconds() < params_.forward_duration_s) {
-                current_cmd.forward = params_.forward_speed;
-                current_cmd.turn = 0.0;
-                RCLCPP_DEBUG(this->get_logger(), "State: FORWARD (%.2f/%.2f s)", time_in_state.seconds(), params_.forward_duration_s);
-            } else {
-                RCLCPP_INFO(this->get_logger(), "Forward complete. Starting Turn.");
-                current_state_ = RobotState::TURNING;
-                state_start_time_ = now; // Reset timer for the new state
-                current_cmd.forward = 0.0; // Stop forward motion before turning
-                current_cmd.turn = params_.turn_speed; // Start turning
-                RCLCPP_DEBUG(this->get_logger(), "State: TURNING (%.2f/%.2f s)", 0.0, params_.turn_duration_90_deg_s);
-            }
-            break;
-
-        case RobotState::TURNING:
-            if (time_in_state.seconds() < params_.turn_duration_90_deg_s) {
-                current_cmd.forward = 0.0;
-                current_cmd.turn = params_.turn_speed; 
-                 RCLCPP_DEBUG(this->get_logger(), "State: TURNING (%.2f/%.2f s)", time_in_state.seconds(), params_.turn_duration_90_deg_s);
-            } else {
-                RCLCPP_INFO(this->get_logger(), "Turn complete. Sequence Finished.");
-                current_state_ = RobotState::FINISHED;
-                stop_robot(); 
-            }
-            break;
-
-        case RobotState::FINISHED:
-            return; 
-    }
-
-    // Convert motion command to wheel velocities and publish 
-    if (current_state_ != RobotState::FINISHED) {
-        WheelVelocities wheel_vel = convert_to_wheel_velocities(current_cmd);
-        publish_wheel_velocities(wheel_vel);
+    if (diff > ENCODER_WRAP_THRESHOLD) {
+        return diff - ENCODER_RANGE; // Wrapped backward
+    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+        return diff + ENCODER_RANGE; // Wrapped forward
+    } else {
+        return diff; // No wrap-around
     }
 }
 
-// --- Main function ---
-int main(int argc, char *argv[]) {
-    rclcpp::init(argc, argv);
-    auto sequence_controller_node = std::make_shared<SequenceController>();
-    rclcpp::spin(sequence_controller_node);
-    rclcpp::shutdown();
+// Helper function: calculate delta counts 
+int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
+    // Print inputs received by the function
+    evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
+
+    // Calculate the raw difference
+    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
+    evl_printf("  DeltaCalc: Raw diff = %d\n", diff);
+
+    // Check wrap-around conditions
+    int16_t result; // Variable to store the final result
+
+    if (diff > ENCODER_WRAP_THRESHOLD) {
+        evl_printf("  DeltaCalc: Wrap backward detected (diff %d > threshold %d)\n", diff, ENCODER_WRAP_THRESHOLD);
+        result = diff - ENCODER_RANGE; // Wrapped backward
+        evl_printf("  DeltaCalc: Calculation -> %d - %d = %d\n", diff, ENCODER_RANGE, result);
+    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+        evl_printf("  DeltaCalc: Wrap forward detected (diff %d < threshold %d)\n", diff, -ENCODER_WRAP_THRESHOLD);
+        result = diff + ENCODER_RANGE; // Wrapped forward
+        evl_printf("  DeltaCalc: Calculation -> %d + %d = %d\n", diff, ENCODER_RANGE, result);
+    } else {
+        evl_printf("  DeltaCalc: No wrap-around detected.\n");
+        result = diff; // No wrap-around
+    }
+
+    // Print the final value being returned
+    evl_printf("  DeltaCalc: Returning delta = %d\n", result);
+    return result;
+}
+
+// Helper function: for updating the wheel positions
+void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
+    if (!feedback_initialized) {
+        prev_encoder_left_raw = current_encoder_left_raw;
+        prev_encoder_right_raw = current_encoder_right_raw;
+        feedback_initialized = true;
+        // Don't calculate displacement on the very first run
+        return;
+    }
+
+    // Calculate delta counts
+    int16_t delta_counts_left = calculate_delta_counts_left(current_encoder_left_raw, prev_encoder_left_raw);
+    int16_t delta_counts_right = calculate_delta_counts_right(-current_encoder_right_raw, -prev_encoder_right_raw);
+
+    // Calculate step displacement 
+    // Left wheel count increases backward 
+    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
+    // Right wheel count decreases backward 
+    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
+
+    // Accumulate total position
+    total_pos_left += displacement_step_left;
+    total_pos_right += displacement_step_right;
+
+    // Store current raw counts for the next iteration
+    prev_encoder_left_raw = current_encoder_left_raw;
+    prev_encoder_right_raw = current_encoder_right_raw;
+}
+
+int XenoLoopRunner::initialising()
+{
+    // Set physical and cyber system up for use in a 
+    // Return 1 to go to initialised state
+
+    evl_printf("Initialising...\n");      // Do something
+
+    // Reset position feedback states
+    total_pos_left = 0.0;
+    total_pos_right = 0.0;
+    prev_encoder_left_raw = 0; 
+    prev_encoder_right_raw = 0;
+    feedback_initialized = false;
+    controller.Reset(0.0);
+    // The logger has to be initialised at only once
+    logger.initialise();
+    // The FPGA has to be initialised at least once
+    ico_io.init();
+
+    // Reset actuation data
+    memset(&actuate_data, 0, sizeof(actuate_data));
+    actuate_data.pwm1 = 0; // Left
+    actuate_data.pwm2 = 0; // Right
+    // actuate_data.val1 = false;
+    // actuate_data.val2 = false;
+
+
+    // Dummy read for initialising prev_encoder values
+    ico_io.update_io(actuate_data, &sample_data);
+    prev_encoder_left_raw = sample_data.channel1;
+    prev_encoder_right_raw = sample_data.channel2;
+    feedback_initialized = true; // Mark as initialized after first read
+    evl_printf("Initialising complete.\n");
+
+    return 1;
+}
+
+int XenoLoopRunner::initialised()
+{
+    // Keep the physical syste in a state to be used in the run state
+    // Call start() or return 1 to go to run state
+
+    evl_printf("Hello from initialised\n");       // Do something
+
+    return 1;
+}
+
+int XenoLoopRunner::run()
+{
+    // Do what you need to do
+    // Return 1 to go to stopping state
+
+    // Start logger
+    logger.start();                             
+    monitor.printf("Hello from run\n");  
+    //  Change some data for logger            
+    data_to_be_logged.this_is_a_bool = !data_to_be_logged.this_is_a_bool;
+    data_to_be_logged.this_is_a_int++;
+    if(data_to_be_logged.this_is_a_char == 'R')
+        data_to_be_logged.this_is_a_char = 'A';
+    else if (data_to_be_logged.this_is_a_char == 'A')
+        data_to_be_logged.this_is_a_char = 'M';
+    else
+        data_to_be_logged.this_is_a_char = 'R';
+    data_to_be_logged.this_is_a_float = data_to_be_logged.this_is_a_float/2;
+    data_to_be_logged.this_is_a_double = data_to_be_logged.this_is_a_double/4; 
+
+    ico_io.update_io(actuate_data, &sample_data);
+
+    // Get raw encoder counts
+    uint16_t raw_left_encoder = sample_data.channel2;  // Right wheel 
+    uint16_t raw_right_encoder = sample_data.channel1; // Left wheel 
+
+    // Update accumulated wheel positions
+    updateWheelPositions(raw_left_encoder, raw_right_encoder);
+
+    u[0] = total_pos_left;  // PosLeft feedback
+    u[1] = total_pos_right; // PosRight feedback
+    // Get velocity setpoints from ROS message
+    u[2] = ros_msg.example_a; // Placeholder
+    u[3] = ros_msg.example_b; // Placeholder
+
+    controller.Calculate(u, y); // y[0]=SteerLeft, y[1]=SteerRight
+
+    const int16_t max_abs_pwm = 2047;
+    int16_t pwm_left_cmd = static_cast<int16_t>(std::clamp(y[0], (double)-max_abs_pwm, (double)max_abs_pwm));
+    int16_t pwm_right_cmd = static_cast<int16_t>(std::clamp(y[1], (double)-max_abs_pwm, (double)max_abs_pwm));
+
+    // pwm_left_cmd = -100;
+    // pwm_right_cmd = 100;
+
+    // Map controller outputs to correct PWM channels
+    // ASKK TA ABOUT THISSSS WHAT DOES THE ROBOT SEE AS LEFT/RIGHT??? 
+    actuate_data.pwm1 = -pwm_right_cmd; // PMOD P1 -> Right Motor
+    actuate_data.pwm2 = pwm_left_cmd;  // PMOD P2 -> Left Motor
+    // actuate_data.val1 = (pwm_right_cmd >= 0);
+    // actuate_data.val2 = (pwm_left_cmd >= 0);
+
+    xeno_msg.encoder_left = total_pos_left;
+    xeno_msg.encoder_right = total_pos_right;
+
+    // Out
+    monitor.printf("Run - PosL:%.4f PosR:%.4f | SetVelL:%.2f SetVelR:%.2f | SteerL:%.1f SteerR:%.1f\n",
+                   total_pos_left, total_pos_right, u[2], u[3], y[0], y[1]);
+    
+    if(controller.IsFinished())
+        return 1;
+
+
     return 0;
 }
+
+int XenoLoopRunner::stopping()
+{
+    // Bring the physical system to a stop and set it in a state that the system can be deactivated
+    // Return 1 to go to stopped state
+    logger.stop();                                // Stop logger
+    evl_printf("Hello from stopping\n");          // Do something
+
+    return 1;
+}
+
+int XenoLoopRunner::stopped()
+{
+    // A steady state in which the system can be deactivated whitout harming the physical system
+
+    monitor.printf("Hello from stopping\n");          // Do something
+
+    return 0;
+}
+
+int XenoLoopRunner::pausing()
+{
+    // Bring the physical system to a stop as fast as possible without causing harm to the physical system
+
+    evl_printf("Hello from pausing\n");           // Do something
+    return 1 ;
+}
+
+int XenoLoopRunner::paused()
+{
+    // Keep the physical system in the current physical state
+
+    monitor.printf("Hello from paused\n");            // Do something
+    return 0;
+}
+
+int XenoLoopRunner::error()
+{
+    // Error detected in the system 
+    // Can go to error if the previous state returns 1 from every other state function but initialising 
+
+    monitor.printf("Hello from error\n");             // Do something
+
+    return 0;
+}
+
