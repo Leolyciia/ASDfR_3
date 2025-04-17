@@ -210,6 +210,8 @@ void BallTracker::image_callback(const sensor_msgs::msg::Image::SharedPtr msg) {
     p_no_ball.z = 0.0;
     ball_pub_->publish(p_no_ball);
   }
+  cv::imshow("Detection Output", display_image);
+  cv::waitKey(1);
 }
 
 } // namespace ball_tracker
