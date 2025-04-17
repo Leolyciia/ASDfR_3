@@ -1,5 +1,6 @@
-#include "sequence_controller.hpp"
 
+#include "sequence_controller.hpp"
+// please please please
 SequenceController::SequenceController()
 : Node("sequence_controller")
 {
@@ -10,9 +11,7 @@ SequenceController::SequenceController()
         std::bind(&SequenceController::pose_callback, this, std::placeholders::_1));
     pub_cmd_ = create_publisher<xrf2_msgs::msg::Ros2Xeno>(
         "/Ros2Xeno", 10);
-    timer_ = create_wall_timer(
-        std::chrono::duration<double>(sample_time_s_),
-        std::bind(&SequenceController::control_loop_callback, this));
+    timer_ = create_wall_timer(std::chrono::duration<double>(sample_time_s_), std::bind(&SequenceController::control_loop_callback, this));
 }
 
 void SequenceController::pose_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg)
@@ -67,6 +66,7 @@ void SequenceController::control_loop_callback()
             if (dtheta > M_PI) dtheta -= 2 * M_PI;
             if (dtheta < -M_PI) dtheta += 2 * M_PI;
             if (dtheta > TURN_ANGLE) {
+                // Values are in the .hpp we have to change
                 cmd.example_a = TURN_SPEED;
                 cmd.example_b = -TURN_SPEED;
             } else {
@@ -83,4 +83,13 @@ void SequenceController::control_loop_callback()
         }
     }
     pub_cmd_->publish(cmd);
+}
+
+// --- Main function ---
+int main(int argc, char *argv[]) {
+    rclcpp::init(argc, argv);
+    auto sequence_controller_node = std::make_shared<SequenceController>();
+    rclcpp::spin(sequence_controller_node);
+    rclcpp::shutdown();
+    return 0;
 }
