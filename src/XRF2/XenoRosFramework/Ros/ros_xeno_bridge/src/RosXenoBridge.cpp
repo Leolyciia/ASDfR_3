@@ -13,9 +13,9 @@ RosXenoBridge::RosXenoBridge() : Node("RosXenoBridge")
 
   // Initialize subscribers, publishers, parameters etc. here...
   RCLCPP_INFO(this->get_logger(), "Creating publisher for topic 'XenoState'");
-  control_publisher_ = this->create_publisher<std_msgs::msg::Int32>("XenoState", 10);
+  control_publisher_ = this->create_publisher<std_msgs::msg::Int32>("XenoState", 1000);
   RCLCPP_INFO(this->get_logger(), "Creating publisher for topic 'Xeno2Ros'");
-  data_publisher_ = this->create_publisher<xrf2_msgs::msg::Xeno2Ros>("Xeno2Ros", 10);
+  data_publisher_ = this->create_publisher<xrf2_msgs::msg::Xeno2Ros>("Xeno2Ros", 1000);
 
   RCLCPP_INFO(this->get_logger(), "Subscribing to topic 'XenoCmd'");
   control_subscription_ = this->create_subscription<std_msgs::msg::Int32>("XenoCmd", 1, std::bind(&RosXenoBridge::controlCallback, this, _1));
