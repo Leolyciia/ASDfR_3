@@ -44,7 +44,7 @@ int Template20Sim::initialised()
 
     evl_printf("Hello from initialised\n");       // Do something
 
-    return 1;
+    return 0;
 }
 
 int Template20Sim::run()
@@ -68,12 +68,17 @@ int Template20Sim::run()
     data_to_be_logged.this_is_a_double = data_to_be_logged.this_is_a_double/4; 
 
     ico_io.update_io(actuate_data, &sample_data); 
-    controller.Calculate(u, y);
+    // controller.Calculate(u, y);
     xeno_msg.encoder_right = sample_data.channel2;  //
-    xeno_msg.encoder_left = sample_daata.channel1;  //
+    xeno_msg.encoder_left = sample_data.channel1;  //
 
     double a = ros_msg.example_a;
     double b = ros_msg.example_b;
+
+    actuate_data.pwm1 = a; // Set the PWM values to 0
+    actuate_data.pwm2 = b; // Set the PWM values to 0
+    // Send the PWM values to the FPGA
+    ico_io.update_io(actuate_data, &sample_data);
 
     evl_printf("ROS a: %f, Ros b: %f\n", a, b);
     // Printing, not sure if this is possible though
