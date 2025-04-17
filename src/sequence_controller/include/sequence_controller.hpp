@@ -16,8 +16,8 @@ using namespace std::chrono_literals;
 // --- Constants ---
 const double WHEEL_BASE_WIDTH = 0.21; // meters - Updated as per your request
 const double PI = 3.141592653589793;
-const double TARGET_DISTANCE_M = 0.30; // meters - Example: Drive 1 meter straight
-const double TARGET_TURN_ANGLE_RAD = PI / 2.0; // 90 degrees in radians
+const double TARGET_DISTANCE_M = 0.05; // meters - Example: Drive 1 meter straight
+const double TARGET_TURN_ANGLE_RAD = PI / 4.0; // 90 degrees in radians
 const double FORWARD_SPEED = 0.5; // m/s - Example forward speed
 const double TURN_SPEED = 0.4; // rad/s equivalent for wheels - Example turning speed
 

@@ -127,7 +127,8 @@ void SequenceController::control_loop_callback() {
                                  "State: TURNING, Angle: %.3f / %.3f rad",
                                  std::abs(angle_turned_rad), TARGET_TURN_ANGLE_RAD);
 
-            if (std::abs(angle_turned_rad) < TARGET_TURN_ANGLE_RAD) {
+            // if (std::abs(angle_turned_rad) < TARGET_TURN_ANGLE_RAD) {
+            if (turn_dist_left < 0.0001) {
                 // Continue turning
                 wheel_vel.left = TURN_SPEED; // Keep applying turn speeds
                 wheel_vel.right = -TURN_SPEED;
