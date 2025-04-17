@@ -20,11 +20,11 @@ struct ControlParameters {
     double forward_gain = 2.0;
     double target_x_pixel = 160.0;
     double target_size_px = 150.0;
-    double max_turn_speed = 1.2;
-    double max_forward_speed = 1.6;
-    double max_backward_speed = 1.6;
-    double max_wheel_speed = 2;
-    double centering_threshold_px = 15.0;
+    double max_turn_speed = 1.2*2;
+    double max_forward_speed = 1.6*2;
+    double max_backward_speed = 1.6*2;
+    double max_wheel_speed = 2*2.5;
+    double centering_threshold_px = 20.0;
     double turning_deadzone_px = 50.0;
     double sample_time_s = 0.03;
 };

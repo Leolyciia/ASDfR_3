@@ -101,7 +101,7 @@ SequenceController::VelocityCommands SequenceController::calculate_velocity_comm
     if (std::fabs(error_x) < params_.turning_deadzone_px) {
         double current_ball_size = latest_light_pos_.z; // diameter from ball_tracker
         double error_size = params_.target_size_px - current_ball_size; // target - current
-        double size_deadzone = 30.0; // tolerance for the ballie
+        double size_deadzone = 20.0; // tolerance for the ballie
 
         // Only calculate forward command if outside the deadzone
         if (std::fabs(error_size) > size_deadzone) {
@@ -118,9 +118,9 @@ SequenceController::VelocityCommands SequenceController::calculate_velocity_comm
     }
 
 
-        RCLCPP_INFO(this->get_logger(),
-            "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
-            latest_light_pos_.x, error_x, latest_light_pos_.z, (params_.target_size_px - latest_light_pos_.z), cmd.turn, cmd.forward);
+        // RCLCPP_INFO(this->get_logger(),
+        //     "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
+        //     latest_light_pos_.x, error_x, latest_light_pos_.z, (params_.target_size_px - latest_light_pos_.z), cmd.turn, cmd.forward);
     } else {
         RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
                              "No valid/recent ball detection, stopping.");
@@ -146,11 +146,47 @@ void SequenceController::publish_wheel_velocities(const WheelVelocities& wheel_v
 }
 
 // --- Main control loop ---
+// void SequenceController::control_loop_callback() {
+//     update_detection_status();
+//     VelocityCommands velocity_cmd = calculate_velocity_commands();
+//     WheelVelocities wheel_vel = convert_to_wheel_velocities(velocity_cmd);
+//     publish_wheel_velocities(wheel_vel);
+// }
+
 void SequenceController::control_loop_callback() {
+    // Timestamp and loop period
+    rclcpp::Time   now    = this->get_clock()->now();
+    static auto    last   = now;
+    double         t_sec  = now.seconds();
+    double         dt_ms  = (now - last).nanoseconds() * 1e-6;
+    last = now;
+
+    // compute cmd.turn and cmd.forward
     update_detection_status();
-    VelocityCommands velocity_cmd = calculate_velocity_commands();
-    WheelVelocities wheel_vel = convert_to_wheel_velocities(velocity_cmd);
-    publish_wheel_velocities(wheel_vel);
+    VelocityCommands cmd = calculate_velocity_commands();
+    WheelVelocities   wheel = convert_to_wheel_velocities(cmd);
+    publish_wheel_velocities(wheel);
+
+    // compute the error_x and error_size for logging
+    double error_x = params_.target_x_pixel - latest_light_pos_.x;
+    double error_size = params_.target_size_px - latest_light_pos_.z;
+
+    // detection flag
+    int detected = (latest_light_pos_.z > 0 && is_ball_detected_recently_) ? 1 : 0;
+
+    // print: time[s],dt_ms,detected,errX,errSize,turnCmd,fwdCmd,leftVel,rightVel
+    RCLCPP_INFO(this->get_logger(),
+        "%.6f,%.3f,%d,%.2f,%.2f,%.3f,%.3f,%.3f,%.3f",
+        t_sec,
+        dt_ms,
+        detected,
+        error_x,
+        error_size,
+        cmd.turn,
+        cmd.forward,
+        wheel.left,
+        wheel.right
+    );
 }
 
 // --- Main function ---
