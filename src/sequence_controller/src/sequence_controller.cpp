@@ -121,10 +121,6 @@ void SequenceController::control_loop_callback() {
             double turn_dist_left = current_pos_left_m_ - start_turn_pos_left_m_;
             double turn_dist_right = current_pos_right_m_ - start_turn_pos_right_m_;
 
-            // Calculate angle turned based on differential distance and wheel base
-            // Assuming right turn: right wheel moves backward (negative dist), left moves forward (positive dist)
-            // Angle = (arc_length_right - arc_length_left) / wheel_base
-            // arc_length_right is negative, arc_length_left is positive for a right turn
             double angle_turned_rad = (turn_dist_right - turn_dist_left) / WHEEL_BASE_WIDTH;
 
             RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 200, // Log every 0.2 seconds
