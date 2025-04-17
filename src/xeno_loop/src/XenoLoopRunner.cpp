@@ -1,11 +1,12 @@
 #include "XenoLoopRunner.hpp"
-#include <cmath> 
+#include <cmath>
+#include <string.h>
 
 XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
-    XenoFrt20Sim(write_decimator_freq, monitor_freq) 
+    XenoFrt20Sim(write_decimator_freq, monitor_freq)
 {
-     evl_printf("%s: XenoLooper constructed", __FUNCTION__);
-     initialized = false;
+    evl_printf("%s: XenoLooper constructed\n", __FUNCTION__);
+    initialized = false;
 }
 
 XenoLoopRunner::~XenoLoopRunner()
@@ -17,63 +18,58 @@ int XenoLoopRunner::initialising()
 {
     evl_printf("Initialising...\n");
 
-    // Reset minimal state
     prev_encoder_left_raw = 0;
     prev_encoder_right_raw = 0;
     initialized = false;
 
-    // Initialize FPGA communication
     if (ico_io.init() != 0) {
         evl_printf("ERROR: Failed to initialize ICO IO!\n");
-        return -1; // Indicate error
+        return -1;
     }
 
-    // Actuation data 
     memset(&actuate_data, 0, sizeof(actuate_data));
-    actuate_data.pwm1 = 0; 
-    actuate_data.pwm2 = 0; 
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
 
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
-         evl_printf("ERROR: Failed initial ICO IO update\n");
-         return -1; 
+        evl_printf("ERROR: Failed initial ICO IO update\n");
+        return -1;
     }
 
     prev_encoder_right_raw = sample_data.channel1;
     prev_encoder_left_raw = sample_data.channel2;
-    initialized = true; 
+    initialized = true;
 
     evl_printf("Initialising complete. Initial Enc R: %u, L: %u\n",
                prev_encoder_right_raw, prev_encoder_left_raw);
 
-    return 1; 
+    return 1;
 }
 
 int XenoLoopRunner::initialised()
 {
-    // Keep motors stopped
-    actuate_data.pwm1 = 0; // Right Wheel
-    actuate_data.pwm2 = 0; // Left Wheel
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
-         evl_printf("ERROR: Failed initialised \n");
-         return -1; =
+        evl_printf("ERROR: Failed initialised ICO IO update\n");
+        return -1;
     }
     evl_printf("Initialised state. Motors stopped.\n");
-    return 1; 
+    return 1;
 }
 
 int XenoLoopRunner::run()
+{
+    test_pwm_left = 150;
+    test_pwm_right = 150;
 
-    test_pwm_left = 150;  // PWM for left wheel 
-    test_pwm_right = 150; // PWM for right wheel 
-
-    actuate_data.pwm1 = test_pwm_right; 
-    actuate_data.pwm2 = test_pwm_left;  
-
+    actuate_data.pwm1 = test_pwm_right;
+    actuate_data.pwm2 = test_pwm_left;
 
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
         evl_printf("ERROR: Failed run() ICO IO update!\n");
-        current_error = 1; // Set error flag
-        return -1; // Go to error state
+        current_error = 1;
+        return -1;
     }
 
     uint16_t current_encoder_right_raw = sample_data.channel1;
@@ -82,52 +78,47 @@ int XenoLoopRunner::run()
     int32_t delta_right = static_cast<int32_t>(current_encoder_right_raw) - static_cast<int32_t>(prev_encoder_right_raw);
     int32_t delta_left = static_cast<int32_t>(current_encoder_left_raw) - static_cast<int32_t>(prev_encoder_left_raw);
 
-
     evl_printf("Run - PWM L:%d R:%d | RawEnc L:%u R:%u | Delta L:%d R:%d\n",
-               actuate_data.pwm2, actuate_data.pwm1, // Print PWM values sent
-               current_encoder_left_raw, current_encoder_right_raw, // Print raw encoder values
-               (int)delta_left, (int)delta_right); 
-
+               actuate_data.pwm2, actuate_data.pwm1,
+               current_encoder_left_raw, current_encoder_right_raw,
+               (int)delta_left, (int)delta_right);
 
     prev_encoder_left_raw = current_encoder_left_raw;
     prev_encoder_right_raw = current_encoder_right_raw;
-    return 0; 
+
+    return 0;
 }
 
 int XenoLoopRunner::stopping()
 {
-
     evl_printf("Stopping...\n");
 
-    // Stop motors
-    actuate_data.pwm1 = 0; // Right Wheel
-    actuate_data.pwm2 = 0; // Left Wheel
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
         evl_printf("ERROR: Failed stopping() ICO IO update!\n");
     }
 
     evl_printf("Stopping complete. Motors stopped.\n");
-    return 1; 
+    return 1;
 }
 
 int XenoLoopRunner::stopped()
 {
     evl_printf("Stopped state.\n");
-    return 0; 
+    return 0;
 }
 
 int XenoLoopRunner::pausing()
 {
-
     evl_printf("Pausing...\n");
-    // Stop motors 
     actuate_data.pwm1 = 0;
     actuate_data.pwm2 = 0;
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
         evl_printf("ERROR: Failed pausing() ICO IO update!\n");
     }
     evl_printf("Pausing complete. Motors stopped.\n");
-    return 1; // Go to paused state
+    return 1;
 }
 
 int XenoLoopRunner::paused()
@@ -138,7 +129,7 @@ int XenoLoopRunner::paused()
     if (ico_io.update_io(actuate_data, &sample_data) != 0) {
         evl_printf("ERROR: Failed paused() ICO IO update!\n");
     }
-    return 0; // Remain in paused state
+    return 0;
 }
 
 int XenoLoopRunner::error()
@@ -146,7 +137,7 @@ int XenoLoopRunner::error()
     evl_printf("Error state entered!\n");
     actuate_data.pwm1 = 0;
     actuate_data.pwm2 = 0;
-    ico_io.update_io(actuate_data, &sample_data); 
+    ico_io.update_io(actuate_data, &sample_data);
     evl_printf("Attempted emergency stop in error state.\n");
-    return 0; // Remain in error state
+    return 0;
 }
