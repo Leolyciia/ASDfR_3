@@ -127,9 +127,6 @@ void SequenceController::control_loop_callback() {
                                  "State: TURNING, Angle: %.3f / %.3f rad",
                                  std::abs(angle_turned_rad), TARGET_TURN_ANGLE_RAD);
 
-
-            // Note: std::abs() is used to compare against the target angle magnitude.
-            // The sign of angle_turned_rad indicates direction (+ for left, - for right in this setup).
             if (std::abs(angle_turned_rad) < TARGET_TURN_ANGLE_RAD) {
                 // Continue turning
                 wheel_vel.left = TURN_SPEED; // Keep applying turn speeds
