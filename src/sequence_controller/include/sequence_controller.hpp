@@ -1,78 +1,37 @@
-#ifndef SEQUENCE_CONTROLLER_HPP_
-#define SEQUENCE_CONTROLLER_HPP_
+#ifndef XENOLOOPRUNNER_HPP
+#define XENOLOOPRUNNER_HPP
 
-#include <chrono>
-#include <string>
-#include <vector> 
-#include <cmath>
-#include <algorithm>
+#include "XenoFrt20Sim.hpp" 
 
-#include <geometry_msgs/msg/point.hpp>
-#include <rclcpp/rclcpp.hpp>
-#include "xrf2_msgs/msg/xeno2_ros.hpp"
-#include "xrf2_msgs/msg/ros2_xeno.hpp"
 
-using namespace std::chrono_literals;
-
-// Control parameters)
-struct ControlParameters {
-    double turn_gain = 0.75;
-    double forward_gain = 1.5;
-    double target_x_pixel = 320.0;
-    double target_size_px = 300.0;
-    double max_turn_speed = 0.8;
-    double max_forward_speed = 0.8;
-    double max_backward_speed = 0.8;
-    double max_wheel_speed = 0.9;
-    double centering_threshold_px = 15.0;
-    double turning_deadzone_px = 50.0;
-    double sample_time_s = 0.03;
-};
-
-class SequenceController : public rclcpp::Node {
+class XenoLoopRunner : public XenoFrt20Sim
+{
 public:
-    SequenceController();
-    ~SequenceController() = default;
+    XenoLoopRunner(uint write_decimator_freq, uint monitor_freq);
+    ~XenoLoopRunner();
 
 private:
-    // --- Parameter handling ---
-    ControlParameters params_;
-    void declare_and_load_parameters(); 
+    // --- Encoder reading ---
+    uint16_t prev_encoder_left_raw; 
+    uint16_t prev_encoder_right_raw; 
+    bool initialized;             
 
-    // --- State variables ---
-    double current_pos_left_m_ = 0.0;
-    double current_pos_right_m_ = 0.0;
-    geometry_msgs::msg::Point latest_light_pos_;
-    rclcpp::Time last_ball_detection_time_;
-    bool is_ball_detected_recently_ = false;
-    const rclcpp::Duration detection_timeout_ = rclcpp::Duration(1, 0); // Hardcoded timeout which is 1 second
+    // PWM test value 
+    int16_t test_pwm_left = 0;
+    int16_t test_pwm_right = 0;
 
-    // --- ROS communications ---
-    rclcpp::Subscription<geometry_msgs::msg::Point>::SharedPtr subscription_light_pos_;
-    rclcpp::Subscription<xrf2_msgs::msg::Xeno2Ros>::SharedPtr subscription_xeno2ros_;
-    rclcpp::Publisher<xrf2_msgs::msg::Ros2Xeno>::SharedPtr publisher_ros2xeno_;
-    rclcpp::TimerBase::SharedPtr timer_;
 
-    // --- Callback functions ---
-    void light_pos_callback(const geometry_msgs::msg::Point::SharedPtr msg);
-    void xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg);
-    void control_loop_callback();
+protected:
+    int initialising() override;
+    int initialised() override;
+    int run() override;
+    int stopping() override;
+    int stopped() override;
+    int pausing() override;
+    int paused() override;
+    int error() override;
 
-    // --- Control logic helpers ---
-    struct VelocityCommands {
-        double forward = 0.0;
-        double turn = 0.0;
-    };
-    struct WheelVelocities {
-        double left = 0.0;
-        double right = 0.0;
-    };
-
-    void update_detection_status();
-    VelocityCommands calculate_velocity_commands();
-    WheelVelocities convert_to_wheel_velocities(const VelocityCommands& cmd);
-    void publish_wheel_velocities(const WheelVelocities& wheel_vel);
-
+    int current_error = 0;
 };
 
-#endif // SEQUENCE_CONTROLLER_HPP_
+#endif // XENOLOOPRUNNER_HPP

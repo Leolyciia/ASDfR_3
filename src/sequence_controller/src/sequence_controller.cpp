@@ -1,163 +1,152 @@
-#include "sequence_controller.hpp" 
+#include "XenoLoopRunner.hpp"
+#include <cmath> 
 
-// Constructor
-SequenceController::SequenceController()
-    : Node("sequence_controller"),
-      latest_light_pos_(),
-      last_ball_detection_time_(this->get_clock()->now())
+XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
+    XenoFrt20Sim(write_decimator_freq, monitor_freq) 
 {
-    RCLCPP_INFO(this->get_logger(), "Initialising SequenceController node...");
-
-    // declaring and loading the parameters
-    declare_and_load_parameters();
-
-    // Initialise state
-    latest_light_pos_.x = -1.0;
-    latest_light_pos_.y = -1.0;
-    latest_light_pos_.z = -1.0;
-
-    // --- subscriptions ---
-    subscription_light_pos_ = this->create_subscription<geometry_msgs::msg::Point>(
-        "light_position", 10,
-        std::bind(&SequenceController::light_pos_callback, this, std::placeholders::_1));
-
-    subscription_xeno2ros_ = this->create_subscription<xrf2_msgs::msg::Xeno2Ros>(
-        "/Xeno2Ros", 10,
-        std::bind(&SequenceController::xeno_feedback_callback, this, std::placeholders::_1));
-
-    // --- Publisher ---
-    publisher_ros2xeno_ = this->create_publisher<xrf2_msgs::msg::Ros2Xeno>(
-        "/Ros2Xeno", 10);
-
-    // --- timer ---
-    timer_ = rclcpp::create_timer(
-        this, this->get_clock(),
-        std::chrono::duration<double>(params_.sample_time_s),
-        std::bind(&SequenceController::control_loop_callback, this));
-
-    RCLCPP_INFO(this->get_logger(), "SequenceController Node initialised successfully.");
+     evl_printf("%s: XenoLooper constructed", __FUNCTION__);
+     initialized = false;
 }
 
-// --- Parameter handling ---
-void SequenceController::declare_and_load_parameters() {
-    this->declare_parameter<double>("turn_gain", params_.turn_gain);
-    this->declare_parameter<double>("forward_gain", params_.forward_gain);
-    this->declare_parameter<double>("target_x_pixel", params_.target_x_pixel);
-    this->declare_parameter<double>("target_size_px", params_.target_size_px);
-    this->declare_parameter<double>("max_turn_speed", params_.max_turn_speed);
-    this->declare_parameter<double>("max_forward_speed", params_.max_forward_speed);
-    this->declare_parameter<double>("max_backward_speed", params_.max_backward_speed);
-    this->declare_parameter<double>("max_wheel_speed", params_.max_wheel_speed);
-    this->declare_parameter<double>("centering_threshold_px", params_.centering_threshold_px);
-    this->declare_parameter<double>("turning_deadzone_px", params_.turning_deadzone_px);
-    this->declare_parameter<double>("sample_time_s", params_.sample_time_s);
-
-    // Load actual values into the struct
-    this->get_parameter("turn_gain", params_.turn_gain);
-    this->get_parameter("forward_gain", params_.forward_gain);
-    this->get_parameter("target_x_pixel", params_.target_x_pixel);
-    this->get_parameter("target_size_px", params_.target_size_px);
-    this->get_parameter("max_turn_speed", params_.max_turn_speed);
-    this->get_parameter("max_forward_speed", params_.max_forward_speed);
-    this->get_parameter("max_backward_speed", params_.max_backward_speed);
-    this->get_parameter("max_wheel_speed", params_.max_wheel_speed);
-    this->get_parameter("centering_threshold_px", params_.centering_threshold_px);
-    this->get_parameter("turning_deadzone_px", params_.turning_deadzone_px);
-    this->get_parameter("sample_time_s", params_.sample_time_s);
-
-    RCLCPP_INFO(this->get_logger(), "Declared and loaded parameters.");
+XenoLoopRunner::~XenoLoopRunner()
+{
+    evl_printf("%s: Destructing XenoLoopRunner\n", __FUNCTION__);
 }
 
-// --- Callback functions ---
-void SequenceController::light_pos_callback(const geometry_msgs::msg::Point::SharedPtr msg) {
-    latest_light_pos_ = *msg;
-    if (latest_light_pos_.z > 0) {
-        last_ball_detection_time_ = this->get_clock()->now();
-    }
-}
+int XenoLoopRunner::initialising()
+{
+    evl_printf("Initialising...\n");
 
-void SequenceController::xeno_feedback_callback(const xrf2_msgs::msg::Xeno2Ros::SharedPtr msg) {
-    current_pos_left_m_ = msg->encoder_left;
-    current_pos_right_m_ = msg->encoder_right;
-}
+    // Reset minimal state
+    prev_encoder_left_raw = 0;
+    prev_encoder_right_raw = 0;
+    initialized = false;
 
-
-// --- Control logic helpers ---
-void SequenceController::update_detection_status() {
-    rclcpp::Time current_time = this->get_clock()->now();
-    is_ball_detected_recently_ = (current_time - last_ball_detection_time_) < detection_timeout_;
-}
-
-SequenceController::VelocityCommands SequenceController::calculate_velocity_commands() {
-    VelocityCommands cmd;
-    if (latest_light_pos_.x >= 0 && latest_light_pos_.z > 0 && is_ball_detected_recently_) {
-        double error_x = params_.target_x_pixel - latest_light_pos_.x;
-        if (std::fabs(error_x) > params_.turning_deadzone_px) {
-            cmd.turn = params_.turn_gain * error_x;
-            cmd.turn = std::clamp(cmd.turn, -params_.max_turn_speed, params_.max_turn_speed);
-        }
-
-        
-    if (std::fabs(error_x) < params_.centering_threshold_px) {
-        double current_ball_size = latest_light_pos_.z; // diameter from ball_tracker
-        double error_size = params_.target_size_px - current_ball_size; // target - current
-        double size_deadzone = 30.0; // tolerance for the ballie
-
-        // Only calculate forward command if outside the deadzone
-        if (std::fabs(error_size) > size_deadzone) {
-            cmd.forward = params_.forward_gain * error_size;
-            // Clamp forward/backward speed separately
-            cmd.forward = std::clamp(cmd.forward, -params_.max_backward_speed, params_.max_forward_speed);
-        } else {
-            // Inside the deadzone, set forward command to zero
-            cmd.forward = 0.0;
-        }
-    } else {
-        // Not centered enough, set forward command to zero 
-        cmd.forward = 0.0;
+    // Initialize FPGA communication
+    if (ico_io.init() != 0) {
+        evl_printf("ERROR: Failed to initialize ICO IO!\n");
+        return -1; // Indicate error
     }
 
+    // Actuation data 
+    memset(&actuate_data, 0, sizeof(actuate_data));
+    actuate_data.pwm1 = 0; 
+    actuate_data.pwm2 = 0; 
 
-        RCLCPP_DEBUG(this->get_logger(),
-            "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
-            latest_light_pos_.x, error_x, latest_light_pos_.z, (params_.target_size_px - latest_light_pos_.z), cmd.turn, cmd.forward);
-    } else {
-        RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
-                             "No valid/recent ball detection, stopping.");
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+         evl_printf("ERROR: Failed initial ICO IO update\n");
+         return -1; 
     }
-    return cmd;
+
+    prev_encoder_right_raw = sample_data.channel1;
+    prev_encoder_left_raw = sample_data.channel2;
+    initialized = true; 
+
+    evl_printf("Initialising complete. Initial Enc R: %u, L: %u\n",
+               prev_encoder_right_raw, prev_encoder_left_raw);
+
+    return 1; 
 }
 
-SequenceController::WheelVelocities SequenceController::convert_to_wheel_velocities(const VelocityCommands& cmd) {
-    WheelVelocities wheel_vel;
-    wheel_vel.left = cmd.forward - cmd.turn;
-    wheel_vel.right = cmd.forward + cmd.turn;
-    wheel_vel.left = std::clamp(wheel_vel.left, -params_.max_wheel_speed, params_.max_wheel_speed);
-    wheel_vel.right = std::clamp(wheel_vel.right, -params_.max_wheel_speed, params_.max_wheel_speed);
-    RCLCPP_DEBUG(this->get_logger(), "Wheel Velocities - Left:%.2f, Right:%.2f", wheel_vel.left, wheel_vel.right);
-    return wheel_vel;
+int XenoLoopRunner::initialised()
+{
+    // Keep motors stopped
+    actuate_data.pwm1 = 0; // Right Wheel
+    actuate_data.pwm2 = 0; // Left Wheel
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+         evl_printf("ERROR: Failed initialised \n");
+         return -1; =
+    }
+    evl_printf("Initialised state. Motors stopped.\n");
+    return 1; 
 }
 
-void SequenceController::publish_wheel_velocities(const WheelVelocities& wheel_vel) {
-    auto ros_cmd_msg = std::make_unique<xrf2_msgs::msg::Ros2Xeno>();
-    ros_cmd_msg->example_a = wheel_vel.left;
-    ros_cmd_msg->example_b = wheel_vel.right;
-    publisher_ros2xeno_->publish(std::move(ros_cmd_msg));
+int XenoLoopRunner::run()
+
+    test_pwm_left = 150;  // PWM for left wheel 
+    test_pwm_right = 150; // PWM for right wheel 
+
+    actuate_data.pwm1 = test_pwm_right; 
+    actuate_data.pwm2 = test_pwm_left;  
+
+
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+        evl_printf("ERROR: Failed run() ICO IO update!\n");
+        current_error = 1; // Set error flag
+        return -1; // Go to error state
+    }
+
+    uint16_t current_encoder_right_raw = sample_data.channel1;
+    uint16_t current_encoder_left_raw = sample_data.channel2;
+
+    int32_t delta_right = static_cast<int32_t>(current_encoder_right_raw) - static_cast<int32_t>(prev_encoder_right_raw);
+    int32_t delta_left = static_cast<int32_t>(current_encoder_left_raw) - static_cast<int32_t>(prev_encoder_left_raw);
+
+
+    evl_printf("Run - PWM L:%d R:%d | RawEnc L:%u R:%u | Delta L:%d R:%d\n",
+               actuate_data.pwm2, actuate_data.pwm1, // Print PWM values sent
+               current_encoder_left_raw, current_encoder_right_raw, // Print raw encoder values
+               (int)delta_left, (int)delta_right); 
+
+
+    prev_encoder_left_raw = current_encoder_left_raw;
+    prev_encoder_right_raw = current_encoder_right_raw;
+    return 0; 
 }
 
-// --- Main control loop ---
-void SequenceController::control_loop_callback() {
-    update_detection_status();
-    VelocityCommands velocity_cmd = calculate_velocity_commands();
-    WheelVelocities wheel_vel = convert_to_wheel_velocities(velocity_cmd);
-    publish_wheel_velocities(wheel_vel);
+int XenoLoopRunner::stopping()
+{
+
+    evl_printf("Stopping...\n");
+
+    // Stop motors
+    actuate_data.pwm1 = 0; // Right Wheel
+    actuate_data.pwm2 = 0; // Left Wheel
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+        evl_printf("ERROR: Failed stopping() ICO IO update!\n");
+    }
+
+    evl_printf("Stopping complete. Motors stopped.\n");
+    return 1; 
 }
 
-// --- Main function ---
-int main(int argc, char *argv[]) {
-    rclcpp::init(argc, argv);
-    auto sequence_controller_node = std::make_shared<SequenceController>();
-    rclcpp::spin(sequence_controller_node);
-    rclcpp::shutdown();
-    return 0;
+int XenoLoopRunner::stopped()
+{
+    evl_printf("Stopped state.\n");
+    return 0; 
+}
+
+int XenoLoopRunner::pausing()
+{
+
+    evl_printf("Pausing...\n");
+    // Stop motors 
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+        evl_printf("ERROR: Failed pausing() ICO IO update!\n");
+    }
+    evl_printf("Pausing complete. Motors stopped.\n");
+    return 1; // Go to paused state
+}
+
+int XenoLoopRunner::paused()
+{
+    evl_printf("Paused state.\n");
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    if (ico_io.update_io(actuate_data, &sample_data) != 0) {
+        evl_printf("ERROR: Failed paused() ICO IO update!\n");
+    }
+    return 0; // Remain in paused state
+}
+
+int XenoLoopRunner::error()
+{
+    evl_printf("Error state entered!\n");
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data); 
+    evl_printf("Attempted emergency stop in error state.\n");
+    return 0; // Remain in error state
 }
