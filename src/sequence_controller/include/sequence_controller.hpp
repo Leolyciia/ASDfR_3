@@ -17,8 +17,8 @@ private:
     bool initialized;             
 
     // PWM test value 
-    int16_t test_pwm_left = 0;
-    int16_t test_pwm_right = 0;
+    int16_t test_pwm_left = 100;
+    int16_t test_pwm_right = 100;
 
 
 protected:
