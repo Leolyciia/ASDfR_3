@@ -1,0 +1,839 @@
+[0.000000] (-) TimerEvent: {}
+[0.001790] (ball_tracker) JobQueued: {'identifier': 'ball_tracker', 'dependencies': OrderedDict()}
+[0.002499] (cam2image_vm2ros) JobQueued: {'identifier': 'cam2image_vm2ros', 'dependencies': OrderedDict()}
+[0.003062] (relbot_simulator) JobQueued: {'identifier': 'relbot_simulator', 'dependencies': OrderedDict()}
+[0.003407] (xrf2_msgs) JobQueued: {'identifier': 'xrf2_msgs', 'dependencies': OrderedDict()}
+[0.003888] (ros_xeno_bridge) JobQueued: {'identifier': 'ros_xeno_bridge', 'dependencies': OrderedDict([('xrf2_msgs', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs')])}
+[0.004210] (sequence_controller) JobQueued: {'identifier': 'sequence_controller', 'dependencies': OrderedDict([('xrf2_msgs', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs')])}
+[0.004582] (xeno_loop) JobQueued: {'identifier': 'xeno_loop', 'dependencies': OrderedDict([('xrf2_msgs', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs')])}
+[0.004868] (xrf2_msgs) JobStarted: {'identifier': 'xrf2_msgs'}
+[0.025342] (ball_tracker) JobStarted: {'identifier': 'ball_tracker'}
+[0.040908] (cam2image_vm2ros) JobStarted: {'identifier': 'cam2image_vm2ros'}
+[0.062693] (xrf2_msgs) JobProgress: {'identifier': 'xrf2_msgs', 'progress': 'cmake'}
+[0.065316] (xrf2_msgs) JobProgress: {'identifier': 'xrf2_msgs', 'progress': 'build'}
+[0.067710] (xrf2_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/xrf2_msgs', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/xrf2_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/xrf2_msgs'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[0.077733] (ball_tracker) JobProgress: {'identifier': 'ball_tracker', 'progress': 'cmake'}
+[0.081390] (ball_tracker) JobProgress: {'identifier': 'ball_tracker', 'progress': 'build'}
+[0.083304] (ball_tracker) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/ball_tracker', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/ball_tracker', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/ball_tracker'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[0.100053] (-) TimerEvent: {}
+[0.106349] (cam2image_vm2ros) JobProgress: {'identifier': 'cam2image_vm2ros', 'progress': 'cmake'}
+[0.110190] (cam2image_vm2ros) JobProgress: {'identifier': 'cam2image_vm2ros', 'progress': 'build'}
+[0.111911] (cam2image_vm2ros) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[0.201512] (-) TimerEvent: {}
+[0.262607] (xrf2_msgs) StdoutLine: {'line': b'[ 10%] Built target xrf2_msgs__rosidl_generator_c\n'}
+[0.285855] (ball_tracker) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target ball_tracker\x1b[0m\n'}
+[0.300695] (-) TimerEvent: {}
+[0.322947] (xrf2_msgs) StdoutLine: {'line': b'[ 12%] Built target xrf2_msgs__cpp\n'}
+[0.400951] (-) TimerEvent: {}
+[0.447734] (xrf2_msgs) StdoutLine: {'line': b'[ 12%] Built target ament_cmake_python_copy_xrf2_msgs\n'}
+[0.453485] (xrf2_msgs) StdoutLine: {'line': b'[ 23%] Built target xrf2_msgs__rosidl_typesupport_c\n'}
+[0.467584] (xrf2_msgs) StdoutLine: {'line': b'[ 33%] Built target xrf2_msgs__rosidl_typesupport_fastrtps_c\n'}
+[0.498006] (cam2image_vm2ros) StdoutLine: {'line': b'[ 60%] Built target cam2image_vm2ros\n'}
+[0.501108] (-) TimerEvent: {}
+[0.516678] (cam2image_vm2ros) StdoutLine: {'line': b'[100%] Built target cam2image\n'}
+[0.566825] (cam2image_vm2ros) CommandEnded: {'returncode': 0}
+[0.571618] (cam2image_vm2ros) JobProgress: {'identifier': 'cam2image_vm2ros', 'progress': 'install'}
+[0.601332] (-) TimerEvent: {}
+[0.613143] (cam2image_vm2ros) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros'], 'cwd': '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/cam2image_vm2ros'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[0.661052] (xrf2_msgs) StdoutLine: {'line': b'[ 43%] Built target xrf2_msgs__rosidl_typesupport_introspection_cpp\n'}
+[0.665153] (cam2image_vm2ros) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.668781] (xrf2_msgs) StdoutLine: {'line': b'[ 53%] Built target xrf2_msgs__rosidl_typesupport_introspection_c\n'}
+[0.671184] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib/cam2image_vm2ros/cam2image\n'}
+[0.672291] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib/libcam2image_vm2ros.so\n'}
+[0.673294] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/include/cam2image_vm2ros\n'}
+[0.679366] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/include/cam2image_vm2ros/remote_capture.hpp\n'}
+[0.680520] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/include/cam2image_vm2ros/cam2image.hpp\n'}
+[0.685226] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/include/cam2image_vm2ros/visibility_control.h\n'}
+[0.686525] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/include/cam2image_vm2ros/base64.hpp\n'}
+[0.687711] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/config\n'}
+[0.690245] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/config/cam2image.yaml\n'}
+[0.691607] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/config/cam2image_relbot.yaml\n'}
+[0.692627] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/library_path.sh\n'}
+[0.693643] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/library_path.dsv\n'}
+[0.694882] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/ament_index/resource_index/package_run_dependencies/cam2image_vm2ros\n'}
+[0.696233] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/ament_index/resource_index/parent_prefix_path/cam2image_vm2ros\n'}
+[0.697383] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/ament_prefix_path.sh\n'}
+[0.701221] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/ament_prefix_path.dsv\n'}
+[0.702650] (-) TimerEvent: {}
+[0.703401] (xrf2_msgs) StdoutLine: {'line': b'[ 64%] Built target xrf2_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[0.704548] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/path.sh\n'}
+[0.705469] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/environment/path.dsv\n'}
+[0.706461] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/local_setup.bash\n'}
+[0.707351] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/local_setup.sh\n'}
+[0.708274] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/local_setup.zsh\n'}
+[0.711238] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/local_setup.dsv\n'}
+[0.714824] (cam2image_vm2ros) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/package.dsv\n'}
+[0.730771] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/ament_index/resource_index/packages/cam2image_vm2ros\n'}
+[0.732146] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/ament_index/resource_index/rclcpp_components/cam2image_vm2ros\n'}
+[0.733344] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/cam2image_vm2rosExport.cmake\n'}
+[0.735859] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/cam2image_vm2rosExport-noconfig.cmake\n'}
+[0.737380] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[0.739396] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[0.740644] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[0.741832] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/cam2image_vm2rosConfig.cmake\n'}
+[0.751394] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/cmake/cam2image_vm2rosConfig-version.cmake\n'}
+[0.752883] (cam2image_vm2ros) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/share/cam2image_vm2ros/package.xml\n'}
+[0.754221] (cam2image_vm2ros) CommandEnded: {'returncode': 0}
+[0.796557] (xrf2_msgs) StdoutLine: {'line': b'[ 74%] Built target xrf2_msgs__rosidl_typesupport_cpp\n'}
+[0.802881] (-) TimerEvent: {}
+[0.863256] (cam2image_vm2ros) JobEnded: {'identifier': 'cam2image_vm2ros', 'rc': 0}
+[0.866587] (relbot_simulator) JobStarted: {'identifier': 'relbot_simulator'}
+[0.897078] (relbot_simulator) JobProgress: {'identifier': 'relbot_simulator', 'progress': 'cmake'}
+[0.900604] (relbot_simulator) JobProgress: {'identifier': 'relbot_simulator', 'progress': 'build'}
+[0.902380] (relbot_simulator) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/relbot_simulator', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/relbot_simulator', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/relbot_simulator'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[0.907730] (-) TimerEvent: {}
+[0.917865] (xrf2_msgs) StdoutLine: {'line': b'[ 74%] Built target xrf2_msgs\n'}
+[0.974359] (ball_tracker) StdoutLine: {'line': b'[100%] Built target ball_tracker\n'}
+[1.011941] (-) TimerEvent: {}
+[1.020979] (ball_tracker) CommandEnded: {'returncode': 0}
+[1.026833] (ball_tracker) JobProgress: {'identifier': 'ball_tracker', 'progress': 'install'}
+[1.027914] (ball_tracker) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/asdfr-30/ASDfR_3/build/ball_tracker'], 'cwd': '/home/asdfr-30/ASDfR_3/build/ball_tracker', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/ball_tracker'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[1.057742] (ball_tracker) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.062278] (ball_tracker) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/ball_tracker/lib/ball_tracker/ball_tracker\n'}
+[1.112286] (-) TimerEvent: {}
+[1.134894] (xrf2_msgs) StdoutLine: {'line': b'[ 76%] Built target xrf2_msgs__py\n'}
+[1.212455] (-) TimerEvent: {}
+[1.243417] (xrf2_msgs) StdoutLine: {'line': b'[ 84%] Built target xrf2_msgs__rosidl_generator_py\n'}
+[1.312670] (-) TimerEvent: {}
+[1.363024] (ball_tracker) StdoutLine: {'line': b'-- Set runtime path of "/home/asdfr-30/ASDfR_3/install/ball_tracker/lib/ball_tracker/ball_tracker" to ""\n'}
+[1.369941] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/include\n'}
+[1.379719] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/include/ball_tracker.hpp\n'}
+[1.385732] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/package.xml\n'}
+[1.390869] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ament_index/resource_index/package_run_dependencies/ball_tracker\n'}
+[1.396217] (ball_tracker) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ament_index/resource_index/parent_prefix_path/ball_tracker\n'}
+[1.401307] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/environment/ament_prefix_path.sh\n'}
+[1.404759] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/environment/ament_prefix_path.dsv\n'}
+[1.414393] (-) TimerEvent: {}
+[1.417092] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/environment/path.sh\n'}
+[1.425044] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/environment/path.dsv\n'}
+[1.430518] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/local_setup.bash\n'}
+[1.434410] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/local_setup.sh\n'}
+[1.441186] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/local_setup.zsh\n'}
+[1.446978] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/local_setup.dsv\n'}
+[1.452597] (ball_tracker) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/package.dsv\n'}
+[1.457926] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ament_index/resource_index/packages/ball_tracker\n'}
+[1.463087] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/cmake/ball_trackerConfig.cmake\n'}
+[1.486846] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/cmake/ball_trackerConfig-version.cmake\n'}
+[1.493281] (ball_tracker) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/ball_tracker/share/ball_tracker/package.xml\n'}
+[1.496837] (ball_tracker) CommandEnded: {'returncode': 0}
+[1.504576] (xrf2_msgs) StdoutLine: {'line': b'[ 89%] Built target xrf2_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[1.510613] (relbot_simulator) StdoutLine: {'line': b'[100%] Built target relbot_simulator\n'}
+[1.513484] (xrf2_msgs) StdoutLine: {'line': b'[ 94%] Built target xrf2_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[1.514883] (-) TimerEvent: {}
+[1.520546] (xrf2_msgs) StdoutLine: {'line': b'[100%] Built target xrf2_msgs__rosidl_typesupport_c__pyext\n'}
+[1.556432] (ball_tracker) JobEnded: {'identifier': 'ball_tracker', 'rc': 0}
+[1.560968] (relbot_simulator) CommandEnded: {'returncode': 0}
+[1.566186] (relbot_simulator) JobProgress: {'identifier': 'relbot_simulator', 'progress': 'install'}
+[1.567807] (relbot_simulator) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/asdfr-30/ASDfR_3/build/relbot_simulator'], 'cwd': '/home/asdfr-30/ASDfR_3/build/relbot_simulator', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/relbot_simulator'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[1.590948] (relbot_simulator) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.592915] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/lib/relbot_simulator/relbot_simulator\n'}
+[1.595150] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include\n'}
+[1.596828] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxmatrix.cpp\n'}
+[1.598461] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxinteg.cpp\n'}
+[1.599743] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/EulerAngles.cpp\n'}
+[1.600946] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/EulerAngles.h\n'}
+[1.602845] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxtypes.h\n'}
+[1.604383] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxmodel.h\n'}
+[1.605601] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/MotionProfiles.cpp\n'}
+[1.606925] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxfuncs.h\n'}
+[1.608757] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxfuncs.cpp\n'}
+[1.610085] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/MotionProfiles.h\n'}
+[1.611445] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxmatrix.h\n'}
+[1.612746] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxinteg.h\n'}
+[1.613873] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxinverse.cpp\n'}
+[1.615195] (-) TimerEvent: {}
+[1.616137] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/include/xxinverse.h\n'}
+[1.617444] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/ament_index/resource_index/package_run_dependencies/relbot_simulator\n'}
+[1.618778] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/ament_index/resource_index/parent_prefix_path/relbot_simulator\n'}
+[1.620718] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/environment/ament_prefix_path.sh\n'}
+[1.622552] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/environment/ament_prefix_path.dsv\n'}
+[1.624123] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/environment/path.sh\n'}
+[1.625351] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/environment/path.dsv\n'}
+[1.627038] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/local_setup.bash\n'}
+[1.628708] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/local_setup.sh\n'}
+[1.630722] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/local_setup.zsh\n'}
+[1.633395] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/local_setup.dsv\n'}
+[1.634965] (relbot_simulator) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/package.dsv\n'}
+[1.639180] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/ament_index/resource_index/packages/relbot_simulator\n'}
+[1.640893] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/cmake/relbot_simulatorConfig.cmake\n'}
+[1.642228] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/cmake/relbot_simulatorConfig-version.cmake\n'}
+[1.643733] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator/package.xml\n'}
+[1.645276] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator//launch\n'}
+[1.646810] (relbot_simulator) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/relbot_simulator/share/relbot_simulator//launch/relbot_simulator.launch.py\n'}
+[1.654249] (relbot_simulator) CommandEnded: {'returncode': 0}
+[1.716082] (-) TimerEvent: {}
+[1.743085] (relbot_simulator) JobEnded: {'identifier': 'relbot_simulator', 'rc': 0}
+[1.816255] (-) TimerEvent: {}
+[1.918332] (-) TimerEvent: {}
+[2.019911] (-) TimerEvent: {}
+[2.073038] (xrf2_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[2.082289] (xrf2_msgs) StdoutLine: {'line': b'writing xrf2_msgs.egg-info/PKG-INFO\n'}
+[2.085904] (xrf2_msgs) StdoutLine: {'line': b'writing dependency_links to xrf2_msgs.egg-info/dependency_links.txt\n'}
+[2.087345] (xrf2_msgs) StdoutLine: {'line': b'writing top-level names to xrf2_msgs.egg-info/top_level.txt\n'}
+[2.096718] (xrf2_msgs) StdoutLine: {'line': b"reading manifest file 'xrf2_msgs.egg-info/SOURCES.txt'\n"}
+[2.099155] (xrf2_msgs) StdoutLine: {'line': b"writing manifest file 'xrf2_msgs.egg-info/SOURCES.txt'\n"}
+[2.120135] (-) TimerEvent: {}
+[2.223153] (-) TimerEvent: {}
+[2.227419] (xrf2_msgs) StdoutLine: {'line': b'[100%] Built target ament_cmake_python_build_xrf2_msgs_egg\n'}
+[2.265331] (xrf2_msgs) CommandEnded: {'returncode': 0}
+[2.269031] (xrf2_msgs) JobProgress: {'identifier': 'xrf2_msgs', 'progress': 'install'}
+[2.271594] (xrf2_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/asdfr-30/ASDfR_3/build/xrf2_msgs'], 'cwd': '/home/asdfr-30/ASDfR_3/build/xrf2_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/xrf2_msgs'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[2.301561] (xrf2_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.303160] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/ament_index/resource_index/rosidl_interfaces/xrf2_msgs\n'}
+[2.304774] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.306605] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.311563] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[2.313950] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.315625] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__type_support.h\n'}
+[2.317233] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__functions.c\n'}
+[2.318797] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__functions.c\n'}
+[2.320051] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__type_support.h\n'}
+[2.321287] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__struct.h\n'}
+[2.322717] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__functions.h\n'}
+[2.324425] (-) TimerEvent: {}
+[2.325089] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__functions.h\n'}
+[2.326466] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__struct.h\n'}
+[2.327825] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/xeno2_ros.h\n'}
+[2.329230] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/ros2_xeno.h\n'}
+[2.330551] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/library_path.sh\n'}
+[2.333113] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/library_path.dsv\n'}
+[2.334497] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_generator_c.so\n'}
+[2.335957] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.337207] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.338690] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[2.339883] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.340943] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__rosidl_typesupport_fastrtps_c.h\n'}
+[2.342114] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__rosidl_typesupport_fastrtps_c.h\n'}
+[2.343512] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[2.344656] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.345812] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.347462] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[2.348607] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.349756] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__type_support.c\n'}
+[2.351194] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__type_support.c\n'}
+[2.352648] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__rosidl_typesupport_introspection_c.h\n'}
+[2.353837] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__rosidl_typesupport_introspection_c.h\n'}
+[2.355353] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_introspection_c.so\n'}
+[2.356541] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_c.so\n'}
+[2.357708] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.359012] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.360169] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/xeno2_ros.hpp\n'}
+[2.361268] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.362501] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__type_support.hpp\n'}
+[2.365493] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__struct.hpp\n'}
+[2.367659] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__builder.hpp\n'}
+[2.368860] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__type_support.hpp\n'}
+[2.370112] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__builder.hpp\n'}
+[2.371456] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__traits.hpp\n'}
+[2.372623] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__struct.hpp\n'}
+[2.374033] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__traits.hpp\n'}
+[2.377668] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/ros2_xeno.hpp\n'}
+[2.379890] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[2.381198] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.382457] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.383622] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[2.384973] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.386225] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/dds_fastrtps\n'}
+[2.387387] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.388509] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.389855] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[2.391110] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs\n'}
+[2.392235] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg\n'}
+[2.393361] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail\n'}
+[2.394765] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__type_support.cpp\n'}
+[2.395942] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/xeno2_ros__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.397081] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.398791] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/include/xrf2_msgs/xrf2_msgs/msg/detail/ros2_xeno__type_support.cpp\n'}
+[2.400180] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[2.401486] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_typesupport_cpp.so\n'}
+[2.402765] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/pythonpath.sh\n'}
+[2.403879] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/pythonpath.dsv\n'}
+[2.405007] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs-0.0.0-py3.10.egg-info\n'}
+[2.406212] (xrf2_msgs) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[2.407390] (xrf2_msgs) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[2.408584] (xrf2_msgs) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[2.409704] (xrf2_msgs) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[2.411000] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs\n'}
+[2.412206] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.413374] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/_xrf2_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[2.414625] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/_xrf2_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[2.415690] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/_xrf2_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[2.416736] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.418320] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg\n'}
+[2.419627] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg/_xeno2_ros_s.c\n'}
+[2.420876] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg/_ros2_xeno.py\n'}
+[2.422347] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg/__init__.py\n'}
+[2.425399] (-) TimerEvent: {}
+[2.426109] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg/_ros2_xeno_s.c\n'}
+[2.427510] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg/_xeno2_ros.py\n'}
+[2.428922] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/libxrf2_msgs__rosidl_generator_py.so\n'}
+[2.430312] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.431552] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/__init__.py\n'}
+[2.449503] (xrf2_msgs) StdoutLine: {'line': b"Listing '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs'...\n"}
+[2.452155] (xrf2_msgs) StdoutLine: {'line': b"Listing '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/msg'...\n"}
+[2.474160] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.475865] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.477269] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages/xrf2_msgs/xrf2_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.478717] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib/libxrf2_msgs__rosidl_generator_py.so\n'}
+[2.480788] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/msg/Ros2Xeno.idl\n'}
+[2.482313] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/msg/Xeno2Ros.idl\n'}
+[2.483831] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/msg/Ros2Xeno.msg\n'}
+[2.485264] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/msg/Xeno2Ros.msg\n'}
+[2.486815] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/ament_index/resource_index/package_run_dependencies/xrf2_msgs\n'}
+[2.488415] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/ament_index/resource_index/parent_prefix_path/xrf2_msgs\n'}
+[2.489897] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/ament_prefix_path.sh\n'}
+[2.491437] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/ament_prefix_path.dsv\n'}
+[2.492752] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/path.sh\n'}
+[2.494583] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/environment/path.dsv\n'}
+[2.496256] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/local_setup.bash\n'}
+[2.502370] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/local_setup.sh\n'}
+[2.503939] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/local_setup.zsh\n'}
+[2.505416] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/local_setup.dsv\n'}
+[2.507108] (xrf2_msgs) StdoutLine: {'line': b'-- Installing: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/package.dsv\n'}
+[2.508567] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/ament_index/resource_index/packages/xrf2_msgs\n'}
+[2.510065] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_generator_cExport.cmake\n'}
+[2.512665] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[2.514919] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[2.517150] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[2.519052] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[2.521268] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[2.523825] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_cExport.cmake\n'}
+[2.527112] (-) TimerEvent: {}
+[2.530826] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[2.533283] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_generator_cppExport.cmake\n'}
+[2.535201] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[2.539070] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[2.541392] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[2.544349] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[2.547166] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[2.549753] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[2.551820] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_generator_pyExport.cmake\n'}
+[2.553865] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/export_xrf2_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[2.555731] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[2.557217] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[2.561631] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[2.563742] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[2.565540] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[2.566882] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[2.568120] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[2.571022] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgsConfig.cmake\n'}
+[2.573517] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/cmake/xrf2_msgsConfig-version.cmake\n'}
+[2.575141] (xrf2_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/asdfr-30/ASDfR_3/install/xrf2_msgs/share/xrf2_msgs/package.xml\n'}
+[2.576876] (xrf2_msgs) CommandEnded: {'returncode': 0}
+[2.609768] (xrf2_msgs) JobEnded: {'identifier': 'xrf2_msgs', 'rc': 0}
+[2.614663] (ros_xeno_bridge) JobStarted: {'identifier': 'ros_xeno_bridge'}
+[2.627209] (sequence_controller) JobStarted: {'identifier': 'sequence_controller'}
+[2.627692] (-) TimerEvent: {}
+[2.644424] (xeno_loop) JobStarted: {'identifier': 'xeno_loop'}
+[2.667128] (ros_xeno_bridge) JobProgress: {'identifier': 'ros_xeno_bridge', 'progress': 'cmake'}
+[2.670136] (ros_xeno_bridge) JobProgress: {'identifier': 'ros_xeno_bridge', 'progress': 'build'}
+[2.672610] (ros_xeno_bridge) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/ros_xeno_bridge', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/ros_xeno_bridge', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/ros_xeno_bridge'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[2.683611] (sequence_controller) JobProgress: {'identifier': 'sequence_controller', 'progress': 'cmake'}
+[2.687687] (sequence_controller) JobProgress: {'identifier': 'sequence_controller', 'progress': 'build'}
+[2.689449] (sequence_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/sequence_controller', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/sequence_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/sequence_controller'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble')]), 'shell': False}
+[2.703268] (xeno_loop) JobProgress: {'identifier': 'xeno_loop', 'progress': 'cmake'}
+[2.708287] (xeno_loop) JobProgress: {'identifier': 'xeno_loop', 'progress': 'build'}
+[2.710295] (xeno_loop) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/asdfr-30/ASDfR_3/build/xeno_loop', '--', '-j3', '-l3'], 'cwd': '/home/asdfr-30/ASDfR_3/build/xeno_loop', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'asdfr-30'), ('SSH_CLIENT', '10.0.100.50 62304 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/lib:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/asdfr-30'), ('TERM_PROGRAM_VERSION', '1.99.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1030/vscode-ipc-15d83552-a65e-4ba7-8c2a-88ddf5a16074.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1030/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'asdfr-30'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/home/asdfr-30/.vscode-server/cli/servers/Stable-4949701c880d4bdb949e3c0e6b400288da7f474b/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/evl/bin:/opt/relbot-software/bin:/home/asdfr-30/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/usr/evl/bin:/opt/relbot-software/bin'), ('XDG_RUNTIME_DIR', '/run/user/1030'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1030/vscode-git-34f5e41956.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/asdfr-30/ASDfR_3/build/xeno_loop'), ('SSH_CONNECTION', '10.0.100.50 62304 10.0.28.122 22'), ('PYTHONPATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/asdfr-30/ASDfR_3/install/xrf2_msgs:/home/asdfr-30/ASDfR_3/install/sequence_controller:/home/asdfr-30/ASDfR_3/install/ros_xeno_bridge:/home/asdfr-30/ASDfR_3/install/relbot_simulator:/home/asdfr-30/ASDfR_3/install/cam2image_vm2ros:/home/asdfr-30/ASDfR_3/install/ball_tracker')]), 'shell': False}
+[2.727735] (-) TimerEvent: {}
+[2.829641] (-) TimerEvent: {}
+[2.870162] (ros_xeno_bridge) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target RosXenoBridge\x1b[0m\n'}
+[2.928866] (sequence_controller) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/sequence_controller.dir/src/sequence_controller.cpp.o\x1b[0m\n'}
+[2.930671] (-) TimerEvent: {}
+[3.031870] (xeno_loop) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o\x1b[0m\n'}
+[3.033726] (-) TimerEvent: {}
+[3.063276] (xeno_loop) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object CMakeFiles/xeno_loop.dir/main.cpp.o\x1b[0m\n'}
+[3.078283] (sequence_controller) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable sequence_controller\x1b[0m\n'}
+[3.133937] (-) TimerEvent: {}
+[3.235329] (-) TimerEvent: {}
+[3.336635] (-) TimerEvent: {}
+[3.438045] (-) TimerEvent: {}
+[3.539387] (-) TimerEvent: {}
+[3.642451] (-) TimerEvent: {}
+[3.744409] (-) TimerEvent: {}
+[3.811485] (sequence_controller) StderrLine: {'line': b"/usr/bin/ld: /usr/lib/gcc/aarch64-linux-gnu/11/../../../aarch64-linux-gnu/Scrt1.o: in function `_start':\n"}
+[3.813127] (sequence_controller) StderrLine: {'line': b"(.text+0x1c): undefined reference to `main'\n"}
+[3.814174] (sequence_controller) StderrLine: {'line': b"/usr/bin/ld: (.text+0x20): undefined reference to `main'\n"}
+[3.831239] (sequence_controller) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[3.840513] (sequence_controller) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/sequence_controller.dir/build.make:175: sequence_controller] Error 1\n'}
+[3.841848] (sequence_controller) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/sequence_controller.dir/all] Error 2\n'}
+[3.843088] (sequence_controller) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[3.845319] (-) TimerEvent: {}
+[3.889069] (sequence_controller) CommandEnded: {'returncode': 2}
+[3.945544] (-) TimerEvent: {}
+[3.947713] (sequence_controller) JobEnded: {'identifier': 'sequence_controller', 'rc': 2}
+[4.003273] (ros_xeno_bridge) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/RosXenoBridge.dir/src/RosXenoBridge.cpp.o\x1b[0m\n'}
+[4.045784] (-) TimerEvent: {}
+[4.147467] (-) TimerEvent: {}
+[4.249479] (-) TimerEvent: {}
+[4.351849] (-) TimerEvent: {}
+[4.453762] (-) TimerEvent: {}
+[4.556059] (-) TimerEvent: {}
+[4.658833] (-) TimerEvent: {}
+[4.760540] (-) TimerEvent: {}
+[4.862501] (-) TimerEvent: {}
+[4.964496] (-) TimerEvent: {}
+[5.066990] (-) TimerEvent: {}
+[5.169247] (-) TimerEvent: {}
+[5.271358] (-) TimerEvent: {}
+[5.373303] (-) TimerEvent: {}
+[5.475796] (-) TimerEvent: {}
+[5.578689] (-) TimerEvent: {}
+[5.680979] (-) TimerEvent: {}
+[5.783301] (-) TimerEvent: {}
+[5.885386] (-) TimerEvent: {}
+[5.987577] (-) TimerEvent: {}
+[6.089932] (-) TimerEvent: {}
+[6.191922] (-) TimerEvent: {}
+[6.294115] (-) TimerEvent: {}
+[6.396379] (-) TimerEvent: {}
+[6.498748] (-) TimerEvent: {}
+[6.600837] (-) TimerEvent: {}
+[6.703517] (-) TimerEvent: {}
+[6.805575] (-) TimerEvent: {}
+[6.908330] (-) TimerEvent: {}
+[7.010512] (-) TimerEvent: {}
+[7.111597] (-) TimerEvent: {}
+[7.201514] (xeno_loop) StdoutLine: {'line': b'[ 13%] \x1b[32m\x1b[1mLinking CXX executable xeno_loop\x1b[0m\n'}
+[7.211820] (-) TimerEvent: {}
+[7.313003] (-) TimerEvent: {}
+[7.416029] (-) TimerEvent: {}
+[7.517610] (-) TimerEvent: {}
+[7.618657] (-) TimerEvent: {}
+[7.634532] (xeno_loop) StdoutLine: {'line': b'[100%] Built target xeno_loop\n'}
+[7.668085] (xeno_loop) JobEnded: {'identifier': 'xeno_loop', 'rc': 'SIGINT'}
+[7.718866] (-) TimerEvent: {}
+[7.819823] (-) TimerEvent: {}
+[7.921103] (-) TimerEvent: {}
+[8.022109] (-) TimerEvent: {}
+[8.123154] (-) TimerEvent: {}
+[8.224091] (-) TimerEvent: {}
+[8.325075] (-) TimerEvent: {}
+[8.426067] (-) TimerEvent: {}
+[8.527136] (-) TimerEvent: {}
+[8.628095] (-) TimerEvent: {}
+[8.729064] (-) TimerEvent: {}
+[8.830088] (-) TimerEvent: {}
+[8.931056] (-) TimerEvent: {}
+[9.032023] (-) TimerEvent: {}
+[9.132992] (-) TimerEvent: {}
+[9.234015] (-) TimerEvent: {}
+[9.334990] (-) TimerEvent: {}
+[9.435944] (-) TimerEvent: {}
+[9.536885] (-) TimerEvent: {}
+[9.637922] (-) TimerEvent: {}
+[9.738940] (-) TimerEvent: {}
+[9.839917] (-) TimerEvent: {}
+[9.940905] (-) TimerEvent: {}
+[10.041888] (-) TimerEvent: {}
+[10.142861] (-) TimerEvent: {}
+[10.243848] (-) TimerEvent: {}
+[10.344802] (-) TimerEvent: {}
+[10.445773] (-) TimerEvent: {}
+[10.546757] (-) TimerEvent: {}
+[10.647724] (-) TimerEvent: {}
+[10.748723] (-) TimerEvent: {}
+[10.849766] (-) TimerEvent: {}
+[10.950754] (-) TimerEvent: {}
+[11.051729] (-) TimerEvent: {}
+[11.152696] (-) TimerEvent: {}
+[11.253657] (-) TimerEvent: {}
+[11.354639] (-) TimerEvent: {}
+[11.455600] (-) TimerEvent: {}
+[11.556587] (-) TimerEvent: {}
+[11.657582] (-) TimerEvent: {}
+[11.758589] (-) TimerEvent: {}
+[11.859575] (-) TimerEvent: {}
+[11.960598] (-) TimerEvent: {}
+[12.061737] (-) TimerEvent: {}
+[12.162745] (-) TimerEvent: {}
+[12.263721] (-) TimerEvent: {}
+[12.365047] (-) TimerEvent: {}
+[12.466617] (-) TimerEvent: {}
+[12.567607] (-) TimerEvent: {}
+[12.668635] (-) TimerEvent: {}
+[12.769684] (-) TimerEvent: {}
+[12.870788] (-) TimerEvent: {}
+[12.971755] (-) TimerEvent: {}
+[13.072751] (-) TimerEvent: {}
+[13.173739] (-) TimerEvent: {}
+[13.274737] (-) TimerEvent: {}
+[13.375653] (-) TimerEvent: {}
+[13.476604] (-) TimerEvent: {}
+[13.577562] (-) TimerEvent: {}
+[13.678555] (-) TimerEvent: {}
+[13.779692] (-) TimerEvent: {}
+[13.880653] (-) TimerEvent: {}
+[13.981614] (-) TimerEvent: {}
+[14.082620] (-) TimerEvent: {}
+[14.183569] (-) TimerEvent: {}
+[14.284513] (-) TimerEvent: {}
+[14.385501] (-) TimerEvent: {}
+[14.486513] (-) TimerEvent: {}
+[14.587466] (-) TimerEvent: {}
+[14.688452] (-) TimerEvent: {}
+[14.789434] (-) TimerEvent: {}
+[14.890436] (-) TimerEvent: {}
+[14.991403] (-) TimerEvent: {}
+[15.092366] (-) TimerEvent: {}
+[15.193322] (-) TimerEvent: {}
+[15.294302] (-) TimerEvent: {}
+[15.395270] (-) TimerEvent: {}
+[15.496234] (-) TimerEvent: {}
+[15.597204] (-) TimerEvent: {}
+[15.698183] (-) TimerEvent: {}
+[15.799126] (-) TimerEvent: {}
+[15.900082] (-) TimerEvent: {}
+[16.001062] (-) TimerEvent: {}
+[16.102056] (-) TimerEvent: {}
+[16.203008] (-) TimerEvent: {}
+[16.303991] (-) TimerEvent: {}
+[16.404945] (-) TimerEvent: {}
+[16.505994] (-) TimerEvent: {}
+[16.607138] (-) TimerEvent: {}
+[16.708098] (-) TimerEvent: {}
+[16.809065] (-) TimerEvent: {}
+[16.910070] (-) TimerEvent: {}
+[17.011024] (-) TimerEvent: {}
+[17.111997] (-) TimerEvent: {}
+[17.212984] (-) TimerEvent: {}
+[17.314002] (-) TimerEvent: {}
+[17.414973] (-) TimerEvent: {}
+[17.515955] (-) TimerEvent: {}
+[17.616916] (-) TimerEvent: {}
+[17.717902] (-) TimerEvent: {}
+[17.818958] (-) TimerEvent: {}
+[17.919937] (-) TimerEvent: {}
+[18.020917] (-) TimerEvent: {}
+[18.121983] (-) TimerEvent: {}
+[18.223124] (-) TimerEvent: {}
+[18.324069] (-) TimerEvent: {}
+[18.425041] (-) TimerEvent: {}
+[18.526057] (-) TimerEvent: {}
+[18.627003] (-) TimerEvent: {}
+[18.727993] (-) TimerEvent: {}
+[18.828965] (-) TimerEvent: {}
+[18.930016] (-) TimerEvent: {}
+[19.030983] (-) TimerEvent: {}
+[19.131950] (-) TimerEvent: {}
+[19.232926] (-) TimerEvent: {}
+[19.333913] (-) TimerEvent: {}
+[19.434967] (-) TimerEvent: {}
+[19.536003] (-) TimerEvent: {}
+[19.637032] (-) TimerEvent: {}
+[19.738058] (-) TimerEvent: {}
+[19.839072] (-) TimerEvent: {}
+[19.940067] (-) TimerEvent: {}
+[20.041081] (-) TimerEvent: {}
+[20.142099] (-) TimerEvent: {}
+[20.243071] (-) TimerEvent: {}
+[20.344112] (-) TimerEvent: {}
+[20.445103] (-) TimerEvent: {}
+[20.546100] (-) TimerEvent: {}
+[20.647065] (-) TimerEvent: {}
+[20.748032] (-) TimerEvent: {}
+[20.849004] (-) TimerEvent: {}
+[20.950014] (-) TimerEvent: {}
+[21.050958] (-) TimerEvent: {}
+[21.151897] (-) TimerEvent: {}
+[21.252844] (-) TimerEvent: {}
+[21.353797] (-) TimerEvent: {}
+[21.454792] (-) TimerEvent: {}
+[21.555751] (-) TimerEvent: {}
+[21.656701] (-) TimerEvent: {}
+[21.757687] (-) TimerEvent: {}
+[21.858694] (-) TimerEvent: {}
+[21.959701] (-) TimerEvent: {}
+[22.060760] (-) TimerEvent: {}
+[22.161836] (-) TimerEvent: {}
+[22.262883] (-) TimerEvent: {}
+[22.364054] (-) TimerEvent: {}
+[22.465011] (-) TimerEvent: {}
+[22.566017] (-) TimerEvent: {}
+[22.666972] (-) TimerEvent: {}
+[22.767944] (-) TimerEvent: {}
+[22.868897] (-) TimerEvent: {}
+[22.969855] (-) TimerEvent: {}
+[23.070831] (-) TimerEvent: {}
+[23.171821] (-) TimerEvent: {}
+[23.272773] (-) TimerEvent: {}
+[23.373724] (-) TimerEvent: {}
+[23.474718] (-) TimerEvent: {}
+[23.575674] (-) TimerEvent: {}
+[23.676640] (-) TimerEvent: {}
+[23.777617] (-) TimerEvent: {}
+[23.878627] (-) TimerEvent: {}
+[23.979588] (-) TimerEvent: {}
+[24.080543] (-) TimerEvent: {}
+[24.181652] (-) TimerEvent: {}
+[24.283005] (-) TimerEvent: {}
+[24.383889] (-) TimerEvent: {}
+[24.484919] (-) TimerEvent: {}
+[24.585802] (-) TimerEvent: {}
+[24.686753] (-) TimerEvent: {}
+[24.787625] (-) TimerEvent: {}
+[24.888492] (-) TimerEvent: {}
+[24.989455] (-) TimerEvent: {}
+[25.090524] (-) TimerEvent: {}
+[25.191515] (-) TimerEvent: {}
+[25.292516] (-) TimerEvent: {}
+[25.393489] (-) TimerEvent: {}
+[25.494552] (-) TimerEvent: {}
+[25.595554] (-) TimerEvent: {}
+[25.696558] (-) TimerEvent: {}
+[25.797572] (-) TimerEvent: {}
+[25.898667] (-) TimerEvent: {}
+[25.999671] (-) TimerEvent: {}
+[26.100926] (-) TimerEvent: {}
+[26.202217] (-) TimerEvent: {}
+[26.303231] (-) TimerEvent: {}
+[26.404217] (-) TimerEvent: {}
+[26.505217] (-) TimerEvent: {}
+[26.606229] (-) TimerEvent: {}
+[26.707179] (-) TimerEvent: {}
+[26.808119] (-) TimerEvent: {}
+[26.909170] (-) TimerEvent: {}
+[27.011028] (-) TimerEvent: {}
+[27.112300] (-) TimerEvent: {}
+[27.213594] (-) TimerEvent: {}
+[27.314780] (-) TimerEvent: {}
+[27.415712] (-) TimerEvent: {}
+[27.516670] (-) TimerEvent: {}
+[27.617637] (-) TimerEvent: {}
+[27.718658] (-) TimerEvent: {}
+[27.819598] (-) TimerEvent: {}
+[27.920571] (-) TimerEvent: {}
+[28.021535] (-) TimerEvent: {}
+[28.122559] (-) TimerEvent: {}
+[28.223528] (-) TimerEvent: {}
+[28.324526] (-) TimerEvent: {}
+[28.425488] (-) TimerEvent: {}
+[28.526484] (-) TimerEvent: {}
+[28.627444] (-) TimerEvent: {}
+[28.728389] (-) TimerEvent: {}
+[28.829341] (-) TimerEvent: {}
+[28.930331] (-) TimerEvent: {}
+[29.031300] (-) TimerEvent: {}
+[29.132250] (-) TimerEvent: {}
+[29.233207] (-) TimerEvent: {}
+[29.334184] (-) TimerEvent: {}
+[29.435162] (-) TimerEvent: {}
+[29.536141] (-) TimerEvent: {}
+[29.637112] (-) TimerEvent: {}
+[29.738111] (-) TimerEvent: {}
+[29.839062] (-) TimerEvent: {}
+[29.940010] (-) TimerEvent: {}
+[30.040951] (-) TimerEvent: {}
+[30.142039] (-) TimerEvent: {}
+[30.242978] (-) TimerEvent: {}
+[30.343929] (-) TimerEvent: {}
+[30.444865] (-) TimerEvent: {}
+[30.545801] (-) TimerEvent: {}
+[30.646781] (-) TimerEvent: {}
+[30.747720] (-) TimerEvent: {}
+[30.848670] (-) TimerEvent: {}
+[30.949657] (-) TimerEvent: {}
+[31.050660] (-) TimerEvent: {}
+[31.151591] (-) TimerEvent: {}
+[31.252538] (-) TimerEvent: {}
+[31.353474] (-) TimerEvent: {}
+[31.454458] (-) TimerEvent: {}
+[31.555638] (-) TimerEvent: {}
+[31.656579] (-) TimerEvent: {}
+[31.757506] (-) TimerEvent: {}
+[31.858486] (-) TimerEvent: {}
+[31.959460] (-) TimerEvent: {}
+[32.060490] (-) TimerEvent: {}
+[32.161482] (-) TimerEvent: {}
+[32.262465] (-) TimerEvent: {}
+[32.363385] (-) TimerEvent: {}
+[32.464312] (-) TimerEvent: {}
+[32.565290] (-) TimerEvent: {}
+[32.666918] (-) TimerEvent: {}
+[32.767853] (-) TimerEvent: {}
+[32.868807] (-) TimerEvent: {}
+[32.969752] (-) TimerEvent: {}
+[33.070753] (-) TimerEvent: {}
+[33.171705] (-) TimerEvent: {}
+[33.272663] (-) TimerEvent: {}
+[33.373626] (-) TimerEvent: {}
+[33.474582] (-) TimerEvent: {}
+[33.575558] (-) TimerEvent: {}
+[33.676518] (-) TimerEvent: {}
+[33.777494] (-) TimerEvent: {}
+[33.878477] (-) TimerEvent: {}
+[33.979426] (-) TimerEvent: {}
+[34.080380] (-) TimerEvent: {}
+[34.181348] (-) TimerEvent: {}
+[34.282357] (-) TimerEvent: {}
+[34.383340] (-) TimerEvent: {}
+[34.484285] (-) TimerEvent: {}
+[34.585208] (-) TimerEvent: {}
+[34.686146] (-) TimerEvent: {}
+[34.787074] (-) TimerEvent: {}
+[34.888000] (-) TimerEvent: {}
+[34.988947] (-) TimerEvent: {}
+[35.094226] (-) TimerEvent: {}
+[35.195149] (-) TimerEvent: {}
+[35.296087] (-) TimerEvent: {}
+[35.397046] (-) TimerEvent: {}
+[35.498075] (-) TimerEvent: {}
+[35.599026] (-) TimerEvent: {}
+[35.700009] (-) TimerEvent: {}
+[35.800971] (-) TimerEvent: {}
+[35.901986] (-) TimerEvent: {}
+[36.003109] (-) TimerEvent: {}
+[36.104069] (-) TimerEvent: {}
+[36.205026] (-) TimerEvent: {}
+[36.306004] (-) TimerEvent: {}
+[36.406956] (-) TimerEvent: {}
+[36.507930] (-) TimerEvent: {}
+[36.608911] (-) TimerEvent: {}
+[36.709888] (-) TimerEvent: {}
+[36.810851] (-) TimerEvent: {}
+[36.911776] (-) TimerEvent: {}
+[37.012720] (-) TimerEvent: {}
+[37.113683] (-) TimerEvent: {}
+[37.214655] (-) TimerEvent: {}
+[37.315634] (-) TimerEvent: {}
+[37.416596] (-) TimerEvent: {}
+[37.517534] (-) TimerEvent: {}
+[37.618521] (-) TimerEvent: {}
+[37.719456] (-) TimerEvent: {}
+[37.820415] (-) TimerEvent: {}
+[37.921378] (-) TimerEvent: {}
+[38.022690] (-) TimerEvent: {}
+[38.123776] (-) TimerEvent: {}
+[38.224719] (-) TimerEvent: {}
+[38.325697] (-) TimerEvent: {}
+[38.426759] (-) TimerEvent: {}
+[38.527898] (-) TimerEvent: {}
+[38.628866] (-) TimerEvent: {}
+[38.730230] (-) TimerEvent: {}
+[38.831174] (-) TimerEvent: {}
+[38.932103] (-) TimerEvent: {}
+[39.033068] (-) TimerEvent: {}
+[39.134081] (-) TimerEvent: {}
+[39.235111] (-) TimerEvent: {}
+[39.336105] (-) TimerEvent: {}
+[39.437112] (-) TimerEvent: {}
+[39.538112] (-) TimerEvent: {}
+[39.639152] (-) TimerEvent: {}
+[39.740322] (-) TimerEvent: {}
+[39.841368] (-) TimerEvent: {}
+[39.942639] (-) TimerEvent: {}
+[40.043600] (-) TimerEvent: {}
+[40.144865] (-) TimerEvent: {}
+[40.246327] (-) TimerEvent: {}
+[40.347312] (-) TimerEvent: {}
+[40.448362] (-) TimerEvent: {}
+[40.549436] (-) TimerEvent: {}
+[40.650417] (-) TimerEvent: {}
+[40.751364] (-) TimerEvent: {}
+[40.852310] (-) TimerEvent: {}
+[40.953286] (-) TimerEvent: {}
+[41.054279] (-) TimerEvent: {}
+[41.155226] (-) TimerEvent: {}
+[41.256243] (-) TimerEvent: {}
+[41.357225] (-) TimerEvent: {}
+[41.458197] (-) TimerEvent: {}
+[41.559159] (-) TimerEvent: {}
+[41.660123] (-) TimerEvent: {}
+[41.761064] (-) TimerEvent: {}
+[41.862031] (-) TimerEvent: {}
+[41.962960] (-) TimerEvent: {}
+[42.063932] (-) TimerEvent: {}
+[42.164866] (-) TimerEvent: {}
+[42.265872] (-) TimerEvent: {}
+[42.366864] (-) TimerEvent: {}
+[42.467806] (-) TimerEvent: {}
+[42.568969] (-) TimerEvent: {}
+[42.670427] (-) TimerEvent: {}
+[42.771442] (-) TimerEvent: {}
+[42.872473] (-) TimerEvent: {}
+[42.973445] (-) TimerEvent: {}
+[43.074467] (-) TimerEvent: {}
+[43.175445] (-) TimerEvent: {}
+[43.276404] (-) TimerEvent: {}
+[43.377344] (-) TimerEvent: {}
+[43.478317] (-) TimerEvent: {}
+[43.579306] (-) TimerEvent: {}
+[43.680280] (-) TimerEvent: {}
+[43.781298] (-) TimerEvent: {}
+[43.882354] (-) TimerEvent: {}
+[43.983288] (-) TimerEvent: {}
+[44.084474] (-) TimerEvent: {}
+[44.185551] (-) TimerEvent: {}
+[44.286564] (-) TimerEvent: {}
+[44.387507] (-) TimerEvent: {}
+[44.488434] (-) TimerEvent: {}
+[44.589414] (-) TimerEvent: {}
+[44.690431] (-) TimerEvent: {}
+[44.791386] (-) TimerEvent: {}
+[44.892536] (-) TimerEvent: {}
+[44.993522] (-) TimerEvent: {}
+[45.094685] (-) TimerEvent: {}
+[45.195654] (-) TimerEvent: {}
+[45.296614] (-) TimerEvent: {}
+[45.397562] (-) TimerEvent: {}
+[45.498571] (-) TimerEvent: {}
+[45.599513] (-) TimerEvent: {}
+[45.700431] (-) TimerEvent: {}
+[45.801406] (-) TimerEvent: {}
+[45.902360] (-) TimerEvent: {}
+[46.003320] (-) TimerEvent: {}
+[46.104241] (-) TimerEvent: {}
+[46.205176] (-) TimerEvent: {}
+[46.306141] (-) TimerEvent: {}
+[46.407111] (-) TimerEvent: {}
+[46.508081] (-) TimerEvent: {}
+[46.609117] (-) TimerEvent: {}
+[46.710244] (-) TimerEvent: {}
+[46.811701] (-) TimerEvent: {}
+[46.914001] (-) TimerEvent: {}
+[47.015176] (-) TimerEvent: {}
+[47.116141] (-) TimerEvent: {}
+[47.217173] (-) TimerEvent: {}
+[47.318420] (-) TimerEvent: {}
+[47.419797] (-) TimerEvent: {}
+[47.521511] (-) TimerEvent: {}
+[47.622410] (-) TimerEvent: {}
+[47.723258] (-) TimerEvent: {}
+[47.824063] (-) TimerEvent: {}
+[47.924863] (-) TimerEvent: {}
+[48.025843] (-) TimerEvent: {}
+[48.127160] (-) TimerEvent: {}
+[48.227982] (-) TimerEvent: {}
+[48.328763] (-) TimerEvent: {}
+[48.429557] (-) TimerEvent: {}
+[48.530499] (-) TimerEvent: {}
+[48.540919] (ros_xeno_bridge) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable RosXenoBridge\x1b[0m\n'}
+[48.631002] (-) TimerEvent: {}
+[48.732591] (-) TimerEvent: {}
+[48.834384] (-) TimerEvent: {}
+[48.935822] (-) TimerEvent: {}
+[49.037138] (-) TimerEvent: {}
+[49.138878] (-) TimerEvent: {}
+[49.240428] (-) TimerEvent: {}
+[49.341675] (-) TimerEvent: {}
+[49.442993] (-) TimerEvent: {}
+[49.544541] (-) TimerEvent: {}
+[49.645925] (-) TimerEvent: {}
+[49.747373] (-) TimerEvent: {}
+[49.848650] (-) TimerEvent: {}
+[49.949500] (-) TimerEvent: {}
+[50.050364] (-) TimerEvent: {}
+[50.151195] (-) TimerEvent: {}
+[50.252097] (-) TimerEvent: {}
+[50.352988] (-) TimerEvent: {}
+[50.454884] (-) TimerEvent: {}
+[50.556475] (-) TimerEvent: {}
+[50.657295] (-) TimerEvent: {}
+[50.758098] (-) TimerEvent: {}
+[50.858860] (-) TimerEvent: {}
+[50.959630] (-) TimerEvent: {}
+[51.060429] (-) TimerEvent: {}
+[51.161223] (-) TimerEvent: {}
+[51.262251] (-) TimerEvent: {}
+[51.286137] (ros_xeno_bridge) StdoutLine: {'line': b'[100%] Built target RosXenoBridge\n'}
+[51.318488] (ros_xeno_bridge) JobEnded: {'identifier': 'ros_xeno_bridge', 'rc': 'SIGINT'}
+[51.332672] (-) EventReactorShutdown: {}
