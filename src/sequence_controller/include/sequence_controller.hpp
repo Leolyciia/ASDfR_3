@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include <algorithm> // Needed for std::clamp
+#include <algorithm> 
 
 #include <rclcpp/rclcpp.hpp>
 #include "xrf2_msgs/msg/xeno2_ros.hpp"
@@ -14,23 +14,25 @@
 using namespace std::chrono_literals;
 
 // --- Constants ---
-const double WHEEL_BASE_WIDTH = 0.21; // meters - Updated as per your request
+const double WHEEL_BASE_WIDTH = 0.21; 
 const double PI = 3.141592653589793;
-const double TARGET_DISTANCE_M = 0.30; // meters - Example: Drive 1 meter straight
-const double TARGET_TURN_ANGLE_RAD = PI / 2.0; // 90 degrees in radians
-const double FORWARD_SPEED = 0.5; // m/s - Example forward speed
-const double TURN_SPEED = 0.4; // rad/s equivalent for wheels - Example turning speed
+const double TARGET_DISTANCE_M = 0.10; 
+const double TARGET_TURN_ANGLE_RAD = PI / 2.0;
+const double FORWARD_SPEED = 0.5;
+const double TURN_SPEED = 0.4;
+const int STOPPING_DURATION_CYCLES = 20; 
+
 
 // --- Control Parameters ---
-// Simplified parameters for this task
 struct ControlParameters {
-    double max_wheel_speed = 0.9; // Maximum allowable individual wheel speed
+    double max_wheel_speed = 0.9; 
     double sample_time_s = 0.03; // Control loop sample time
 };
 
 // --- Robot States ---
 enum class RobotState {
     DRIVING_STRAIGHT,
+    STOPPING_BEFORE_TURN,
     TURNING,
     STOPPED
 };
@@ -47,13 +49,15 @@ private:
 
     // --- State variables ---
     RobotState current_state_ = RobotState::DRIVING_STRAIGHT;
-    double current_pos_left_m_ = 0.0;
-    double current_pos_right_m_ = 0.0;
-    double start_pos_left_m_ = 0.0;  // Encoder reading when starting DRIVING_STRAIGHT
-    double start_pos_right_m_ = 0.0; // Encoder reading when starting DRIVING_STRAIGHT
-    double start_turn_pos_left_m_ = 0.0; // Encoder reading when starting TURNING
-    double start_turn_pos_right_m_ = 0.0;// Encoder reading when starting TURNING
-    bool initial_encoder_reading_received_ = false; // Flag to wait for first encoder reading
+    // Store current pose from feedback
+    double current_x_ = 0.0;
+    double current_y_ = 0.0;
+    double current_theta_ = 0.0;
+    double start_x_ = 0.0;
+    double start_y_ = 0.0;
+    double start_turn_theta_ = 0.0;
+    bool initial_pose_received_ = false;
+    int stopping_cycles_counter_ = 0;
 
 
     // --- ROS communications ---
@@ -72,6 +76,7 @@ private:
     };
 
     void publish_wheel_velocities(const WheelVelocities& wheel_vel);
+    double normalize_angle(double angle); 
 
 };
 

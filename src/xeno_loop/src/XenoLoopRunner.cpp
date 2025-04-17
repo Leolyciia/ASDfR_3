@@ -1,32 +1,34 @@
-
 #include "XenoLoopRunner.hpp"
+#include <cmath>
 
 XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
     XenoFrt20Sim(write_decimator_freq, monitor_freq, file, &data_to_be_logged),
-    file(1,"./xrf2_logging/TEMPLATE","bin"), // change template to your project name
+    file(1,"./xrf2_logging/RELBOT","bin"), 
     controller()
 {
      printf("%s: Constructing rampio\n", __FUNCTION__);
-    // Add variables to logger to be logged, has to be done before you can log data
     logger.addVariable("this_is_a_int", integer);
     logger.addVariable("this_is_a_double", double_);
     logger.addVariable("this_is_a_float", float_);
     logger.addVariable("this_is_a_char", character);
     logger.addVariable("this_is_a_bool", boolean);
-    
-    // To infinite run the controller, uncomment line below
+
+    logger.addVariable("x_pos", double_);
+    logger.addVariable("y_pos", double_);
+    logger.addVariable("theta", double_);
+
     controller.SetFinishTime(0.0);
 }
 
 XenoLoopRunner::~XenoLoopRunner()
 {
-    
+    // Destructor
 }
 
-// Helper function: calculate delta counts
-int16_t XenoLoopRunner::calculate_delta_counts(uint16_t current_raw, uint16_t previous_raw) {
+int16_t XenoLoopRunner::calculate_delta_counts_left(uint16_t current_raw, uint16_t previous_raw) {
     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
+    // Handle wrap-around
     if (diff > ENCODER_WRAP_THRESHOLD) {
         return diff - ENCODER_RANGE; // Wrapped backward
     } else if (diff < -ENCODER_WRAP_THRESHOLD) {
@@ -36,219 +38,219 @@ int16_t XenoLoopRunner::calculate_delta_counts(uint16_t current_raw, uint16_t pr
     }
 }
 
-// // Helper function: calculate delta counts 
-// int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
-//     // Print inputs received by the function
-//     evl_printf("  DeltaCalc: Inputs -> current=%u, previous=%u\n", current_raw, previous_raw);
+int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint16_t previous_raw) {
+    int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
 
-//     // Calculate the raw difference
-//     int32_t diff = static_cast<int32_t>(current_raw) - static_cast<int32_t>(previous_raw);
-//     evl_printf("  DeltaCalc: Raw diff = %d\n", diff);
+    // Handle wrap-around
+    if (diff > ENCODER_WRAP_THRESHOLD) {
+        return diff - ENCODER_RANGE; // Wrapped backward
+    } else if (diff < -ENCODER_WRAP_THRESHOLD) {
+        return diff + ENCODER_RANGE; // Wrapped forward
+    } else {
+        return diff; // No wrap-around
+    }
+}
 
-//     // Check wrap-around conditions
-//     int16_t result; // Variable to store the final result
+double XenoLoopRunner::normalize_angle(double angle) {
+    angle = fmod(angle + M_PI, 2.0 * M_PI);
+    if (angle < 0.0)
+        angle += 2.0 * M_PI;
+    return angle - M_PI;
+}
 
-//     if (diff > ENCODER_WRAP_THRESHOLD) {
-//         evl_printf("  DeltaCalc: Wrap backward detected (diff %d > threshold %d)\n", diff, ENCODER_WRAP_THRESHOLD);
-//         result = diff - ENCODER_RANGE; // Wrapped backward
-//         evl_printf("  DeltaCalc: Calculation -> %d - %d = %d\n", diff, ENCODER_RANGE, result);
-//     } else if (diff < -ENCODER_WRAP_THRESHOLD) {
-//         evl_printf("  DeltaCalc: Wrap forward detected (diff %d < threshold %d)\n", diff, -ENCODER_WRAP_THRESHOLD);
-//         result = diff + ENCODER_RANGE; // Wrapped forward
-//         evl_printf("  DeltaCalc: Calculation -> %d + %d = %d\n", diff, ENCODER_RANGE, result);
-//     } else {
-//         evl_printf("  DeltaCalc: No wrap-around detected.\n");
-//         result = diff; // No wrap-around
-//     }
 
-//     // Print the final value being returned
-//     evl_printf("  DeltaCalc: Returning delta = %d\n", result);
-//     return result;
-// }
-
-// Helper function: for updating the wheel positions
-void XenoLoopRunner::updateWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
-    if (!feedback_initialized) {
-        prev_encoder_left_raw = current_encoder_left_raw;
-        prev_encoder_right_raw = current_encoder_right_raw;
-        feedback_initialized = true;
-        // Don't calculate displacement on the very first run
+void XenoLoopRunner::updateOdometryAndWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
+    if (!feedback_initialized_) {
+        prev_encoder_left_raw_ = current_encoder_left_raw;
+        prev_encoder_right_raw_ = current_encoder_right_raw;
+        feedback_initialized_ = true;
         return;
     }
 
-    // Calculate delta counts
-    int16_t delta_counts_left = calculate_delta_counts(current_encoder_left_raw, prev_encoder_left_raw);
-    int16_t delta_counts_right = calculate_delta_counts(-current_encoder_right_raw, -prev_encoder_right_raw);
 
-    // Calculate step displacement 
-    // Left wheel count increases backward 
-    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
-    // Right wheel count decreases backward 
-    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * PI * (WHEEL_DIAMETER/2));
+    int16_t delta_counts_left = calculate_delta_counts_left(current_encoder_left_raw, prev_encoder_left_raw_);
+    int16_t delta_counts_right = calculate_delta_counts_right(-current_encoder_right_raw, -prev_encoder_right_raw_);
 
-    // Accumulate total position
-    total_pos_left += displacement_step_left;
-    total_pos_right += displacement_step_right;
+    double displacement_step_left = static_cast<double>(delta_counts_left) * DIST_PER_COUNT;
+    double displacement_step_right = static_cast<double>(delta_counts_right) * DIST_PER_COUNT;
 
-    // Store current raw counts for the next iteration
-    prev_encoder_left_raw = current_encoder_left_raw;
-    prev_encoder_right_raw = current_encoder_right_raw;
+    total_pos_left_m_ += displacement_step_left;
+    total_pos_right_m_ += displacement_step_right;
+
+    // --- Calculate odometry ---
+    double delta_s = (displacement_step_right + displacement_step_left) / 2.0;
+    double delta_theta = (displacement_step_right - displacement_step_left) / WHEEL_BASE_WIDTH;
+
+    // Update pose
+    x_pos_ += delta_s * cos(theta_ + delta_theta / 2.0); 
+    y_pos_ += delta_s * sin(theta_ + delta_theta / 2.0); 
+    theta_ += delta_theta;
+    theta_ = normalize_angle(theta_);
+
+    prev_encoder_left_raw_ = current_encoder_left_raw;
+    prev_encoder_right_raw_ = current_encoder_right_raw;
 }
 
 int XenoLoopRunner::initialising()
 {
-    // Set physical and cyber system up for use in a 
-    // Return 1 to go to initialised state
-
-    evl_printf("Initialising...\n");      // Do something
-
-    // Reset position feedback states
-    total_pos_left = 0.0;
-    total_pos_right = 0.0;
-    prev_encoder_left_raw = 0; 
-    prev_encoder_right_raw = 0;
-    feedback_initialized = false;
+    evl_printf("Initialising...\n");
+    // Reset odometry state
+    x_pos_ = 0.0;
+    y_pos_ = 0.0;
+    theta_ = 0.0;
+    // Reset feedback state
+    total_pos_left_m_ = 0.0;
+    total_pos_right_m_ = 0.0;
+    prev_encoder_left_raw_ = 0;
+    prev_encoder_right_raw_ = 0;
+    feedback_initialized_ = false;
+    // Reset controller
     controller.Reset(0.0);
-    // The logger has to be initialised at only once
-    logger.initialise();
-    // The FPGA has to be initialised at least once
-    ico_io.init();
+
+    // Initialise logger if not already done
+    if(!logger.isInitialised())
+        logger.initialise();
+    // Initialise FPGA if not already done
+    if(ico_io.init()<0) 
+        return -1; // Indicate error
 
     // Reset actuation data
     memset(&actuate_data, 0, sizeof(actuate_data));
-    actuate_data.pwm1 = 0; // Left
-    actuate_data.pwm2 = 0; // Right
-    // actuate_data.val1 = false;
-    // actuate_data.val2 = false;
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
 
-
-    // Dummy read for initialising prev_encoder values
     ico_io.update_io(actuate_data, &sample_data);
-    prev_encoder_left_raw = sample_data.channel1;
-    prev_encoder_right_raw = sample_data.channel2;
-    feedback_initialized = true; // Mark as initialized after first read
-    evl_printf("Initialising complete.\n");
+    prev_encoder_left_raw_ = sample_data.channel1; 
+    prev_encoder_right_raw_ = sample_data.channel2; 
+    feedback_initialized_ = true; // Mark as initialized after first read
 
-    return 1;
+    u[0] = total_pos_left_m_;
+    u[1] = total_pos_right_m_;
+    u[2] = 0.0; 
+    u[3] = 0.0; 
+
+    evl_printf("Initialising complete.\n");
+    return 1; // Transition to initialised state
 }
 
 int XenoLoopRunner::initialised()
 {
-    // Keep the physical syste in a state to be used in the run state
-    // Call start() or return 1 to go to run state
-
-    evl_printf("Hello from initialised\n");       // Do something
-
-    return 1;
+    monitor.printf("State: Initialised. Waiting for Start command.\n");
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
+    return 0; 
 }
 
 int XenoLoopRunner::run()
 {
-    // Do what you need to do
-    // Return 1 to go to stopping state
+    // Ensure logger is started
+    if(!logger.isStarted())
+        logger.start();
 
-    // Start logger
-    logger.start();                             
-    monitor.printf("Hello from run\n");  
-    //  Change some data for logger            
-    data_to_be_logged.this_is_a_bool = !data_to_be_logged.this_is_a_bool;
-    data_to_be_logged.this_is_a_int++;
-    if(data_to_be_logged.this_is_a_char == 'R')
-        data_to_be_logged.this_is_a_char = 'A';
-    else if (data_to_be_logged.this_is_a_char == 'A')
-        data_to_be_logged.this_is_a_char = 'M';
-    else
-        data_to_be_logged.this_is_a_char = 'R';
-    data_to_be_logged.this_is_a_float = data_to_be_logged.this_is_a_float/2;
-    data_to_be_logged.this_is_a_double = data_to_be_logged.this_is_a_double/4; 
-
+    // --- Get Inputs ---
     ico_io.update_io(actuate_data, &sample_data);
+    uint16_t raw_left_encoder = sample_data.channel1;
+    uint16_t raw_right_encoder = sample_data.channel2;
 
-    // Get raw encoder counts
-    uint16_t raw_left_encoder = sample_data.channel2;  // Right wheel 
-    uint16_t raw_right_encoder = sample_data.channel1; // Left wheel 
+    // --- Update odometry & wheel positions ---
+    updateOdometryAndWheelPositions(raw_left_encoder, raw_right_encoder);
 
-    // Update accumulated wheel positions
-    updateWheelPositions(raw_left_encoder, raw_right_encoder);
+    // --- Prepare controller inputs ---
+    u[0] = total_pos_left_m_;  
+    u[1] = total_pos_right_m_; 
+    u[2] = ros_msg.example_a;  
+    u[3] = ros_msg.example_b;  
 
-    u[0] = total_pos_left;  // PosLeft feedback
-    u[1] = total_pos_right; // PosRight feedback
-    // Get velocity setpoints from ROS message
-    u[2] = ros_msg.example_a; // Placeholder
-    u[3] = ros_msg.example_b; // Placeholder
+    // --- Run controller ---
+    controller.Calculate(u, y); 
 
-    controller.Calculate(u, y); // y[0]=SteerLeft, y[1]=SteerRight
-
-    const int16_t max_abs_pwm = 2047;
+    const int16_t max_abs_pwm = 2047; 
     int16_t pwm_left_cmd = static_cast<int16_t>(std::clamp(y[0], (double)-max_abs_pwm, (double)max_abs_pwm));
     int16_t pwm_right_cmd = static_cast<int16_t>(std::clamp(y[1], (double)-max_abs_pwm, (double)max_abs_pwm));
 
-    // pwm_left_cmd = -100;
-    // pwm_right_cmd = 100;
+    actuate_data.pwm1 = -pwm_right_cmd; 
+    actuate_data.pwm2 = pwm_left_cmd;   
 
-    // Map controller outputs to correct PWM channels
-    // ASKK TA ABOUT THISSSS WHAT DOES THE ROBOT SEE AS LEFT/RIGHT??? 
-    actuate_data.pwm1 = -pwm_right_cmd; // PMOD P1 -> Right Motor
-    actuate_data.pwm2 = pwm_left_cmd;  // PMOD P2 -> Left Motor
-    // actuate_data.val1 = (pwm_right_cmd >= 0);
-    // actuate_data.val2 = (pwm_left_cmd >= 0);
+    xeno_msg.encoder_left = total_pos_left_m_;  // Send accumulated distance
+    xeno_msg.encoder_right = total_pos_right_m_; // Send accumulated distance
+    xeno_msg.x = x_pos_;                       // Send calculated X position
+    xeno_msg.y = y_pos_;                       // Send calculated Y position
+    xeno_msg.theta = theta_;                   // Send calculated orientation
 
-    xeno_msg.encoder_left = total_pos_left;
-    xeno_msg.encoder_right = total_pos_right;
 
-    // Out
-    monitor.printf("Run - PosL:%.4f PosR:%.4f | SetVelL:%.2f SetVelR:%.2f | SteerL:%.1f SteerR:%.1f\n",
-                   total_pos_left, total_pos_right, u[2], u[3], y[0], y[1]);
-    
+    memcpy(&data_to_be_logged.this_is_a_double, &x_pos_, sizeof(double));
+
+    // --- Monitoring output ---
+    monitor.printf("Run - Pose[x:%.3f y:%.3f th:%.3f] | Enc[L:%.3f R:%.3f] | Cmd[L:%.1f R:%.1f]\n",
+                   x_pos_, y_pos_, theta_,
+                   total_pos_left_m_, total_pos_right_m_,
+                   y[0], y[1]); 
+
     if(controller.IsFinished())
-        return 1;
+        return 1; // Transition to stopping state
 
-
-    return 0;
+    return 0; // Continue running
 }
 
 int XenoLoopRunner::stopping()
 {
-    // Bring the physical system to a stop and set it in a state that the system can be deactivated
-    // Return 1 to go to stopped state
-    logger.stop();                                // Stop logger
-    evl_printf("Hello from stopping\n");          // Do something
+    monitor.printf("State: Stopping...\n");
+    // Ensure motors are stopped
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
 
-    return 1;
+    // Stop logger
+    if(logger.isStarted())
+        logger.stop();
+    return 1; // Transition to stopped state
 }
 
 int XenoLoopRunner::stopped()
 {
-    // A steady state in which the system can be deactivated whitout harming the physical system
-
-    monitor.printf("Hello from stopping\n");          // Do something
-
-    return 0;
+    monitor.printf("State: Stopped. Waiting for Reset or Quit command.\n");
+    // Keep motors stopped
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
+    return 0; // Stay in stopped state
 }
 
 int XenoLoopRunner::pausing()
 {
-    // Bring the physical system to a stop as fast as possible without causing harm to the physical system
+     monitor.printf("State: Pausing...\n");
+    // Ensure motors are stopped quickly
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
 
-    evl_printf("Hello from pausing\n");           // Do something
-    return 1 ;
+    // Stop logger if running
+    if(logger.isStarted())
+        logger.stop();
+    return 1; // Transition to paused state
 }
 
 int XenoLoopRunner::paused()
 {
-    // Keep the physical system in the current physical state
-
-    monitor.printf("Hello from paused\n");            // Do something
-    return 0;
+    monitor.printf("State: Paused. Waiting for Start or Stop command.\n");
+    // Keep motors stopped
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
+    return 0; // Stay in paused state
 }
 
 int XenoLoopRunner::error()
 {
-    // Error detected in the system 
-    // Can go to error if the previous state returns 1 from every other state function but initialising 
+    monitor.printf("State: Error! Check logs. Waiting for Reset or Quit command.\n");
+    // Ensure motors are stopped
+    actuate_data.pwm1 = 0;
+    actuate_data.pwm2 = 0;
+    ico_io.update_io(actuate_data, &sample_data);
 
-    monitor.printf("Hello from error\n");             // Do something
-
-    return 0;
+     // Stop logger if running
+    if(logger.isStarted())
+        logger.stop();
+    return 0; // Stay in error state
 }
-
