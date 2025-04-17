@@ -98,7 +98,7 @@ SequenceController::VelocityCommands SequenceController::calculate_velocity_comm
         }
 
         
-    if (std::fabs(error_x) < params_.centering_threshold_px) {
+    if (std::fabs(error_x) < params_.turning_deadzone_px) {
         double current_ball_size = latest_light_pos_.z; // diameter from ball_tracker
         double error_size = params_.target_size_px - current_ball_size; // target - current
         double size_deadzone = 30.0; // tolerance for the ballie

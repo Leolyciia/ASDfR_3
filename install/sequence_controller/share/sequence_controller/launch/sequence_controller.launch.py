@@ -24,8 +24,10 @@ def generate_launch_description():
         package="cam2image_vm2ros",
         executable="cam2image",
         name="cam2image_node",
-        arguments=["--ros-args", "--params-file", "src/cam2image_vm2ros/config/cam2image_relbot.yaml"],
-        # parameters=[cam2image_config_path],
+        # arguments=["--ros-args", "--params-file", "src/cam2image_vm2ros/config/cam2image_relbot.yaml"],
+        parameters=[{"width": 320, "height": 240, "show_camera": False}],
+
+        
         output='screen'
     )
 
@@ -80,6 +82,8 @@ def generate_launch_description():
     # Add ROS nodes
     ld.add_action(LogInfo(msg="Starting ROS-Xenomai Bridge..."))
     ld.add_action(start_ros_xeno_bridge)
+
+    ld.add_action(LogInfo(msg=["Loading camera config from: ", cam2image_config_path]))
 
     ld.add_action(LogInfo(msg="Starting Camera Node..."))
     ld.add_action(start_camera_node)
