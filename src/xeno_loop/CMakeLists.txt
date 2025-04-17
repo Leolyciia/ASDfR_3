@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.10)
 project(xeno_loop)
 
@@ -66,5 +67,4 @@ target_include_directories( xeno_loop BEFORE PUBLIC
 
 # Specify paths to library files
 target_link_directories(xeno_loop PUBLIC /usr/evl/lib)
-
 target_link_libraries(xeno_loop PRIVATE evl)

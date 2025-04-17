@@ -1,16 +1,17 @@
+
 #include <iostream>
 #include <string>
 #include <sys/types.h>
 #include <pthread.h>
 #include <fstream>
 
-#include "Template20Sim.hpp"
+#include "XenoLoopRunner.hpp"
 
 volatile bool exitBool = false;
 
 static void *XenoThread(void *arg)
 {
-    Template20Sim example_rt(1,1);
+    XenoLoopRunner example_rt(1,1);
     evl_printf("starting the loop!!!\n");
     example_rt.loop();
     return NULL;

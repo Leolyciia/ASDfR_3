@@ -645,29 +645,29 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/Template20Sim.o: src/Template20Sim.cpp.o
-.PHONY : src/Template20Sim.o
+src/XenoLoopRunner.o: src/XenoLoopRunner.cpp.o
+.PHONY : src/XenoLoopRunner.o
 
 # target to build an object file
-src/Template20Sim.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.o
-.PHONY : src/Template20Sim.cpp.o
+src/XenoLoopRunner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.o
+.PHONY : src/XenoLoopRunner.cpp.o
 
-src/Template20Sim.i: src/Template20Sim.cpp.i
-.PHONY : src/Template20Sim.i
+src/XenoLoopRunner.i: src/XenoLoopRunner.cpp.i
+.PHONY : src/XenoLoopRunner.i
 
 # target to preprocess a source file
-src/Template20Sim.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.i
-.PHONY : src/Template20Sim.cpp.i
+src/XenoLoopRunner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.i
+.PHONY : src/XenoLoopRunner.cpp.i
 
-src/Template20Sim.s: src/Template20Sim.cpp.s
-.PHONY : src/Template20Sim.s
+src/XenoLoopRunner.s: src/XenoLoopRunner.cpp.s
+.PHONY : src/XenoLoopRunner.s
 
 # target to generate assembly for a file
-src/Template20Sim.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/Template20Sim.cpp.s
-.PHONY : src/Template20Sim.cpp.s
+src/XenoLoopRunner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xeno_loop.dir/build.make CMakeFiles/xeno_loop.dir/src/XenoLoopRunner.cpp.s
+.PHONY : src/XenoLoopRunner.cpp.s
 
 # Help Target
 help:
@@ -741,9 +741,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/Template20Sim.o"
-	@echo "... src/Template20Sim.i"
-	@echo "... src/Template20Sim.s"
+	@echo "... src/XenoLoopRunner.o"
+	@echo "... src/XenoLoopRunner.i"
+	@echo "... src/XenoLoopRunner.s"
 .PHONY : help
 
 
