@@ -118,7 +118,7 @@ SequenceController::VelocityCommands SequenceController::calculate_velocity_comm
     }
 
 
-        RCLCPP_DEBUG(this->get_logger(),
+        RCLCPP_INFO(this->get_logger(),
             "Ball X:%.1f, ErrX:%.1f, Size:%.1f, ErrSize:%.1f | TurnCmd:%.2f, FwdCmd:%.2f",
             latest_light_pos_.x, error_x, latest_light_pos_.z, (params_.target_size_px - latest_light_pos_.z), cmd.turn, cmd.forward);
     } else {

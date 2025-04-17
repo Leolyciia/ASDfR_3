@@ -23,7 +23,7 @@ struct ControlParameters {
     double max_turn_speed = 0.8;
     double max_forward_speed = 0.8;
     double max_backward_speed = 0.8;
-    double max_wheel_speed = 0.9;
+    double max_wheel_speed = 1.2;
     double centering_threshold_px = 15.0;
     double turning_deadzone_px = 50.0;
     double sample_time_s = 0.03;

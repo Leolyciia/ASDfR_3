@@ -122,9 +122,9 @@ BallTracker::BallTracker() : Node("ball_tracker") {
   using std::placeholders::_1;
 
   // Parameters
-  h_min_ = 37; h_max_ = 94;
-  s_min_ = 26; s_max_ = 255;
-  v_min_ = 113; v_max_ = 255;
+  h_min_ = 21; h_max_ = 102;
+  s_min_ = 82; s_max_ = 255;
+  v_min_ = 104; v_max_ = 255;
   size_min_px_ = 30; size_max_px_ = 1600; 
 
   // Initialise subscription
