@@ -1,7 +1,10 @@
+
 #ifndef XENOLOOPRUNNER_HPP
 #define XENOLOOPRUNNER_HPP
 
 #include "XenoFrt20Sim.hpp" 
+#include "XenoFileHandler.hpp"
+
 
 
 class XenoLoopRunner : public XenoFrt20Sim
@@ -19,6 +22,9 @@ private:
     // PWM test value 
     int16_t test_pwm_left = 0;
     int16_t test_pwm_right = 0;
+
+    // File handler for logging
+    XenoFileHandler file_handle;
 
 
 protected:

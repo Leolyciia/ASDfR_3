@@ -1,9 +1,11 @@
+
 #include "XenoLoopRunner.hpp"
 #include <cmath>
 #include <string.h>
 
-XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq) :
-    XenoFrt20Sim(write_decimator_freq, monitor_freq)
+XenoLoopRunner::XenoLoopRunner(uint write_decimator_freq, uint monitor_freq)
+    : XenoFrt20Sim(write_decimator_freq, monitor_freq, file_handle, nullptr), // Pass file_handle to base class
+    file_handle(true, "log_file_path", "txt")
 {
     evl_printf("%s: XenoLooper constructed\n", __FUNCTION__);
     initialized = false;
