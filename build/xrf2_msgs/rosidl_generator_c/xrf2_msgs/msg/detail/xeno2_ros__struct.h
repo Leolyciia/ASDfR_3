@@ -22,8 +22,9 @@ typedef struct xrf2_msgs__msg__Xeno2Ros
 {
   double encoder_left;
   double encoder_right;
-  double example_c;
-  double example_d;
+  double x;
+  double y;
+  double theta;
 } xrf2_msgs__msg__Xeno2Ros;
 
 // Struct for a sequence of xrf2_msgs__msg__Xeno2Ros.

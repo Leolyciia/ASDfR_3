@@ -37,7 +37,7 @@ void Xeno2Ros_fini_function(void * message_memory)
   typed_message->~Xeno2Ros();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Xeno2Ros_message_member_array[4] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Xeno2Ros_message_member_array[5] = {
   {
     "encoder_left",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
@@ -73,14 +73,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Xeno2Ros_mess
     nullptr  // resize(index) function pointer
   },
   {
-    "example_c",  // name
+    "x",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(xrf2_msgs::msg::Xeno2Ros, example_c),  // bytes offset in struct
+    offsetof(xrf2_msgs::msg::Xeno2Ros, x),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -90,14 +90,31 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Xeno2Ros_mess
     nullptr  // resize(index) function pointer
   },
   {
-    "example_d",  // name
+    "y",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(xrf2_msgs::msg::Xeno2Ros, example_d),  // bytes offset in struct
+    offsetof(xrf2_msgs::msg::Xeno2Ros, y),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "theta",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(xrf2_msgs::msg::Xeno2Ros, theta),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -111,7 +128,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Xeno2Ros_mess
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Xeno2Ros_message_members = {
   "xrf2_msgs::msg",  // message namespace
   "Xeno2Ros",  // message name
-  4,  // number of fields
+  5,  // number of fields
   sizeof(xrf2_msgs::msg::Xeno2Ros),
   Xeno2Ros_message_member_array,  // message members
   Xeno2Ros_init_function,  // function to initialize message memory (memory has to be allocated)

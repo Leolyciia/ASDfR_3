@@ -40,8 +40,9 @@ struct Xeno2Ros_
     {
       this->encoder_left = 0.0;
       this->encoder_right = 0.0;
-      this->example_c = 0.0;
-      this->example_d = 0.0;
+      this->x = 0.0;
+      this->y = 0.0;
+      this->theta = 0.0;
     }
   }
 
@@ -53,8 +54,9 @@ struct Xeno2Ros_
     {
       this->encoder_left = 0.0;
       this->encoder_right = 0.0;
-      this->example_c = 0.0;
-      this->example_d = 0.0;
+      this->x = 0.0;
+      this->y = 0.0;
+      this->theta = 0.0;
     }
   }
 
@@ -65,12 +67,15 @@ struct Xeno2Ros_
   using _encoder_right_type =
     double;
   _encoder_right_type encoder_right;
-  using _example_c_type =
+  using _x_type =
     double;
-  _example_c_type example_c;
-  using _example_d_type =
+  _x_type x;
+  using _y_type =
     double;
-  _example_d_type example_d;
+  _y_type y;
+  using _theta_type =
+    double;
+  _theta_type theta;
 
   // setters for named parameter idiom
   Type & set__encoder_left(
@@ -85,16 +90,22 @@ struct Xeno2Ros_
     this->encoder_right = _arg;
     return *this;
   }
-  Type & set__example_c(
+  Type & set__x(
     const double & _arg)
   {
-    this->example_c = _arg;
+    this->x = _arg;
     return *this;
   }
-  Type & set__example_d(
+  Type & set__y(
     const double & _arg)
   {
-    this->example_d = _arg;
+    this->y = _arg;
+    return *this;
+  }
+  Type & set__theta(
+    const double & _arg)
+  {
+    this->theta = _arg;
     return *this;
   }
 
@@ -146,10 +157,13 @@ struct Xeno2Ros_
     if (this->encoder_right != other.encoder_right) {
       return false;
     }
-    if (this->example_c != other.example_c) {
+    if (this->x != other.x) {
       return false;
     }
-    if (this->example_d != other.example_d) {
+    if (this->y != other.y) {
+      return false;
+    }
+    if (this->theta != other.theta) {
       return false;
     }
     return true;

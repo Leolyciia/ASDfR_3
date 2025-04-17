@@ -51,12 +51,12 @@ int16_t XenoLoopRunner::calculate_delta_counts_right(uint16_t current_raw, uint1
     }
 }
 
-double XenoLoopRunner::normalize_angle(double angle) {
-    angle = fmod(angle + M_PI, 2.0 * M_PI);
-    if (angle < 0.0)
-        angle += 2.0 * M_PI;
-    return angle - M_PI;
-}
+// double XenoLoopRunner::normalize_angle(double angle) {
+//     angle = fmod(angle + M_PI, 2.0 * M_PI);
+//     if (angle < 0.0)
+//         angle += 2.0 * M_PI;
+//     return angle - M_PI;
+// }
 
 
 void XenoLoopRunner::updateOdometryAndWheelPositions(uint16_t current_encoder_left_raw, uint16_t current_encoder_right_raw) {
@@ -71,8 +71,9 @@ void XenoLoopRunner::updateOdometryAndWheelPositions(uint16_t current_encoder_le
     int16_t delta_counts_left = calculate_delta_counts_left(current_encoder_left_raw, prev_encoder_left_raw_);
     int16_t delta_counts_right = calculate_delta_counts_right(-current_encoder_right_raw, -prev_encoder_right_raw_);
 
-    double displacement_step_left = static_cast<double>(delta_counts_left) * DIST_PER_COUNT;
-    double displacement_step_right = static_cast<double>(delta_counts_right) * DIST_PER_COUNT;
+    double displacement_step_left = (static_cast<double>(delta_counts_left) / (1024.0 * GEAR_RATIO * 4)) * (2 * M_PI);
+    // Right wheel count decreases backward 
+    double displacement_step_right = (static_cast<double>(delta_counts_right) / (1024.0 * GEAR_RATIO * 4)) * (2 * M_PI);
 
     total_pos_left_m_ += displacement_step_left;
     total_pos_right_m_ += displacement_step_right;
@@ -82,10 +83,11 @@ void XenoLoopRunner::updateOdometryAndWheelPositions(uint16_t current_encoder_le
     double delta_theta = (displacement_step_right - displacement_step_left) / WHEEL_BASE_WIDTH;
 
     // Update pose
+    theta_ += delta_theta;
     x_pos_ += delta_s * cos(theta_ + delta_theta / 2.0); 
     y_pos_ += delta_s * sin(theta_ + delta_theta / 2.0); 
-    theta_ += delta_theta;
-    theta_ = normalize_angle(theta_);
+    
+    // theta_ = normalize_angle(theta_);
 
     prev_encoder_left_raw_ = current_encoder_left_raw;
     prev_encoder_right_raw_ = current_encoder_right_raw;
@@ -139,7 +141,7 @@ int XenoLoopRunner::initialised()
     actuate_data.pwm1 = 0;
     actuate_data.pwm2 = 0;
     ico_io.update_io(actuate_data, &sample_data);
-    return 0; 
+    return 1; 
 }
 
 int XenoLoopRunner::run()

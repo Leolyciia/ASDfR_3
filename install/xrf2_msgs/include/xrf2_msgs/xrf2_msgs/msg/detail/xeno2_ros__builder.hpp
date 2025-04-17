@@ -21,15 +21,15 @@ namespace msg
 namespace builder
 {
 
-class Init_Xeno2Ros_example_d
+class Init_Xeno2Ros_theta
 {
 public:
-  explicit Init_Xeno2Ros_example_d(::xrf2_msgs::msg::Xeno2Ros & msg)
+  explicit Init_Xeno2Ros_theta(::xrf2_msgs::msg::Xeno2Ros & msg)
   : msg_(msg)
   {}
-  ::xrf2_msgs::msg::Xeno2Ros example_d(::xrf2_msgs::msg::Xeno2Ros::_example_d_type arg)
+  ::xrf2_msgs::msg::Xeno2Ros theta(::xrf2_msgs::msg::Xeno2Ros::_theta_type arg)
   {
-    msg_.example_d = std::move(arg);
+    msg_.theta = std::move(arg);
     return std::move(msg_);
   }
 
@@ -37,16 +37,32 @@ private:
   ::xrf2_msgs::msg::Xeno2Ros msg_;
 };
 
-class Init_Xeno2Ros_example_c
+class Init_Xeno2Ros_y
 {
 public:
-  explicit Init_Xeno2Ros_example_c(::xrf2_msgs::msg::Xeno2Ros & msg)
+  explicit Init_Xeno2Ros_y(::xrf2_msgs::msg::Xeno2Ros & msg)
   : msg_(msg)
   {}
-  Init_Xeno2Ros_example_d example_c(::xrf2_msgs::msg::Xeno2Ros::_example_c_type arg)
+  Init_Xeno2Ros_theta y(::xrf2_msgs::msg::Xeno2Ros::_y_type arg)
   {
-    msg_.example_c = std::move(arg);
-    return Init_Xeno2Ros_example_d(msg_);
+    msg_.y = std::move(arg);
+    return Init_Xeno2Ros_theta(msg_);
+  }
+
+private:
+  ::xrf2_msgs::msg::Xeno2Ros msg_;
+};
+
+class Init_Xeno2Ros_x
+{
+public:
+  explicit Init_Xeno2Ros_x(::xrf2_msgs::msg::Xeno2Ros & msg)
+  : msg_(msg)
+  {}
+  Init_Xeno2Ros_y x(::xrf2_msgs::msg::Xeno2Ros::_x_type arg)
+  {
+    msg_.x = std::move(arg);
+    return Init_Xeno2Ros_y(msg_);
   }
 
 private:
@@ -59,10 +75,10 @@ public:
   explicit Init_Xeno2Ros_encoder_right(::xrf2_msgs::msg::Xeno2Ros & msg)
   : msg_(msg)
   {}
-  Init_Xeno2Ros_example_c encoder_right(::xrf2_msgs::msg::Xeno2Ros::_encoder_right_type arg)
+  Init_Xeno2Ros_x encoder_right(::xrf2_msgs::msg::Xeno2Ros::_encoder_right_type arg)
   {
     msg_.encoder_right = std::move(arg);
-    return Init_Xeno2Ros_example_c(msg_);
+    return Init_Xeno2Ros_x(msg_);
   }
 
 private:

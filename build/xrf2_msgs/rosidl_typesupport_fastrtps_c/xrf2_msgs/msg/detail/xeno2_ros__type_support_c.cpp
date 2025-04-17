@@ -59,14 +59,19 @@ static bool _Xeno2Ros__cdr_serialize(
     cdr << ros_message->encoder_right;
   }
 
-  // Field name: example_c
+  // Field name: x
   {
-    cdr << ros_message->example_c;
+    cdr << ros_message->x;
   }
 
-  // Field name: example_d
+  // Field name: y
   {
-    cdr << ros_message->example_d;
+    cdr << ros_message->y;
+  }
+
+  // Field name: theta
+  {
+    cdr << ros_message->theta;
   }
 
   return true;
@@ -91,14 +96,19 @@ static bool _Xeno2Ros__cdr_deserialize(
     cdr >> ros_message->encoder_right;
   }
 
-  // Field name: example_c
+  // Field name: x
   {
-    cdr >> ros_message->example_c;
+    cdr >> ros_message->x;
   }
 
-  // Field name: example_d
+  // Field name: y
   {
-    cdr >> ros_message->example_d;
+    cdr >> ros_message->y;
+  }
+
+  // Field name: theta
+  {
+    cdr >> ros_message->theta;
   }
 
   return true;
@@ -130,15 +140,21 @@ size_t get_serialized_size_xrf2_msgs__msg__Xeno2Ros(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name example_c
+  // field.name x
   {
-    size_t item_size = sizeof(ros_message->example_c);
+    size_t item_size = sizeof(ros_message->x);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name example_d
+  // field.name y
   {
-    size_t item_size = sizeof(ros_message->example_d);
+    size_t item_size = sizeof(ros_message->y);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name theta
+  {
+    size_t item_size = sizeof(ros_message->theta);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
@@ -187,7 +203,7 @@ size_t max_serialized_size_xrf2_msgs__msg__Xeno2Ros(
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: example_c
+  // member: x
   {
     size_t array_size = 1;
 
@@ -195,7 +211,15 @@ size_t max_serialized_size_xrf2_msgs__msg__Xeno2Ros(
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: example_d
+  // member: y
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+  // member: theta
   {
     size_t array_size = 1;
 
@@ -212,7 +236,7 @@ size_t max_serialized_size_xrf2_msgs__msg__Xeno2Ros(
     using DataType = xrf2_msgs__msg__Xeno2Ros;
     is_plain =
       (
-      offsetof(DataType, example_d) +
+      offsetof(DataType, theta) +
       last_member_size
       ) == ret_val;
   }

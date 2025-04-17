@@ -68,22 +68,31 @@ bool xrf2_msgs__msg__xeno2_ros__convert_from_py(PyObject * _pymsg, void * _ros_m
     ros_message->encoder_right = PyFloat_AS_DOUBLE(field);
     Py_DECREF(field);
   }
-  {  // example_c
-    PyObject * field = PyObject_GetAttrString(_pymsg, "example_c");
+  {  // x
+    PyObject * field = PyObject_GetAttrString(_pymsg, "x");
     if (!field) {
       return false;
     }
     assert(PyFloat_Check(field));
-    ros_message->example_c = PyFloat_AS_DOUBLE(field);
+    ros_message->x = PyFloat_AS_DOUBLE(field);
     Py_DECREF(field);
   }
-  {  // example_d
-    PyObject * field = PyObject_GetAttrString(_pymsg, "example_d");
+  {  // y
+    PyObject * field = PyObject_GetAttrString(_pymsg, "y");
     if (!field) {
       return false;
     }
     assert(PyFloat_Check(field));
-    ros_message->example_d = PyFloat_AS_DOUBLE(field);
+    ros_message->y = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // theta
+    PyObject * field = PyObject_GetAttrString(_pymsg, "theta");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->theta = PyFloat_AS_DOUBLE(field);
     Py_DECREF(field);
   }
 
@@ -130,22 +139,33 @@ PyObject * xrf2_msgs__msg__xeno2_ros__convert_to_py(void * raw_ros_message)
       }
     }
   }
-  {  // example_c
+  {  // x
     PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->example_c);
+    field = PyFloat_FromDouble(ros_message->x);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "example_c", field);
+      int rc = PyObject_SetAttrString(_pymessage, "x", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // example_d
+  {  // y
     PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->example_d);
+    field = PyFloat_FromDouble(ros_message->y);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "example_d", field);
+      int rc = PyObject_SetAttrString(_pymessage, "y", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // theta
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->theta);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "theta", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

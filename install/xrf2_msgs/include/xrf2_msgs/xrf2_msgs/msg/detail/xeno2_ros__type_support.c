@@ -31,7 +31,7 @@ void xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_fini
   xrf2_msgs__msg__Xeno2Ros__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_message_member_array[4] = {
+static rosidl_typesupport_introspection_c__MessageMember xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_message_member_array[5] = {
   {
     "encoder_left",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
@@ -67,14 +67,14 @@ static rosidl_typesupport_introspection_c__MessageMember xrf2_msgs__msg__Xeno2Ro
     NULL  // resize(index) function pointer
   },
   {
-    "example_c",  // name
+    "x",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(xrf2_msgs__msg__Xeno2Ros, example_c),  // bytes offset in struct
+    offsetof(xrf2_msgs__msg__Xeno2Ros, x),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -84,14 +84,31 @@ static rosidl_typesupport_introspection_c__MessageMember xrf2_msgs__msg__Xeno2Ro
     NULL  // resize(index) function pointer
   },
   {
-    "example_d",  // name
+    "y",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(xrf2_msgs__msg__Xeno2Ros, example_d),  // bytes offset in struct
+    offsetof(xrf2_msgs__msg__Xeno2Ros, y),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "theta",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(xrf2_msgs__msg__Xeno2Ros, theta),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -105,7 +122,7 @@ static rosidl_typesupport_introspection_c__MessageMember xrf2_msgs__msg__Xeno2Ro
 static const rosidl_typesupport_introspection_c__MessageMembers xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_message_members = {
   "xrf2_msgs__msg",  // message namespace
   "Xeno2Ros",  // message name
-  4,  // number of fields
+  5,  // number of fields
   sizeof(xrf2_msgs__msg__Xeno2Ros),
   xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_message_member_array,  // message members
   xrf2_msgs__msg__Xeno2Ros__rosidl_typesupport_introspection_c__Xeno2Ros_init_function,  // function to initialize message memory (memory has to be allocated)

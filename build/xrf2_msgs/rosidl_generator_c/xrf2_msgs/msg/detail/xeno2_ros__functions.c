@@ -19,8 +19,9 @@ xrf2_msgs__msg__Xeno2Ros__init(xrf2_msgs__msg__Xeno2Ros * msg)
   }
   // encoder_left
   // encoder_right
-  // example_c
-  // example_d
+  // x
+  // y
+  // theta
   return true;
 }
 
@@ -32,8 +33,9 @@ xrf2_msgs__msg__Xeno2Ros__fini(xrf2_msgs__msg__Xeno2Ros * msg)
   }
   // encoder_left
   // encoder_right
-  // example_c
-  // example_d
+  // x
+  // y
+  // theta
 }
 
 bool
@@ -50,12 +52,16 @@ xrf2_msgs__msg__Xeno2Ros__are_equal(const xrf2_msgs__msg__Xeno2Ros * lhs, const 
   if (lhs->encoder_right != rhs->encoder_right) {
     return false;
   }
-  // example_c
-  if (lhs->example_c != rhs->example_c) {
+  // x
+  if (lhs->x != rhs->x) {
     return false;
   }
-  // example_d
-  if (lhs->example_d != rhs->example_d) {
+  // y
+  if (lhs->y != rhs->y) {
+    return false;
+  }
+  // theta
+  if (lhs->theta != rhs->theta) {
     return false;
   }
   return true;
@@ -73,10 +79,12 @@ xrf2_msgs__msg__Xeno2Ros__copy(
   output->encoder_left = input->encoder_left;
   // encoder_right
   output->encoder_right = input->encoder_right;
-  // example_c
-  output->example_c = input->example_c;
-  // example_d
-  output->example_d = input->example_d;
+  // x
+  output->x = input->x;
+  // y
+  output->y = input->y;
+  // theta
+  output->theta = input->theta;
   return true;
 }
 

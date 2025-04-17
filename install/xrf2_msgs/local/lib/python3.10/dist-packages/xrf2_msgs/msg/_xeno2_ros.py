@@ -59,18 +59,21 @@ class Xeno2Ros(metaclass=Metaclass_Xeno2Ros):
     __slots__ = [
         '_encoder_left',
         '_encoder_right',
-        '_example_c',
-        '_example_d',
+        '_x',
+        '_y',
+        '_theta',
     ]
 
     _fields_and_field_types = {
         'encoder_left': 'double',
         'encoder_right': 'double',
-        'example_c': 'double',
-        'example_d': 'double',
+        'x': 'double',
+        'y': 'double',
+        'theta': 'double',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
@@ -83,8 +86,9 @@ class Xeno2Ros(metaclass=Metaclass_Xeno2Ros):
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         self.encoder_left = kwargs.get('encoder_left', float())
         self.encoder_right = kwargs.get('encoder_right', float())
-        self.example_c = kwargs.get('example_c', float())
-        self.example_d = kwargs.get('example_d', float())
+        self.x = kwargs.get('x', float())
+        self.y = kwargs.get('y', float())
+        self.theta = kwargs.get('theta', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -119,9 +123,11 @@ class Xeno2Ros(metaclass=Metaclass_Xeno2Ros):
             return False
         if self.encoder_right != other.encoder_right:
             return False
-        if self.example_c != other.example_c:
+        if self.x != other.x:
             return False
-        if self.example_d != other.example_d:
+        if self.y != other.y:
+            return False
+        if self.theta != other.theta:
             return False
         return True
 
@@ -161,31 +167,46 @@ class Xeno2Ros(metaclass=Metaclass_Xeno2Ros):
         self._encoder_right = value
 
     @builtins.property
-    def example_c(self):
-        """Message field 'example_c'."""
-        return self._example_c
+    def x(self):
+        """Message field 'x'."""
+        return self._x
 
-    @example_c.setter
-    def example_c(self, value):
+    @x.setter
+    def x(self, value):
         if __debug__:
             assert \
                 isinstance(value, float), \
-                "The 'example_c' field must be of type 'float'"
+                "The 'x' field must be of type 'float'"
             assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
-                "The 'example_c' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
-        self._example_c = value
+                "The 'x' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._x = value
 
     @builtins.property
-    def example_d(self):
-        """Message field 'example_d'."""
-        return self._example_d
+    def y(self):
+        """Message field 'y'."""
+        return self._y
 
-    @example_d.setter
-    def example_d(self, value):
+    @y.setter
+    def y(self, value):
         if __debug__:
             assert \
                 isinstance(value, float), \
-                "The 'example_d' field must be of type 'float'"
+                "The 'y' field must be of type 'float'"
             assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
-                "The 'example_d' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
-        self._example_d = value
+                "The 'y' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._y = value
+
+    @builtins.property
+    def theta(self):
+        """Message field 'theta'."""
+        return self._theta
+
+    @theta.setter
+    def theta(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'theta' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'theta' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._theta = value
